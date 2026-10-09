@@ -1,0 +1,28 @@
+<section class="page-main"><div class="wrap">
+  <h1 style="font-size:clamp(2rem,4.4vw,3.4rem)">Your cart</h1>
+  {%- if cart.item_count > 0 -%}
+  <form action="{{ routes.cart_url }}" method="post">
+    <div class="cart-wrap"><table class="cart-table">
+      <thead><tr><th>Product</th><th>Quantity</th><th style="text-align:right">Total</th></tr></thead>
+      <tbody>
+      {%- for item in cart.items -%}
+        <tr>
+          <td><a href="{{ item.url }}">{{ item.product.title }}</a>{% unless item.variant.title == 'Default Title' %}<br><small class="muted">{{ item.variant.title }}</small>{% endunless %}{% if item.selling_plan_allocation %}<br><small class="muted">{{ item.selling_plan_allocation.selling_plan.name }}</small>{% endif %}</td>
+          <td><label class="visually-hidden" for="qty-{{ forloop.index }}">Quantity</label><input id="qty-{{ forloop.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:5em;font:inherit;padding:.4em;border:1.5px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)"></td>
+          <td style="text-align:right;font-variant-numeric:tabular-nums">{{ item.final_line_price | money }}</td>
+        </tr>
+      {%- endfor -%}
+      </tbody>
+    </table></div>
+    <div class="cart-foot">
+      <button class="btn" type="submit" name="update">Update cart</button>
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><b>{{ cart.total_price | money }}</b><button class="btn btn-red" type="submit" name="checkout">Check out</button></div>
+    </div>
+    <p class="muted" style="margin-top:12px;font-size:.9rem">Taxes and shipping are calculated at checkout.</p>
+  </form>
+  {%- else -%}
+    <p style="margin-top:16px">Your cart is empty.</p>
+    <p style="margin-top:24px"><a class="btn btn-red" href="{{ routes.root_url }}#shop">Shop the 30-Day Box</a></p>
+  {%- endif -%}
+</div></section>
+{% schema %}{ "name": "Cart" }{% endschema %}

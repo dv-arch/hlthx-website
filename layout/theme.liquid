@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ page_title }}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}</title>
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% if settings.favicon %}<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">{% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  {{ 'hlthx.css' | asset_url | stylesheet_tag }}
+  {%- comment -%} Brand colours come from Theme settings > Colours, so they can be changed without code. {%- endcomment -%}
+  <style>
+    :root{--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }}}
+    {% if settings.dark_mode == false %}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }};--todo-bg:#fff3d6;--todo-fg:#7a4b00;--todo-line:#e7c77b;color-scheme:light}}{% endif %}
+  </style>
+  {{ content_for_header }}
+</head>
+<body>
+  <a class="visually-hidden" href="#MainContent">Skip to content</a>
+  {% sections 'header-group' %}
+  <main id="MainContent">
+    {{ content_for_layout }}
+  </main>
+  {% sections 'footer-group' %}
+  <script src="{{ 'hlthx.js' | asset_url }}" defer></script>
+</body>
+</html>

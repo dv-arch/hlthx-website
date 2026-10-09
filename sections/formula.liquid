@@ -1,0 +1,44 @@
+<section id="formula">
+  <div class="wrap">
+    <div class="formula-head">
+      <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading }}</h2>
+      <p class="muted">{{ section.settings.text }}</p>
+    </div>
+    <div class="blends">
+      {%- for block in section.blocks -%}
+      <details class="blend" {{ block.shopify_attributes }}>
+        <summary>{%- render 'blend-icon', icon: block.settings.icon -%}<h3>{{ block.settings.name }}</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body">{%- if block.settings.ingredients != blank -%}{{ block.settings.ingredients }}{%- else -%}<p>{%- render 'todo', label: 'ingredients and amounts' -%}</p>{%- endif -%}</div>
+      </details>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.cta != blank -%}
+    <div class="formula-foot"><span></span><a class="btn" href="{{ section.settings.cta_link | default: '#formula' }}">{{ section.settings.cta }}</a></div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Inside the Formula", "settings": [
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Inside the Formula" },
+  { "type": "text", "id": "heading", "label": "Heading", "default": "More than a multivitamin." },
+  { "type": "textarea", "id": "text", "label": "Text", "default": "Every blend in your daily sachet, organised by what it does. Open a category to see what's inside." },
+  { "type": "text", "id": "cta", "label": "Button", "default": "Explore What's Inside" },
+  { "type": "url", "id": "cta_link", "label": "Button link" }
+], "blocks": [{ "type": "blend", "name": "Category", "settings": [
+  { "type": "text", "id": "name", "label": "Category name", "default": "Multivitamins" },
+  { "type": "select", "id": "icon", "label": "Icon", "default": "sun", "options": [
+    {"value":"sun","label":"Sun"},{"value":"hex","label":"Mineral"},{"value":"chain","label":"Chain"},{"value":"drop","label":"Drop"},{"value":"leaf","label":"Leaf"},{"value":"dots","label":"Probiotic"},{"value":"spiral","label":"Enzyme"},{"value":"heart","label":"Heart"},{"value":"joint","label":"Joint"} ] },
+  { "type": "richtext", "id": "ingredients", "label": "Ingredients (one per line, with amount)" }
+] }], "presets": [{ "name": "Inside the Formula", "blocks": [
+  {"type":"blend","settings":{"name":"Multivitamins","icon":"sun"}},
+  {"type":"blend","settings":{"name":"Minerals & Trace Elements","icon":"hex"}},
+  {"type":"blend","settings":{"name":"Amino Acids","icon":"chain"}},
+  {"type":"blend","settings":{"name":"Hydration Electrolytes","icon":"drop"}},
+  {"type":"blend","settings":{"name":"Prebiotic Fibre","icon":"leaf"}},
+  {"type":"blend","settings":{"name":"Probiotic Complex","icon":"dots"}},
+  {"type":"blend","settings":{"name":"Digestive Enzyme Support","icon":"spiral"}},
+  {"type":"blend","settings":{"name":"Heart Health Support","icon":"heart"}},
+  {"type":"blend","settings":{"name":"Joint & Muscle Health Support","icon":"joint"}}
+] }] }
+{% endschema %}

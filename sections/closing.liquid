@@ -1,0 +1,15 @@
+<section class="closing">
+  <div class="wrap" style="display:grid;gap:28px">
+    <h2>{{ section.settings.line1 }} <em>{{ section.settings.accent }}</em> {{ section.settings.line2 }}</h2>
+    <div><a class="btn btn-red" href="{{ section.settings.cta_link | default: '#shop' }}">{{ section.settings.cta }}</a></div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Closing", "settings": [
+  { "type": "text", "id": "line1", "label": "Line", "default": "Take care of yourself." },
+  { "type": "text", "id": "accent", "label": "Accent words", "default": "Not perfectly." },
+  { "type": "text", "id": "line2", "label": "Line end", "default": "Just consistently." },
+  { "type": "text", "id": "cta", "label": "Button", "default": "Shop the 30-Day Box" },
+  { "type": "url", "id": "cta_link", "label": "Button link" }
+], "presets": [{ "name": "Closing" }] }
+{% endschema %}

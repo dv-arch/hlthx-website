@@ -1,0 +1,19 @@
+<section class="page-main">
+  <div class="wrap buy">
+    <div class="buy-art">
+      {%- if product.featured_image -%}{{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(max-width: 860px) 100vw, 50vw' }}
+      {%- else -%}{%- render 'sachet', caption: '30 × 15 g SACHETS' -%}{%- endif -%}
+    </div>
+    <div style="display:grid;gap:22px;min-width:0">
+      <div class="eyebrow">{{ product.vendor }}</div>
+      <h1 style="font-size:clamp(2rem,4.4vw,3.4rem)">{{ product.title }}</h1>
+      {%- if product.metafields.custom.tagline != blank -%}<p class="lede">{{ product.metafields.custom.tagline }}</p>{%- endif -%}
+      {%- render 'product-form', product: product, section: section -%}
+      <div class="rte inbox">{{ product.description }}</div>
+    </div>
+  </div>
+  {%- if product.images.size > 1 -%}
+  <div class="wrap"><div class="grid-products">{% for image in product.images offset: 1 %}<div class="card"><div class="img">{{ image | image_url: width: 600 | image_tag: loading: 'lazy' }}</div></div>{% endfor %}</div></div>
+  {%- endif -%}
+</section>
+{% schema %}{ "name": "Product" }{% endschema %}

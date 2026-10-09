@@ -1,0 +1,12 @@
+<section class="page-main"><div class="wrap">
+  <div class="eyebrow">Shop</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.4rem);margin-top:16px">{{ collection.title }}</h1>
+  {%- if collection.description != blank -%}<div class="rte muted" style="margin-top:16px">{{ collection.description }}</div>{%- endif -%}
+  {%- paginate collection.products by 24 -%}
+  <div class="grid-products">
+    {%- for p in collection.products -%}{%- render 'product-card', p: p -%}{%- else -%}<p>No products yet.</p>{%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 -%}<div style="margin-top:32px">{{ paginate | default_pagination }}</div>{%- endif -%}
+  {%- endpaginate -%}
+</div></section>
+{% schema %}{ "name": "Collection" }{% endschema %}

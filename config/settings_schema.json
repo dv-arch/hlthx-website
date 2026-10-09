@@ -1,0 +1,91 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "HLTHX",
+    "theme_version": "1.0.0",
+    "theme_author": "HLTHX",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background",
+        "default": "#FBF8F1"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Panels",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Text",
+        "default": "#191410"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Secondary text",
+        "default": "#6B5C4A"
+      },
+      {
+        "type": "color",
+        "id": "color_line",
+        "label": "Lines",
+        "default": "#EDE6D8"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent fill (buttons, marks)",
+        "default": "#E3A008"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_strong",
+        "label": "Accent text and icons",
+        "default": "#8F5A04"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_text",
+        "label": "Text on accent fill",
+        "default": "#191410"
+      },
+      {
+        "type": "checkbox",
+        "id": "dark_mode",
+        "label": "Follow visitor's dark mode",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "disclaimer",
+        "label": "Footer disclaimer",
+        "default": "This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_todo_markers",
+        "label": "Show \"To confirm\" markers for missing details",
+        "default": true
+      }
+    ]
+  }
+]

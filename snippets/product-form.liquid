@@ -1,0 +1,39 @@
+{%- comment -%} Buy box for one product. Subscriptions appear automatically once a subscription app (e.g. Shopify Subscriptions) adds a selling plan. {%- endcomment -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+{%- form 'product', product, class: 'buy-panel' -%}
+<div data-plan style="display:grid;gap:22px">
+  <input type="hidden" name="id" value="{{ v.id }}">
+  <div class="tags">{% for tag in product.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+  <div class="price">
+    <b>{{ v.price | money_without_trailing_zeros }}</b>
+    {% if v.compare_at_price > v.price %}<s>{{ v.compare_at_price | money_without_trailing_zeros }}</s>{% endif %}
+    <span class="muted">per {{ v.title | replace: 'Default Title', '30-Day Box' }}</span>
+  </div>
+  {%- if product.variants.size > 1 -%}
+    <div class="field"><label for="variant-{{ section.id }}">Option</label>
+      <select id="variant-{{ section.id }}" onchange="this.form.id.value=this.value">
+        {% for variant in product.variants %}<option value="{{ variant.id }}"{% if variant == v %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} · {{ variant.price | money_without_trailing_zeros }}</option>{% endfor %}
+      </select></div>
+  {%- endif -%}
+  {%- if product.selling_plan_groups.size > 0 -%}
+    <input type="hidden" name="selling_plan" value="">
+    <fieldset class="options" style="border:0;padding:0;margin:0">
+      <legend class="visually-hidden">Purchase option</legend>
+      {%- unless product.requires_selling_plan -%}
+      <label class="opt" for="once-{{ section.id }}"><input type="radio" name="plan_choice" id="once-{{ section.id }}" value="once" checked><span>One-time purchase<small>One box</small></span><span>{{ v.price | money_without_trailing_zeros }}</span></label>
+      {%- endunless -%}
+      {%- for group in product.selling_plan_groups -%}{%- for plan in group.selling_plans -%}
+      {%- assign alloc = v.selling_plan_allocations | where: 'selling_plan_id', plan.id | first -%}
+      <label class="opt" for="plan-{{ plan.id }}"><input type="radio" name="plan_choice" id="plan-{{ plan.id }}" value="{{ plan.id }}"><span>{{ plan.name }}<small>{{ plan.description | default: 'Pause or cancel anytime.' }}</small></span><span>{% if alloc %}{{ alloc.price | money_without_trailing_zeros }}{% endif %}</span></label>
+      {%- endfor -%}{%- endfor -%}
+    </fieldset>
+  {%- else -%}
+    {%- render 'todo', label: 'subscription plan (install Shopify Subscriptions)' -%}
+  {%- endif -%}
+  <div class="buy-row">
+    <div class="qty" data-qty><button type="button" data-minus aria-label="Decrease quantity">−</button><input type="number" name="quantity" value="1" min="1" max="20" aria-label="Quantity" style="width:3ch;border:0;background:none;color:var(--ink);font-family:var(--mono);text-align:center;font-size:1rem;-moz-appearance:textfield"><button type="button" data-plus aria-label="Increase quantity">+</button></div>
+    <button class="btn btn-red" type="submit"{% unless v.available %} disabled{% endunless %}>{% if v.available %}Add to cart{% else %}Sold out{% endif %}</button>
+  </div>
+  {{ form | payment_terms }}
+</div>
+{%- endform -%}

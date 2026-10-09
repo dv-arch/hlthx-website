@@ -1,0 +1,10 @@
+<section class="page-main"><div class="wrap">
+  <h1 style="font-size:clamp(2rem,4.4vw,3.4rem)">{{ blog.title }}</h1>
+  {%- paginate blog.articles by 12 -%}
+  <div class="grid-products">
+    {%- for article in blog.articles -%}<a class="card" href="{{ article.url }}"><div class="img">{% if article.image %}{{ article.image | image_url: width: 600 | image_tag: loading: 'lazy' }}{% endif %}</div><h3>{{ article.title }}</h3><span class="muted">{{ article.published_at | date: '%d %b %Y' }}</span></a>{%- endfor -%}
+  </div>
+  {%- if paginate.pages > 1 -%}<div style="margin-top:32px">{{ paginate | default_pagination }}</div>{%- endif -%}
+  {%- endpaginate -%}
+</div></section>
+{% schema %}{ "name": "Blog" }{% endschema %}

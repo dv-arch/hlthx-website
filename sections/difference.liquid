@@ -1,0 +1,28 @@
+<section id="difference">
+  <div class="wrap">
+    <div class="split">
+      <div style="display:grid;gap:20px"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+      <p class="lede">{{ section.settings.text }}</p>
+    </div>
+    <div class="stats">
+      {%- for block in section.blocks -%}
+      <div class="stat" {{ block.shopify_attributes }}><b>{{ block.settings.value }}{% if block.settings.unit != blank %}<small>{{ block.settings.unit }}</small>{% endif %}</b><span>{{ block.settings.label }}</span></div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "The difference", "max_blocks": 3, "settings": [
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The difference" },
+  { "type": "text", "id": "heading", "label": "Heading", "default": "Your daily nutrition. Simplified." },
+  { "type": "textarea", "id": "text", "label": "Text", "default": "One convenient daily serving. Multiple ingredient categories. A routine designed to be easier to maintain." }
+], "blocks": [{ "type": "stat", "name": "Highlight", "settings": [
+  { "type": "text", "id": "value", "label": "Number", "default": "15" },
+  { "type": "text", "id": "unit", "label": "Unit", "default": "g" },
+  { "type": "text", "id": "label", "label": "Label", "default": "per sachet" }
+] }], "presets": [{ "name": "The difference", "blocks": [
+  { "type": "stat", "settings": { "value": "15", "unit": "g", "label": "per sachet" } },
+  { "type": "stat", "settings": { "value": "30", "unit": "", "label": "sachets per box" } },
+  { "type": "stat", "settings": { "value": "9", "unit": "", "label": "ingredient categories" } }
+] }] }
+{% endschema %}

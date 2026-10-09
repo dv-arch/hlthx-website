@@ -1,0 +1,14 @@
+<footer>
+  <div class="wrap">
+    <div class="row"><strong style="color:var(--ink)">{{ shop.name }}</strong><span>{{ section.settings.line }}</span></div>
+    {%- if section.settings.menu.links.size > 0 -%}<div class="row">{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title }}</a>{% endfor %}</div>{%- endif -%}
+    <p>{{ settings.disclaimer }}</p>
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+  </div>
+</footer>
+{% schema %}
+{ "name": "Footer", "settings": [
+  { "type": "text", "id": "line", "label": "Brand line", "default": "Science-backed daily nutrition." },
+  { "type": "link_list", "id": "menu", "label": "Footer menu", "default": "footer" }
+] }
+{% endschema %}

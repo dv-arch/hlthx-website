@@ -1,0 +1,36 @@
+<section id="quality">
+  <div class="wrap">
+    <div class="split">
+      <div style="display:grid;gap:20px"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+      <p class="muted">{{ section.settings.text }}</p>
+    </div>
+    <div class="trust-grid">
+      {%- for block in section.blocks -%}
+      <div class="doc" {{ block.shopify_attributes }}>
+        <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5"/><path d="M11 16l2 2 4-5" stroke="var(--red-text)"/></svg>
+        <h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p>
+        {%- if block.settings.file != blank -%}<a href="{{ block.settings.file }}">View document</a>{%- else -%}{%- render 'todo', label: 'document' -%}{%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.cta != blank -%}<div style="margin-top:32px"><a class="btn" href="{{ section.settings.cta_link | default: '#quality' }}">{{ section.settings.cta }}</a></div>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Quality", "settings": [
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Quality" },
+  { "type": "text", "id": "heading", "label": "Heading", "default": "Know what goes into your daily routine." },
+  { "type": "textarea", "id": "text", "label": "Text", "default": "We publish how HLTHX™ is made and tested, so you can check it for yourself." },
+  { "type": "text", "id": "cta", "label": "Button", "default": "Our Approach to Quality" },
+  { "type": "url", "id": "cta_link", "label": "Button link" }
+], "blocks": [{ "type": "doc", "name": "Document", "settings": [
+  { "type": "text", "id": "title", "label": "Title", "default": "Test reports" },
+  { "type": "textarea", "id": "text", "label": "Description" },
+  { "type": "url", "id": "file", "label": "Link to document (upload in Content > Files)" }
+] }], "presets": [{ "name": "Quality", "blocks": [
+  {"type":"doc","settings":{"title":"Manufacturing standards","text":"Facility and certifications such as GMP and FSSAI."}},
+  {"type":"doc","settings":{"title":"Test reports","text":"Third-party lab reports and certificate of analysis for each batch."}},
+  {"type":"doc","settings":{"title":"Ingredient specifications","text":"Form, source and amount per serving for every ingredient."}},
+  {"type":"doc","settings":{"title":"Quality documentation","text":"Storage, shelf life and safety information."}}
+] }] }
+{% endschema %}

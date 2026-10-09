@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gift card | {{ shop.name }}</title>{{ 'hlthx.css' | asset_url | stylesheet_tag }}{{ content_for_header }}</head>
+<body><main class="page-main"><div class="wrap" style="display:grid;gap:16px">
+  <h1 style="font-size:2.4rem">Your {{ gift_card.initial_value | money }} gift card</h1>
+  <p>Code: <b style="font-family:var(--mono)">{{ gift_card.code | format_code }}</b></p>
+  <p class="muted">Balance {{ gift_card.balance | money }}{% if gift_card.expires_on %} · expires {{ gift_card.expires_on | date: '%d %b %Y' }}{% endif %}</p>
+  <div><a class="btn btn-red" href="{{ shop.url }}">Start shopping</a></div>
+</div></main></body></html>

@@ -1,0 +1,7 @@
+<section class="page-main"><div class="wrap">
+  <h1 style="font-size:clamp(2rem,4.4vw,3.4rem)">Collections</h1>
+  <div class="grid-products">
+    {%- for c in collections -%}<a class="card" href="{{ c.url }}"><div class="img">{% if c.featured_image %}{{ c.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}{% endif %}</div><h3>{{ c.title }}</h3></a>{%- endfor -%}
+  </div>
+</div></section>
+{% schema %}{ "name": "Collections list" }{% endschema %}

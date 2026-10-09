@@ -1,0 +1,7 @@
+<section class="page-main"><div class="wrap">
+  <div class="eyebrow">{{ article.published_at | date: '%d %b %Y' }}</div>
+  <h1 style="font-size:clamp(2rem,4.4vw,3.4rem);margin-top:16px">{{ article.title }}</h1>
+  {%- if article.image -%}<div style="margin-top:24px">{{ article.image | image_url: width: 1400 | image_tag: style: 'width:100%;height:auto;border-radius:8px' }}</div>{%- endif -%}
+  <div class="rte" style="margin-top:24px">{{ article.content }}</div>
+</div></section>
+{% schema %}{ "name": "Article" }{% endschema %}

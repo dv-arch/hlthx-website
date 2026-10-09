@@ -1,0 +1,13 @@
+<section class="page-main"><div class="wrap">
+  <h1 style="font-size:clamp(2rem,4.4vw,3.4rem)">Search</h1>
+  <form action="{{ routes.search_url }}" method="get" class="field" style="margin-top:24px;max-width:520px">
+    <label for="q">Search the store</label>
+    <input id="q" type="search" name="q" value="{{ search.terms | escape }}">
+  </form>
+  {%- if search.performed -%}
+  <div class="grid-products">
+    {%- for item in search.results -%}{%- if item.object_type == 'product' -%}{%- render 'product-card', p: item -%}{%- else -%}<a class="card" href="{{ item.url }}"><h3>{{ item.title }}</h3></a>{%- endif -%}{%- else -%}<p>No results for "{{ search.terms | escape }}".</p>{%- endfor -%}
+  </div>
+  {%- endif -%}
+</div></section>
+{% schema %}{ "name": "Search" }{% endschema %}
