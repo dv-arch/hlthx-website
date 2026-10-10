@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: editorial single column on warm ivory, wide uppercase headlines, the sachet as the one hero object, red used only for marks and the buy action. */
+/* Layout: editorial single column on warm ivory, wide uppercase headlines, the sachet as the one hero object. Information architecture follows leading DTC supplement stores (announcement bar, proof row, trust strip, comparison, facts panel, plans, reviews, FAQ, sticky buy bar). */
 :root{
   --bg:#FBF8F1;          /* Solara ivory */
   --surface:#FFFFFF;     /* Solara white panels */
@@ -100,7 +100,7 @@ section + section{border-top:1px solid var(--line)}
 .stat + .stat{border-left:1px solid var(--line);padding-left:20px}
 .stat b{font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .stat b small{font-size:.45em;font-weight:700;margin-left:.1em}
-.stat span{font-size:.9rem;color:var(--muted)}
+.stat > span{font-size:.9rem;color:var(--muted)}
 @media (max-width:640px){.stats{grid-template-columns:1fr}.stat + .stat{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-bottom:16px}.stat{padding-bottom:16px}}
 
 /* formula */
@@ -172,9 +172,98 @@ section + section{border-top:1px solid var(--line)}
 .closing h2{font-size:clamp(2.2rem,6vw,5rem);font-weight:900}
 .closing h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;color:var(--red-text);letter-spacing:0}
 
-footer{border-top:1px solid var(--line);padding-block:40px;font-size:.85rem;color:var(--muted)}
-footer .wrap{display:grid;gap:16px}
+/* announcement bar */
+.announce{background:var(--ink);color:var(--bg);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:9px var(--gutter);line-height:1.4}
+.announce .todo{text-transform:none}
+
+/* hero proof row */
+.proof{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.9rem;color:var(--muted)}
+.stars{color:var(--red);letter-spacing:2px;font-size:1rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.35em .85em}
+
+/* badges strip */
+.badges{background:var(--surface);border-block:1px solid var(--line);padding-block:18px}
+.badges .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.badge-i{display:flex;gap:10px;align-items:center;font-size:.86rem;font-weight:600;min-width:0}
+.badge-i svg{flex:0 0 auto;width:22px;height:22px;color:var(--red-text)}
+@media (max-width:760px){.badges .wrap{grid-template-columns:repeat(2,1fr)}}
+section.badges{padding-block:18px}
+
+/* one sachet vs a cabinet */
+.compare{margin-top:48px;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--surface)}
+.crow{display:grid;grid-template-columns:1fr 130px 130px;align-items:center;border-top:1px solid var(--line);font-size:.95rem}
+.crow:first-child{border-top:0}
+.crow > *{padding:14px 18px;min-width:0}
+.crow > :not(:first-child){text-align:center;border-left:1px solid var(--line)}
+.crow.head{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+.crow.head .us{color:var(--ink);font-weight:600}
+.crow .yes{color:var(--red-text);font-weight:700}
+.crow .tot{font-family:var(--display);font-weight:900;font-size:1.3rem}
+@media (max-width:560px){.crow{grid-template-columns:1fr 84px 84px}.crow > *{padding:12px 10px}}
+
+/* supplement facts */
+.facts{margin-top:28px;border:1.5px solid var(--ink);border-radius:6px;background:var(--surface);max-width:760px}
+.facts summary{cursor:pointer;list-style:none;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.facts summary::-webkit-details-marker{display:none}
+.facts[open] summary .plus{transform:rotate(45deg)}
+.facts .plus{font-family:var(--mono);transition:transform .2s;color:var(--red-text)}
+.facts .inner{padding:0 20px 20px;display:grid;gap:0}
+.frow{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-top:1px solid var(--line);font-size:.92rem}
+.frow.h{border-top:2px solid var(--ink);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* plans */
+.plans{display:grid;gap:10px}
+.plan{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer;background:var(--surface);position:relative}
+.plan:has(input:checked){border-color:var(--ink);box-shadow:0 8px 22px rgba(25,20,16,.08)}
+.plan input{accent-color:var(--red);width:18px;height:18px;margin:0}
+.plan b{display:block}
+.plan small{display:block;color:var(--muted);font-size:.84rem}
+.plan .pp{text-align:right;font-variant-numeric:tabular-nums}
+.plan .flag{position:absolute;top:-10px;right:14px;background:var(--red);color:var(--red-ink);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.2em .6em;border-radius:3px}
+.assure{display:grid;gap:8px;font-size:.9rem}
+.assure div{display:flex;gap:10px;align-items:flex-start}
+.assure svg{flex:0 0 auto;width:18px;height:18px;margin-top:3px;color:var(--red-text)}
+
+/* reviews */
+.rev-head{display:flex;flex-wrap:wrap;gap:20px;align-items:end;justify-content:space-between}
+.rev-score b{font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,6vw,4rem);line-height:1}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media (max-width:860px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0}
+.review .who{font-size:.85rem;color:var(--muted)}
+
+/* experts */
+.experts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media (max-width:860px){.experts{grid-template-columns:1fr}}
+.expert{border-top:1.5px solid var(--ink);padding-top:16px;display:grid;gap:8px;min-width:0}
+.expert .ph{width:56px;height:56px;border-radius:50%;background:var(--surface);border:1px dashed var(--line)}
+
+/* faq */
+.faq{margin-top:40px;border-top:1.5px solid var(--ink);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;gap:16px;font-weight:600;font-size:1.02rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .plus{font-family:var(--mono);color:var(--muted);transition:transform .2s}
+.faq details[open] summary .plus{transform:rotate(45deg);color:var(--red-text)}
+.faq .a{padding:0 0 20px;color:var(--muted);font-size:.95rem;display:grid;gap:8px}
+
+/* sticky buy bar (mobile) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom,0px));display:none;align-items:center;justify-content:space-between;gap:12px;transform:translateY(110%);transition:transform .25s}
+.sticky.on{transform:none}
+.sticky b{font-size:.92rem}
+.sticky small{display:block;color:var(--muted);font-size:.78rem}
+@media (max-width:760px){.sticky{display:flex}}
+
+footer{border-top:1px solid var(--line);padding-block:48px 100px;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:grid;gap:28px}
 footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.fcols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:24px}
+@media (max-width:760px){.fcols{grid-template-columns:1fr 1fr}.fcols > :first-child{grid-column:1/-1}}
+.fcols h4{margin:0 0 10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.fcols ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fcols a{text-decoration:none}
+.fcols a:hover{color:var(--red-text)}
 </style>
 </head>
 <body>
@@ -198,6 +287,19 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   "directions": null,
   "warnings": null,
   "verifiedHighlights": null,
+  "announcement": null,
+  "rating": null,
+  "reviewCount": null,
+  "reviews": [],
+  "guaranteeDays": null,
+  "certifications": [],
+  "experts": [],
+  "plans": [
+    {"id": "once", "name": "One-time purchase", "note": "One 30-Day Box", "boxes": 1, "price": null},
+    {"id": "monthly", "name": "Monthly subscription", "note": "A new 30-Day Box every 30 days", "boxes": 1, "price": null, "popular": true},
+    {"id": "quarterly", "name": "3-month subscription", "note": "Three 30-Day Boxes every 90 days", "boxes": 3, "price": null}
+  ],
+  "supplementFacts": [],
   "blends": [
     {"name": "Multivitamins", "icon": "sun", "ingredients": []},
     {"name": "Minerals & Trace Elements", "icon": "hex", "ingredients": []},
@@ -219,6 +321,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 }
 </script>
 
+<div class="announce" id="announce"></div>
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="HLTHX home">HLTHX<span>™</span></a>
@@ -226,6 +329,8 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
       <a class="hide-sm" href="#formula">Inside the Formula</a>
       <a class="hide-sm" href="#quality">Quality</a>
       <a class="hide-sm" href="#ritual">How to use</a>
+      <a class="hide-sm" href="#reviews">Reviews</a>
+      <a class="hide-sm" href="#faq">FAQ</a>
       <a class="btn btn-sm" href="#shop">Cart <span class="cart-count" id="cart-count">0</span></a>
     </nav>
   </div>
@@ -239,10 +344,12 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <div class="eyebrow">HLTHX™ Daily Complete Nutrition</div>
         <h1>One daily ritual. <span class="red">A better way to nourish.</span></h1>
         <p class="lede">A thoughtfully formulated daily nutrition blend, bringing together vitamins, minerals and functional ingredients in one convenient sachet.</p>
+        <div class="proof" id="hero-proof"></div>
         <div class="ctas">
           <a class="btn btn-red" href="#shop">Shop the 30-Day Box</a>
           <a class="btn" href="#formula">Explore the Formula</a>
         </div>
+        <div class="chips"><span class="chip">15 g sachet</span><span class="chip">30 per box</span><span class="chip"><span data-f="blendCount">9</span> ingredient categories</span><span class="chip">Once a day</span></div>
       </div>
       <div class="hero-art">
         <svg viewBox="0 0 260 360" role="img" aria-label="HLTHX sachet illustration">
@@ -267,6 +374,11 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
     </div>
   </section>
 
+  <!-- TRUST STRIP -->
+  <section class="badges" aria-label="Highlights">
+    <div class="wrap" id="badges"></div>
+  </section>
+
   <!-- 2. THE DIFFERENCE -->
   <section id="difference">
     <div class="wrap">
@@ -282,6 +394,11 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <div class="stat"><b data-f="sachetsPerBox">30</b><span>sachets per box</span></div>
         <div class="stat"><b data-f="blendCount">9</b><span>ingredient categories</span></div>
       </div>
+      <div class="compare" role="table" aria-label="One sachet compared with separate products">
+        <div class="crow head" role="row"><span role="columnheader">Covered every day</span><span class="us" role="columnheader">HLTHX™</span><span role="columnheader">Separate products</span></div>
+        <div id="compare-rows" role="rowgroup"></div>
+        <div class="crow" role="row"><span role="cell"><b>Things to buy, open and remember</b></span><span class="tot" role="cell">1</span><span class="tot" role="cell" data-f="blendCount">9</span></div>
+      </div>
     </div>
   </section>
 
@@ -294,6 +411,10 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <p class="muted">Every blend in your daily sachet, organised by what it does. Open a category to see what's inside.</p>
       </div>
       <div class="blends" id="blends"></div>
+      <details class="facts" id="facts">
+        <summary>Supplement facts <span class="plus" aria-hidden="true">+</span></summary>
+        <div class="inner" id="facts-body"></div>
+      </details>
       <div class="formula-foot">
         <span id="blends-note"></span>
         <a class="btn" href="#formula">Explore What's Inside</a>
@@ -313,6 +434,20 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
       </div>
       <div class="trust-grid" id="docs"></div>
       <div style="margin-top:32px"><a class="btn" href="#quality">Our Approach to Quality</a></div>
+    </div>
+  </section>
+
+  <!-- SCIENCE / EXPERTS -->
+  <section id="science">
+    <div class="wrap">
+      <div class="split">
+        <div style="display:grid;gap:20px">
+          <div class="eyebrow">The science</div>
+          <h2>Formulated with care. Checked by experts.</h2>
+        </div>
+        <p class="muted">Who developed the formula, and the research behind each ingredient category.</p>
+      </div>
+      <div class="experts" id="experts"></div>
     </div>
   </section>
 
@@ -361,16 +496,15 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <p class="lede" id="tagline">Feel Better. Every Day.</p>
         <div class="tags" id="tags"></div>
         <div class="price" id="price"></div>
-        <fieldset class="options" style="border:0;padding:0;margin:0">
-          <legend class="sr" style="position:absolute;left:-9999px">Purchase option</legend>
-          <label class="opt" for="opt-once"><input type="radio" name="plan" id="opt-once" value="once" checked><span>One-time purchase<small>One 30-Day Box</small></span><span id="once-price"></span></label>
-          <label class="opt" for="opt-sub"><input type="radio" name="plan" id="opt-sub" value="sub"><span>Subscribe &amp; save<small>A new box every 30 days. Pause or cancel anytime.</small></span><span id="sub-price"></span></label>
+        <fieldset class="plans" id="plans" style="border:0;padding:0;margin:0">
+          <legend style="position:absolute;left:-9999px">Choose a plan</legend>
         </fieldset>
         <div class="buy-row">
           <div class="qty" aria-label="Quantity"><button type="button" id="qty-minus" aria-label="Decrease quantity">−</button><output id="qty">1</output><button type="button" id="qty-plus" aria-label="Increase quantity">+</button></div>
           <button class="btn btn-red" type="submit" id="add">Add to cart</button>
         </div>
         <div class="notice" id="cart-msg" hidden></div>
+        <div class="assure" id="assure"></div>
         <div class="inbox">
           <h3>What's in the box</h3>
           <ul id="inbox"></ul>
@@ -378,6 +512,31 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
           <p id="delivery"></p>
         </div>
       </form>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="rev-head">
+        <div style="display:grid;gap:20px">
+          <div class="eyebrow">Reviews</div>
+          <h2>What people say.</h2>
+        </div>
+        <div class="rev-score" id="rev-score"></div>
+      </div>
+      <div class="reviews" id="review-list"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div style="display:grid;gap:20px">
+        <div class="eyebrow">FAQ</div>
+        <h2>Questions, answered.</h2>
+      </div>
+      <div class="faq" id="faq-list"></div>
     </div>
   </section>
 
@@ -390,9 +549,19 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   </section>
 </main>
 
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div><b>HLTHX™ 30-Day Box</b><small id="sticky-price"></small></div>
+  <a class="btn btn-red btn-sm" href="#shop" tabindex="-1">Shop now</a>
+</div>
+
 <footer>
   <div class="wrap">
-    <div class="row"><strong style="color:var(--ink)">HLTHX™</strong><span>Science-backed daily nutrition.</span></div>
+    <div class="fcols">
+      <div style="display:grid;gap:10px"><strong style="color:var(--ink);font-size:1.1rem">HLTHX™</strong><span>Science-backed daily nutrition. One sachet, one daily ritual.</span></div>
+      <div><h4>Shop</h4><ul><li><a href="#shop">30-Day Box</a></li><li><a href="#shop">Subscribe &amp; save</a></li></ul></div>
+      <div><h4>Learn</h4><ul><li><a href="#formula">Inside the Formula</a></li><li><a href="#quality">Quality</a></li><li><a href="#science">The science</a></li><li><a href="#ritual">How to use</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#faq">Shipping &amp; returns</a></li><li><a href="#faq">Contact</a></li></ul></div>
+    </div>
     <p>This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p>
     <p>© <span id="year">2026</span> HLTHX™. All rights reserved.</p>
   </div>
@@ -440,12 +609,82 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   $('inbox').innerHTML = d.inTheBox.map(function(i){return '<li>'+i+'</li>'}).join('');
   $('delivery').innerHTML = d.delivery || todo('delivery areas, time and charges');
 
-  var subPrice = d.price!=null && d.subscribeSavePercent!=null ? Math.round(d.price*(1-d.subscribeSavePercent/100)) : null;
+  var subPrice = null;
   $('price').innerHTML = d.price!=null
     ? '<b>'+money(d.price)+'</b>'+(d.compareAtPrice?'<s>'+money(d.compareAtPrice)+'</s>':'')+'<span class="muted">per 30-Day Box</span>'
     : '<b>₹ —</b>'+todo('price');
-  $('once-price').innerHTML = money(d.price) || '';
-  $('sub-price').innerHTML = subPrice!=null ? money(subPrice)+' <small>save '+d.subscribeSavePercent+'%</small>' : todo('saving %');
+  var chk='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg>';
+  $('plans').insertAdjacentHTML('beforeend', d.plans.map(function(p,i){
+    var day = p.price!=null ? money(p.price/(30*p.boxes))+' / day' : '';
+    return '<label class="plan" for="plan-'+p.id+'">'+(p.popular?'<span class="flag">Most popular</span>':'')+
+      '<input type="radio" name="plan" id="plan-'+p.id+'" value="'+p.id+'"'+(p.popular?' checked':'')+'>'+
+      '<span><b>'+p.name+'</b><small>'+p.note+'</small></span>'+
+      '<span class="pp">'+(p.price!=null?'<b>'+money(p.price)+'</b><small>'+day+'</small>':todo('price'))+'</span></label>';
+  }).join(''));
+  $('assure').innerHTML = [
+    d.guaranteeDays ? d.guaranteeDays+'-day money-back guarantee' : 'Money-back guarantee '+todo('terms'),
+    'Subscriptions: pause, skip or cancel '+todo('policy'),
+    d.delivery ? d.delivery : 'Delivery '+todo('areas and charges')
+  ].map(function(t){return '<div>'+chk+'<span>'+t+'</span></div>'}).join('');
+  var pop = d.plans.filter(function(p){return p.popular})[0];
+  $('sticky-price').innerHTML = pop && pop.price!=null ? money(pop.price)+' / month' : 'Price to be confirmed';
+
+  // announcement, hero proof, badges
+  $('announce').innerHTML = d.announcement || 'Subscribe &amp; save on every 30-Day Box '+todo('launch offer');
+  var stars='<span class="stars" aria-hidden="true">★★★★★</span>';
+  $('hero-proof').innerHTML = d.rating!=null
+    ? stars+'<span><b style="color:var(--ink)">'+d.rating.toFixed(1)+'</b> from '+d.reviewCount.toLocaleString('en-IN')+' reviews</span>'
+    : stars+'<span>'+todo('rating and review count')+'</span>';
+  var bi={flask:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/><path d="M7 15h10"/>',shield:'<path d="M12 21c5-2 8-6 8-11V5l-8-2-8 2v5c0 5 3 9 8 11z"/><path d="M9 12l2 2 4-4"/>',box:'<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'};
+  function ico(k){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+bi[k]+'</svg>'}
+  $('badges').innerHTML = [
+    [ico('box'), d.sachetsPerBox+' sachets in every box'],
+    [ico('cal'), 'One sachet, once a day'],
+    [ico('flask'), d.certifications.length ? d.certifications[0] : 'Third-party tested '+todo('')],
+    [ico('shield'), d.guaranteeDays ? d.guaranteeDays+'-day guarantee' : 'Guarantee '+todo('')]
+  ].map(function(b){return '<div class="badge-i">'+b[0]+'<span>'+b[1]+'</span></div>'}).join('');
+
+  // compare rows
+  $('compare-rows').innerHTML = d.blends.map(function(b){
+    return '<div class="crow" role="row"><span role="cell">'+b.name+'</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div>';
+  }).join('');
+
+  // supplement facts
+  $('facts-body').innerHTML = '<div class="frow h"><span>Per 15 g sachet</span><span>Amount</span></div>' + (d.supplementFacts.length
+    ? d.supplementFacts.map(function(f){return '<div class="frow"><span>'+f.name+'</span><span>'+f.amount+'</span></div>'}).join('')
+    : '<div class="frow"><span>Full ingredient list with amounts per serving</span><span>'+todo('')+'</span></div>');
+
+  // experts
+  $('experts').innerHTML = d.experts.length
+    ? d.experts.map(function(e){return '<div class="expert"><h3>'+e.name+'</h3><p class="muted">'+e.role+'</p></div>'}).join('')
+    : [1,2,3].map(function(){return '<div class="expert"><div class="ph"></div><h3>'+todo('name')+'</h3><p class="muted">'+todo('credentials and role in formulation')+'</p></div>'}).join('');
+
+  // reviews
+  $('rev-score').innerHTML = d.rating!=null ? '<b>'+d.rating.toFixed(1)+'</b> '+stars+'<div class="muted">'+d.reviewCount+' verified reviews</div>' : todo('average rating');
+  $('review-list').innerHTML = d.reviews.length
+    ? d.reviews.map(function(r){return '<div class="review">'+stars+'<p>'+r.text+'</p><div class="who">'+r.name+'</div></div>'}).join('')
+    : [1,2,3].map(function(){return '<div class="review">'+stars+'<p>'+todo('verified customer review')+'</p><div class="who">'+todo('name, city')+'</div></div>'}).join('');
+
+  // faq
+  var faq = [
+    ['How do I take HLTHX™?', 'Mix one 15 g sachet into water once a day. '+todo('amount of water and best time of day')],
+    ["What's inside?", 'Nine ingredient categories, from multivitamins and minerals to a probiotic complex and digestive enzymes. Open <a href="#formula">Inside the Formula</a> for each category. '+todo('full ingredient list with amounts')],
+    ['Can I pause or cancel my subscription?', todo('subscription terms')],
+    ['Is it safe with medication, or during pregnancy?', 'Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.'],
+    ['How is HLTHX™ tested?', todo('manufacturing standards and test reports')],
+    ['Where do you deliver, and how long does it take?', d.delivery || todo('delivery areas, time and charges')],
+    ['What if it is not right for me?', d.guaranteeDays ? 'You are covered by our '+d.guaranteeDays+'-day money-back guarantee.' : todo('returns and guarantee policy')]
+  ];
+  $('faq-list').innerHTML = faq.map(function(q,i){return '<details'+(i===0?' open':'')+'><summary>'+q[0]+'<span class="plus" aria-hidden="true">+</span></summary><div class="a"><p>'+q[1]+'</p></div></details>'}).join('');
+
+  // sticky bar appears after hero, hides at the buy box
+  var sticky=$('sticky'), hero=document.querySelector('.hero'), shop=$('shop');
+  if('IntersectionObserver' in window){
+    var heroOut=false, shopIn=false;
+    function upd(){sticky.classList.toggle('on', heroOut && !shopIn)}
+    new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd()}).observe(hero);
+    new IntersectionObserver(function(e){shopIn=e[0].isIntersecting;upd()}).observe(shop);
+  }
 
   var qty=1, cart=0;
   function setQ(n){qty=Math.max(1,Math.min(10,n));$('qty').textContent=qty}
