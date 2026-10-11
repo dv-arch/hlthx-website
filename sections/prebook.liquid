@@ -1,0 +1,177 @@
+{%- comment -%}
+  Pre-booking landing section. Uses Shopify's native customer form, so each submission
+  becomes a Shopify customer tagged "prebook" with email marketing consent.
+  Shopify's customer form does not reliably store a phone number, so the script below also
+  writes the phone into a "phone:+91..." tag before submitting. Find leads in
+  Customers > filter by tag "prebook".
+{%- endcomment -%}
+<section class="pb-hero">
+  <div class="wrap pb-grid">
+    <div class="pb-copy">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1>{{ section.settings.heading }}</h1>
+      <p class="tagline sm">Feel better.<br>Every day.</p>
+      {%- if section.settings.lede != blank -%}<p class="lede">{{ section.settings.lede }}</p>{%- endif -%}
+      <ul class="pb-points">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}><span><b>{{ block.settings.title }}</b> {{ block.settings.text }}</span></li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="pb-card" id="prebook">
+      {%- form 'customer', id: 'prebook-form', class: 'pb-form', novalidate: 'novalidate' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="pb-thanks" tabindex="-1" data-thanks>
+            <p class="eyebrow">You're on the list</p>
+            <h2>{{ section.settings.thanks_heading }}</h2>
+            <p>{{ section.settings.thanks_text }}</p>
+            <p class="tagline sm">Feel better.<br>Every day.</p>
+            <a class="btn btn-sm" href="{{ routes.root_url }}">Learn about the product</a>
+          </div>
+        {%- else -%}
+          <h2>{{ section.settings.form_heading }}</h2>
+          <p class="muted">We only use these details to contact you about the launch.</p>
+
+          {%- if form.errors -%}
+            <p class="pb-status" role="alert">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+
+          <input type="hidden" name="contact[tags]" value="prebook,prebook-store" data-tags>
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
+
+          <div class="pb-row">
+            <div class="pb-field">
+              <label for="pb-first">First name</label>
+              <input id="pb-first" name="contact[first_name]" autocomplete="given-name" required maxlength="60">
+              <p class="pb-err" id="pb-first-err"></p>
+            </div>
+            <div class="pb-field">
+              <label for="pb-last">Last name</label>
+              <input id="pb-last" name="contact[last_name]" autocomplete="family-name" maxlength="60">
+            </div>
+          </div>
+
+          <div class="pb-field">
+            <label for="pb-phone">Phone number</label>
+            <div class="pb-phone">
+              <select id="pb-cc" aria-label="Country code" autocomplete="tel-country-code">
+                <option value="+91" selected>IN +91</option>
+                <option value="+971">AE +971</option>
+                <option value="+1">US/CA +1</option>
+                <option value="+44">UK +44</option>
+                <option value="+65">SG +65</option>
+                <option value="+61">AU +61</option>
+              </select>
+              <input id="pb-phone" type="tel" inputmode="tel" autocomplete="tel-national" required maxlength="20" placeholder="98765 43210">
+            </div>
+            <input type="hidden" name="contact[phone]" data-phone>
+            <p class="pb-err" id="pb-phone-err"></p>
+          </div>
+
+          <div class="pb-field">
+            <label for="pb-email">Email address</label>
+            <input id="pb-email" name="contact[email]" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+            <p class="pb-err" id="pb-email-err"></p>
+          </div>
+
+          <label class="pb-consent">
+            <input type="checkbox" id="pb-consent" required>
+            <span>{{ section.settings.consent_text }}</span>
+          </label>
+          <p class="pb-err" id="pb-consent-err"></p>
+
+          <button class="btn btn-red pb-submit" type="submit">{{ section.settings.button }}</button>
+          <p class="pb-fine">No payment is taken. Pre-booking does not commit you to buy.</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var form = document.getElementById('prebook-form');
+  if (!form) return;
+  var thanks = form.querySelector('[data-thanks]');
+  if (thanks) { thanks.focus(); return; }
+  var $ = function(id){return document.getElementById(id)};
+  function e164(cc, raw){
+    var d = String(raw||'').replace(/\D/g,'');
+    if (cc === '+91') d = d.replace(/^(91|0)(?=\d{10}$)/, '');
+    if (cc === '+91' && !/^[6-9]\d{9}$/.test(d)) return null;
+    return (d.length < 6 || d.length > 14) ? null : cc + d;
+  }
+  function err(id, msg){ var o = $(id+'-err'); o.textContent = msg || ''; var i = $(id); if (i) i.setAttribute('aria-invalid', msg ? 'true' : 'false'); return !msg; }
+  form.addEventListener('submit', function(ev){
+    var phone = e164($('pb-cc').value, $('pb-phone').value);
+    var email = $('pb-email').value.trim();
+    var ok = [
+      err('pb-first', $('pb-first').value.trim() ? '' : 'Please enter your first name.'),
+      err('pb-phone', phone ? '' : 'Please enter a valid phone number.'),
+      err('pb-email', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? '' : 'Please enter a valid email address.'),
+      err('pb-consent', $('pb-consent').checked ? '' : 'Please tick the box so we can contact you at launch.')
+    ].every(Boolean);
+    if (!ok) { ev.preventDefault(); var bad = form.querySelector('[aria-invalid="true"]'); if (bad) bad.focus(); return; }
+    form.querySelector('[data-phone]').value = phone;
+    form.querySelector('[data-tags]').value = 'prebook,prebook-store,phone:' + phone;
+  });
+})();
+</script>
+
+{% stylesheet %}
+.pb-hero{padding-block:clamp(36px,6vw,88px)}
+.pb-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:start}
+@media (max-width:900px){.pb-grid{grid-template-columns:1fr}}
+.pb-copy{display:grid;gap:24px;min-width:0}
+.pb-copy h1{font-size:clamp(2rem,5vw,4rem)}
+.pb-points{list-style:none;margin:0;padding:20px 0 0;display:grid;gap:14px;border-top:1.5px solid var(--ink);max-width:56ch}
+.pb-points li{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:baseline;color:var(--muted)}
+.pb-points li::before{content:"";width:8px;height:8px;border-radius:50%;background:#B3262A}
+.pb-points b{color:var(--ink);font-weight:600}
+.pb-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(20px,3.4vw,36px);box-shadow:0 20px 50px rgba(20,18,16,.06);min-width:0;scroll-margin-top:90px}
+.pb-form{display:grid;gap:18px}
+.pb-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media (max-width:480px){.pb-row{grid-template-columns:1fr}}
+.pb-field{display:grid;gap:6px;min-width:0}
+.pb-field label{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.pb-field input,.pb-phone select{font:inherit;font-size:1rem;width:100%;min-width:0;padding:.75em .9em;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.pb-field input[aria-invalid="true"]{border-color:#B3262A}
+.pb-phone{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.pb-phone select{width:auto}
+.pb-err,.pb-status{font-size:.82rem;color:#B3262A;margin:0}
+.pb-err:empty{display:none}
+.pb-consent{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;font-size:.88rem;color:var(--muted);cursor:pointer}
+.pb-consent input{width:18px;height:18px;margin:2px 0 0}
+.pb-submit{width:100%;padding-block:1em}
+.pb-fine{font-size:.8rem;color:var(--muted);text-align:center;margin-inline:auto}
+.pb-thanks{display:grid;gap:18px;outline:none}
+.pb-thanks .btn{justify-self:start}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Pre-booking",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Pre-booking now open" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Be first to get HLTHX™" },
+    { "type": "textarea", "id": "lede", "label": "Intro", "default": "Daily Complete Nutrition: vitamins, minerals and functional ingredients in one convenient 15 g sachet." },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Pre-book yours" },
+    { "type": "textarea", "id": "consent_text", "label": "Consent text", "default": "I agree that HLTHX™ may contact me by phone and email about the launch and my pre-booking. I can opt out at any time." },
+    { "type": "text", "id": "button", "label": "Button label", "default": "Pre-book now" },
+    { "type": "text", "id": "thanks_heading", "label": "Thank-you heading", "default": "Thank you" },
+    { "type": "textarea", "id": "thanks_text", "label": "Thank-you text", "default": "Your pre-booking is confirmed. We'll contact you by phone or email as soon as HLTHX™ launches." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Pre-booking" }]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "prebook",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "title": "Reserve your spot.", "text": "Leave your name, phone and email." } },
+        "p2": { "type": "point", "settings": { "title": "No payment now.", "text": "Pre-booking is free and you are not committing to buy." } },
+        "p3": { "type": "point", "settings": { "title": "We reach out at launch.", "text": "Our team will contact you as soon as HLTHX™ is ready to order." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
