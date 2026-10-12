@@ -17,7 +17,7 @@
           {%- endif -%}
         </div>
         <h3>{{ block.settings.title }}</h3>
-        <p class="muted">{{ block.settings.text }}</p>
+        <p class="muted">{{ block.settings.text }}{% if block.settings.confirm != blank %} {% render 'todo', label: block.settings.confirm %}{% endif %}</p>
       </div>
       {%- endfor -%}
     </div>
@@ -37,10 +37,11 @@
 ], "blocks": [{ "type": "step", "name": "Step", "settings": [
   { "type": "text", "id": "title", "label": "Title", "default": "Open" },
   { "type": "text", "id": "text", "label": "Text" },
+  { "type": "text", "id": "confirm", "label": "Still to confirm (shows a marker)" },
   { "type": "image_picker", "id": "image", "label": "Image (optional)" }
 ] }], "presets": [{ "name": "Daily ritual", "blocks": [
   {"type":"step","settings":{"title":"Open","text":"Tear open one 15 g sachet."}},
-  {"type":"step","settings":{"title":"Mix","text":"Stir it into water."}},
+  {"type":"step","settings":{"title":"Mix","text":"Stir it into water.","confirm":"amount of water"}},
   {"type":"step","settings":{"title":"Enjoy","text":"Drink once a day, every day. Consistency is what counts."}}
 ] }] }
 {% endschema %}

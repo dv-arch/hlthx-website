@@ -9,14 +9,14 @@
     <div style="display:grid;gap:22px;min-width:0">
       <div class="eyebrow">{{ section.settings.eyebrow }}</div>
       <h2>{{ section.settings.heading }}</h2>
+      {%- render 'tagline', size: 'lg' -%}
       {%- if fp -%}
-        <p class="lede">{{ fp.metafields.custom.tagline | default: section.settings.tagline }}</p>
         {%- render 'product-form', product: fp, section: section -%}
         <div class="inbox">
           <h3>What's in the box</h3>
           {%- if section.settings.in_box != blank -%}{{ section.settings.in_box }}{%- else -%}<p>{%- render 'todo', label: 'box contents' -%}</p>{%- endif -%}
           <h3 style="margin-top:8px">Delivery</h3>
-          {%- if section.settings.delivery != blank -%}{{ section.settings.delivery }}{%- else -%}<p>{%- render 'todo', label: 'delivery areas, time and charges' -%}</p>{%- endif -%}
+          <p>{% if settings.delivery != blank %}{{ settings.delivery }}{% else %}{% render 'todo', label: 'delivery areas, time and charges' %}{% endif %}</p>
         </div>
       {%- else -%}
         <p>{%- render 'todo', label: 'add the product in Shopify, then pick it in this section' -%}</p>
@@ -24,14 +24,19 @@
     </div>
   </div>
 </section>
+{%- if section.settings.sticky and fp -%}
+<div class="sticky" data-sticky aria-hidden="true">
+  <div><b>{{ fp.title }}</b><small>{{ fp.price | money_without_trailing_zeros }}</small></div>
+  <a class="btn btn-red btn-sm" href="#shop" tabindex="-1">Shop now</a>
+</div>
+{%- endif -%}
 {% schema %}
 { "name": "Purchase", "settings": [
   { "type": "product", "id": "product", "label": "Product" },
   { "type": "text", "id": "badge", "label": "Badge", "default": "30-Day Box" },
   { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Purchase" },
   { "type": "text", "id": "heading", "label": "Heading", "default": "Make HLTHX™ part of your day." },
-  { "type": "text", "id": "tagline", "label": "Tagline", "default": "Feel Better. Every Day." },
   { "type": "richtext", "id": "in_box", "label": "What's in the box", "default": "<ul><li>30 × 15 g sachets</li></ul>" },
-  { "type": "richtext", "id": "delivery", "label": "Delivery information" }
+  { "type": "checkbox", "id": "sticky", "label": "Show sticky buy bar on mobile", "default": true }
 ], "presets": [{ "name": "Purchase" }] }
 {% endschema %}

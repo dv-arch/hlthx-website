@@ -1,0 +1,2 @@
+{%- comment -%} Brand tagline: uppercase, wide-tracked, short red rule beneath (client artwork). Pass size: 'sm' or 'lg'. {%- endcomment -%}
+<p class="tagline {{ size | default: 'sm' }}"{% if style %} style="{{ style }}"{% endif %}>{{ settings.tagline | escape | replace: '. ', '.<br>' }}</p>

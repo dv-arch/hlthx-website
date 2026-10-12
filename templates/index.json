@@ -1,35 +1,421 @@
 {
   "sections": {
-    "hero": { "type": "hero" },
-    "difference": { "type": "difference", "blocks": {
-      "s1": { "type": "stat", "settings": { "value": "15", "unit": "g", "label": "per sachet" } },
-      "s2": { "type": "stat", "settings": { "value": "30", "unit": "", "label": "sachets per box" } },
-      "s3": { "type": "stat", "settings": { "value": "9", "unit": "", "label": "ingredient categories" } } },
-      "block_order": ["s1","s2","s3"] },
-    "formula": { "type": "formula", "blocks": {
-      "b1": {"type":"blend","settings":{"name":"Multivitamins","icon":"sun"}},
-      "b2": {"type":"blend","settings":{"name":"Minerals & Trace Elements","icon":"hex"}},
-      "b3": {"type":"blend","settings":{"name":"Amino Acids","icon":"chain"}},
-      "b4": {"type":"blend","settings":{"name":"Hydration Electrolytes","icon":"drop"}},
-      "b5": {"type":"blend","settings":{"name":"Prebiotic Fibre","icon":"leaf"}},
-      "b6": {"type":"blend","settings":{"name":"Probiotic Complex","icon":"dots"}},
-      "b7": {"type":"blend","settings":{"name":"Digestive Enzyme Support","icon":"spiral"}},
-      "b8": {"type":"blend","settings":{"name":"Heart Health Support","icon":"heart"}},
-      "b9": {"type":"blend","settings":{"name":"Joint & Muscle Health Support","icon":"joint"}} },
-      "block_order": ["b1","b2","b3","b4","b5","b6","b7","b8","b9"] },
-    "quality": { "type": "quality", "blocks": {
-      "d1": {"type":"doc","settings":{"title":"Manufacturing standards","text":"Facility and certifications such as GMP and FSSAI."}},
-      "d2": {"type":"doc","settings":{"title":"Test reports","text":"Third-party lab reports and certificate of analysis for each batch."}},
-      "d3": {"type":"doc","settings":{"title":"Ingredient specifications","text":"Form, source and amount per serving for every ingredient."}},
-      "d4": {"type":"doc","settings":{"title":"Quality documentation","text":"Storage, shelf life and safety information."}} },
-      "block_order": ["d1","d2","d3","d4"] },
-    "ritual": { "type": "ritual", "blocks": {
-      "r1": {"type":"step","settings":{"title":"Open","text":"Tear open one 15 g sachet."}},
-      "r2": {"type":"step","settings":{"title":"Mix","text":"Stir it into water."}},
-      "r3": {"type":"step","settings":{"title":"Enjoy","text":"Drink once a day, every day. Consistency is what counts."}} },
-      "block_order": ["r1","r2","r3"] },
-    "shop": { "type": "featured-product" },
-    "closing": { "type": "closing" }
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "c1": {
+          "type": "chip",
+          "settings": {
+            "text": "15 g sachet"
+          }
+        },
+        "c2": {
+          "type": "chip",
+          "settings": {
+            "text": "30 per box"
+          }
+        },
+        "c3": {
+          "type": "chip",
+          "settings": {
+            "text": "9 ingredient categories"
+          }
+        },
+        "c4": {
+          "type": "chip",
+          "settings": {
+            "text": "Once a day"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
+    },
+    "badges": {
+      "type": "badges",
+      "blocks": {
+        "h1": {
+          "type": "badge",
+          "settings": {
+            "icon": "box",
+            "text": "30 sachets in every box"
+          }
+        },
+        "h2": {
+          "type": "badge",
+          "settings": {
+            "icon": "cal",
+            "text": "One sachet, once a day"
+          }
+        },
+        "h3": {
+          "type": "badge",
+          "settings": {
+            "icon": "flask",
+            "text": "Third-party tested",
+            "confirm": true
+          }
+        },
+        "h4": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "text": "Guarantee",
+            "confirm": true
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3",
+        "h4"
+      ]
+    },
+    "difference": {
+      "type": "difference",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "15",
+            "unit": "g",
+            "label": "per sachet"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "30",
+            "unit": "",
+            "label": "sachets per box"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "9",
+            "unit": "",
+            "label": "ingredient categories"
+          }
+        },
+        "r1": {
+          "type": "row",
+          "settings": {
+            "name": "Multivitamins"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "name": "Minerals & Trace Elements"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "name": "Amino Acids"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "name": "Hydration Electrolytes"
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "name": "Prebiotic Fibre"
+          }
+        },
+        "r6": {
+          "type": "row",
+          "settings": {
+            "name": "Probiotic Complex"
+          }
+        },
+        "r7": {
+          "type": "row",
+          "settings": {
+            "name": "Digestive Enzyme Support"
+          }
+        },
+        "r8": {
+          "type": "row",
+          "settings": {
+            "name": "Heart Health Support"
+          }
+        },
+        "r9": {
+          "type": "row",
+          "settings": {
+            "name": "Joint & Muscle Health Support"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9"
+      ]
+    },
+    "formula": {
+      "type": "formula",
+      "blocks": {
+        "b1": {
+          "type": "blend",
+          "settings": {
+            "name": "Multivitamins",
+            "icon": "sun"
+          }
+        },
+        "b2": {
+          "type": "blend",
+          "settings": {
+            "name": "Minerals & Trace Elements",
+            "icon": "hex"
+          }
+        },
+        "b3": {
+          "type": "blend",
+          "settings": {
+            "name": "Amino Acids",
+            "icon": "chain"
+          }
+        },
+        "b4": {
+          "type": "blend",
+          "settings": {
+            "name": "Hydration Electrolytes",
+            "icon": "drop"
+          }
+        },
+        "b5": {
+          "type": "blend",
+          "settings": {
+            "name": "Prebiotic Fibre",
+            "icon": "leaf"
+          }
+        },
+        "b6": {
+          "type": "blend",
+          "settings": {
+            "name": "Probiotic Complex",
+            "icon": "dots"
+          }
+        },
+        "b7": {
+          "type": "blend",
+          "settings": {
+            "name": "Digestive Enzyme Support",
+            "icon": "spiral"
+          }
+        },
+        "b8": {
+          "type": "blend",
+          "settings": {
+            "name": "Heart Health Support",
+            "icon": "heart"
+          }
+        },
+        "b9": {
+          "type": "blend",
+          "settings": {
+            "name": "Joint & Muscle Health Support",
+            "icon": "joint"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9"
+      ]
+    },
+    "quality": {
+      "type": "quality",
+      "blocks": {
+        "d1": {
+          "type": "doc",
+          "settings": {
+            "title": "Manufacturing standards",
+            "text": "Facility and certifications such as GMP and FSSAI."
+          }
+        },
+        "d2": {
+          "type": "doc",
+          "settings": {
+            "title": "Test reports",
+            "text": "Third-party lab reports and certificate of analysis for each batch."
+          }
+        },
+        "d3": {
+          "type": "doc",
+          "settings": {
+            "title": "Ingredient specifications",
+            "text": "Form, source and amount per serving for every ingredient."
+          }
+        },
+        "d4": {
+          "type": "doc",
+          "settings": {
+            "title": "Quality documentation",
+            "text": "Storage, shelf life and safety information."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ]
+    },
+    "experts": {
+      "type": "experts"
+    },
+    "ritual": {
+      "type": "ritual",
+      "blocks": {
+        "r1": {
+          "type": "step",
+          "settings": {
+            "title": "Open",
+            "text": "Tear open one 15 g sachet."
+          }
+        },
+        "r2": {
+          "type": "step",
+          "settings": {
+            "title": "Mix",
+            "text": "Stir it into water.",
+            "confirm": "amount of water"
+          }
+        },
+        "r3": {
+          "type": "step",
+          "settings": {
+            "title": "Enjoy",
+            "text": "Drink once a day, every day. Consistency is what counts."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ]
+    },
+    "shop": {
+      "type": "featured-product"
+    },
+    "reviews": {
+      "type": "reviews"
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I take HLTHX™?",
+            "source": "custom",
+            "answer": "<p>Mix one 15 g sachet into water once a day.</p>",
+            "confirm": "amount of water and best time of day"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "What's inside?",
+            "source": "custom",
+            "answer": "<p>Nine ingredient categories, from multivitamins and minerals to a probiotic complex and digestive enzymes. Open <a href=\"#formula\">Inside the Formula</a> for each category.</p>",
+            "confirm": "full ingredient list with amounts"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I pause or cancel my subscription?",
+            "source": "subscription"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Is it safe with medication, or during pregnancy?",
+            "source": "custom",
+            "answer": "<p>Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How is HLTHX™ tested?",
+            "source": "custom",
+            "confirm": "manufacturing standards and test reports"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you deliver, and how long does it take?",
+            "source": "delivery"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "What if it is not right for me?",
+            "source": "guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ]
+    },
+    "closing": {
+      "type": "closing"
+    }
   },
-  "order": ["hero","difference","formula","quality","ritual","shop","closing"]
+  "order": [
+    "hero",
+    "badges",
+    "difference",
+    "formula",
+    "quality",
+    "experts",
+    "ritual",
+    "shop",
+    "reviews",
+    "faq",
+    "closing"
+  ]
 }

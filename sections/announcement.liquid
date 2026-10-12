@@ -1,0 +1,13 @@
+<div class="announce">
+  {%- if section.settings.text != blank -%}
+    {%- if section.settings.link != blank -%}<a href="{{ section.settings.link }}" style="text-decoration:none">{{ section.settings.text }}</a>{%- else -%}{{ section.settings.text }}{%- endif -%}
+  {%- else -%}
+    Subscribe &amp; save on every 30-Day Box {% render 'todo', label: 'launch offer' %}
+  {%- endif -%}
+</div>
+{% schema %}
+{ "name": "Announcement bar", "settings": [
+  { "type": "text", "id": "text", "label": "Message", "info": "Leave blank to show a \"To confirm\" marker." },
+  { "type": "url", "id": "link", "label": "Link" }
+] }
+{% endschema %}

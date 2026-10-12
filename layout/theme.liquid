@@ -9,12 +9,12 @@
   {% if settings.favicon %}<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">{% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
   {{ 'hlthx.css' | asset_url | stylesheet_tag }}
   {%- comment -%} Brand colours come from Theme settings > Colours, so they can be changed without code. {%- endcomment -%}
   <style>
-    :root{--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }}}
-    {% if settings.dark_mode == false %}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }};--todo-bg:#fff3d6;--todo-fg:#7a4b00;--todo-line:#e7c77b;color-scheme:light}}{% endif %}
+    :root{--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }};--brand-red:{{ settings.color_brand_red }}}
+    {% if settings.dark_mode == false %}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }};--brand-red:{{ settings.color_brand_red }};--todo-bg:#fff3d6;--todo-fg:#7a4b00;--todo-line:#e7c77b;color-scheme:light}}{% endif %}
   </style>
   {{ content_for_header }}
 </head>

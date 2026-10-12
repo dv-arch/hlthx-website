@@ -10,4 +10,13 @@
       r.addEventListener('change', function(){ if (hidden) hidden.value = r.value === 'once' ? '' : r.value; });
     });
   });
+
+  // sticky buy bar appears after the hero and hides at the buy box
+  var sticky = document.querySelector('[data-sticky]'), hero = document.querySelector('.hero'), shop = document.getElementById('shop');
+  if (sticky && hero && shop && 'IntersectionObserver' in window) {
+    var heroOut = false, shopIn = false;
+    var upd = function(){ sticky.classList.toggle('on', heroOut && !shopIn); };
+    new IntersectionObserver(function(e){ heroOut = !e[0].isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(function(e){ shopIn = e[0].isIntersecting; upd(); }).observe(shop);
+  }
 })();

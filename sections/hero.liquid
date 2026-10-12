@@ -1,34 +1,53 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- render 'tagline', size: 'sm' -%}
       <h1>{{ section.settings.line1 }} <span class="red">{{ section.settings.line2 }}</span></h1>
       <p class="lede">{{ section.settings.text }}</p>
+      <div class="proof">
+        {%- render 'stars' -%}
+        {%- if section.settings.rating != blank and section.settings.review_count > 0 -%}
+          <span><b style="color:var(--ink)">{{ section.settings.rating }}</b> from {{ section.settings.review_count }} reviews</span>
+        {%- else -%}
+          <span>{% render 'todo', label: 'rating and review count' %}</span>
+        {%- endif -%}
+      </div>
       <div class="ctas">
         <a class="btn btn-red" href="{{ section.settings.cta1_link | default: '#shop' }}">{{ section.settings.cta1 }}</a>
         <a class="btn" href="{{ section.settings.cta2_link | default: '#formula' }}">{{ section.settings.cta2 }}</a>
       </div>
+      {%- if section.blocks.size > 0 -%}
+      <div class="chips">{%- for block in section.blocks -%}<span class="chip" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endfor -%}</div>
+      {%- endif -%}
     </div>
     <div class="hero-art">
       {%- if section.settings.image -%}
         {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'eager', sizes: '(max-width: 820px) 70vw, 40vw', style: 'width:min(100%,420px);height:auto' }}
       {%- else -%}
         {%- render 'sachet' -%}
-        <div class="photo-note">{%- render 'todo', label: 'product photo' -%}</div>
+        <div class="photo-note">Illustration. {% render 'todo', label: 'product photo' %}</div>
       {%- endif -%}
     </div>
   </div>
 </section>
 {% schema %}
 { "name": "Hero", "settings": [
-  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "HLTHX™ Daily Complete Nutrition" },
   { "type": "text", "id": "line1", "label": "Headline", "default": "One daily ritual." },
   { "type": "text", "id": "line2", "label": "Headline (accent)", "default": "A better way to nourish." },
   { "type": "textarea", "id": "text", "label": "Text", "default": "A thoughtfully formulated daily nutrition blend, bringing together vitamins, minerals and functional ingredients in one convenient sachet." },
+  { "type": "text", "id": "rating", "label": "Average rating (e.g. 4.8)", "info": "Leave blank until you have verified reviews." },
+  { "type": "number", "id": "review_count", "label": "Number of reviews" },
   { "type": "text", "id": "cta1", "label": "Button 1", "default": "Shop the 30-Day Box" },
   { "type": "url", "id": "cta1_link", "label": "Button 1 link" },
   { "type": "text", "id": "cta2", "label": "Button 2", "default": "Explore the Formula" },
   { "type": "url", "id": "cta2_link", "label": "Button 2 link" },
   { "type": "image_picker", "id": "image", "label": "Product photo" }
-], "presets": [{ "name": "Hero" }] }
+], "blocks": [{ "type": "chip", "name": "Chip", "settings": [
+  { "type": "text", "id": "text", "label": "Text", "default": "Once a day" }
+] }], "presets": [{ "name": "Hero", "blocks": [
+  { "type": "chip", "settings": { "text": "15 g sachet" } },
+  { "type": "chip", "settings": { "text": "30 per box" } },
+  { "type": "chip", "settings": { "text": "9 ingredient categories" } },
+  { "type": "chip", "settings": { "text": "Once a day" } }
+] }] }
 {% endschema %}

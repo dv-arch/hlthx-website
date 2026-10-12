@@ -59,6 +59,12 @@
         "default": "#191410"
       },
       {
+        "type": "color",
+        "id": "color_brand_red",
+        "label": "Brand red (logo X, tagline rule)",
+        "default": "#B3262A"
+      },
+      {
         "type": "checkbox",
         "id": "dark_mode",
         "label": "Follow visitor's dark mode",
@@ -76,6 +82,13 @@
       },
       {
         "type": "text",
+        "id": "tagline",
+        "label": "Brand tagline",
+        "default": "Feel better. Every day.",
+        "info": "Shown in uppercase with a red rule. Use a full stop to break it onto two lines."
+      },
+      {
+        "type": "text",
         "id": "disclaimer",
         "label": "Footer disclaimer",
         "default": "This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition."
@@ -85,6 +98,32 @@
         "id": "show_todo_markers",
         "label": "Show \"To confirm\" markers for missing details",
         "default": true
+      }
+    ]
+  },
+  {
+    "name": "Store policies",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shown next to the buy button and in the FAQ. Leave blank to show a \"To confirm\" marker."
+      },
+      {
+        "type": "number",
+        "id": "guarantee_days",
+        "label": "Money-back guarantee (days)"
+      },
+      {
+        "type": "text",
+        "id": "subscription_policy",
+        "label": "Subscription terms",
+        "info": "For example: Pause, skip or cancel anytime."
+      },
+      {
+        "type": "text",
+        "id": "delivery",
+        "label": "Delivery summary",
+        "info": "For example: Free delivery across India in 3 to 5 days."
       }
     ]
   }

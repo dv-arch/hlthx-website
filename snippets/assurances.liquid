@@ -1,0 +1,7 @@
+{%- comment -%} Checkmark list beside the buy button. Values come from Theme settings > Store policies. {%- endcomment -%}
+{%- capture chk -%}<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6"/></svg>{%- endcapture -%}
+<div class="assure">
+  <div>{{ chk }}<span>{% if settings.guarantee_days > 0 %}{{ settings.guarantee_days }}-day money-back guarantee{% else %}Money-back guarantee {% render 'todo', label: 'terms' %}{% endif %}</span></div>
+  <div>{{ chk }}<span>{% if settings.subscription_policy != blank %}{{ settings.subscription_policy }}{% else %}Subscriptions: pause, skip or cancel {% render 'todo', label: 'policy' %}{% endif %}</span></div>
+  <div>{{ chk }}<span>{% if settings.delivery != blank %}{{ settings.delivery }}{% else %}Delivery {% render 'todo', label: 'areas and charges' %}{% endif %}</span></div>
+</div>

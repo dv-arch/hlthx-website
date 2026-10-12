@@ -13,8 +13,16 @@
       </details>
       {%- endfor -%}
     </div>
+    <details class="facts">
+      <summary>{{ section.settings.facts_title }} <span class="plus" aria-hidden="true">+</span></summary>
+      <div class="inner">
+        <div class="frow h"><span>Per 15 g sachet</span><span>Amount</span></div>
+        {%- if section.settings.facts != blank -%}<div class="rte">{{ section.settings.facts }}</div>
+        {%- else -%}<div class="frow"><span>Full ingredient list with amounts per serving</span><span>{% render 'todo' %}</span></div>{%- endif -%}
+      </div>
+    </details>
     {%- if section.settings.cta != blank -%}
-    <div class="formula-foot"><span></span><a class="btn" href="{{ section.settings.cta_link | default: '#formula' }}">{{ section.settings.cta }}</a></div>
+    <div class="formula-foot"><span>{% if section.settings.list_complete == false %}{% render 'todo', label: 'full category list' %}{% endif %}</span><a class="btn" href="{{ section.settings.cta_link | default: '#formula' }}">{{ section.settings.cta }}</a></div>
     {%- endif -%}
   </div>
 </section>
@@ -23,6 +31,9 @@
   { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Inside the Formula" },
   { "type": "text", "id": "heading", "label": "Heading", "default": "More than a multivitamin." },
   { "type": "textarea", "id": "text", "label": "Text", "default": "Every blend in your daily sachet, organised by what it does. Open a category to see what's inside." },
+  { "type": "text", "id": "facts_title", "label": "Supplement facts title", "default": "Supplement facts" },
+  { "type": "richtext", "id": "facts", "label": "Supplement facts", "info": "One line per ingredient with its amount per sachet." },
+  { "type": "checkbox", "id": "list_complete", "label": "Category list is confirmed by the client", "default": false },
   { "type": "text", "id": "cta", "label": "Button", "default": "Explore What's Inside" },
   { "type": "url", "id": "cta_link", "label": "Button link" }
 ], "blocks": [{ "type": "blend", "name": "Category", "settings": [

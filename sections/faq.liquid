@@ -1,0 +1,37 @@
+<section id="faq">
+  <div class="wrap">
+    <div style="display:grid;gap:20px"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+    <div class="faq">
+      {%- for block in section.blocks -%}
+      <details {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+        <summary>{{ block.settings.question }}<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="a">
+          {%- case block.settings.source -%}
+          {%- when 'delivery' -%}<p>{% if settings.delivery != blank %}{{ settings.delivery }}{% else %}{% render 'todo', label: 'delivery areas, time and charges' %}{% endif %}</p>
+          {%- when 'guarantee' -%}<p>{% if settings.guarantee_days > 0 %}You are covered by our {{ settings.guarantee_days }}-day money-back guarantee.{% else %}{% render 'todo', label: 'returns and guarantee policy' %}{% endif %}</p>
+          {%- when 'subscription' -%}<p>{% if settings.subscription_policy != blank %}{{ settings.subscription_policy }}{% else %}{% render 'todo', label: 'subscription terms' %}{% endif %}</p>
+          {%- else -%}
+            {{ block.settings.answer }}
+            {%- if block.settings.confirm != blank -%}<p>{% render 'todo', label: block.settings.confirm %}</p>{%- endif -%}
+          {%- endcase -%}
+        </div>
+      </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "FAQ", "settings": [
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ" },
+  { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered." }
+], "blocks": [{ "type": "question", "name": "Question", "settings": [
+  { "type": "text", "id": "question", "label": "Question", "default": "How do I take HLTHX™?" },
+  { "type": "select", "id": "source", "label": "Answer", "default": "custom", "options": [
+    { "value": "custom", "label": "Written below" },
+    { "value": "delivery", "label": "Delivery summary (Theme settings)" },
+    { "value": "guarantee", "label": "Guarantee (Theme settings)" },
+    { "value": "subscription", "label": "Subscription terms (Theme settings)" } ] },
+  { "type": "richtext", "id": "answer", "label": "Answer" },
+  { "type": "text", "id": "confirm", "label": "Still to confirm (shows a marker)" }
+] }], "presets": [{ "name": "FAQ" }] }
+{% endschema %}

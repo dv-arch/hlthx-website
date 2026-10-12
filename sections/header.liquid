@@ -1,7 +1,7 @@
 <header class="top">
   <div class="wrap">
     <a class="logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
-      {%- if section.settings.logo -%}{{ section.settings.logo | image_url: width: 240 | image_tag: height: 28, style: 'height:28px;width:auto' }}{%- else -%}HLTHX<span>™</span>{%- endif -%}
+      {%- if section.settings.logo -%}{{ section.settings.logo | image_url: width: 240 | image_tag: height: 28, style: 'height:28px;width:auto', alt: shop.name }}{%- else -%}{%- render 'logo' -%}{%- endif -%}
     </a>
     <nav class="nav" aria-label="Main">
       {%- for link in section.settings.menu.links -%}<a class="hide-sm" href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
@@ -11,7 +11,7 @@
 </header>
 {% schema %}
 { "name": "Header", "settings": [
-  { "type": "image_picker", "id": "logo", "label": "Logo (optional)" },
+  { "type": "image_picker", "id": "logo", "label": "Logo image (optional)", "info": "Leave empty to use the HLTHX wordmark in the brand font." },
   { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
 ] }
 {% endschema %}

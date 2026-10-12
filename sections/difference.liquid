@@ -1,3 +1,4 @@
+{%- assign rows = section.blocks | where: 'type', 'row' -%}
 <section id="difference">
   <div class="wrap">
     <div class="split">
@@ -5,22 +6,41 @@
       <p class="lede">{{ section.settings.text }}</p>
     </div>
     <div class="stats">
-      {%- for block in section.blocks -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'stat' -%}
       <div class="stat" {{ block.shopify_attributes }}><b>{{ block.settings.value }}{% if block.settings.unit != blank %}<small>{{ block.settings.unit }}</small>{% endif %}</b><span>{{ block.settings.label }}</span></div>
-      {%- endfor -%}
+      {%- endif -%}{%- endfor -%}
     </div>
+    {%- if rows.size > 0 -%}
+    <div class="compare" role="table" aria-label="One sachet compared with separate products">
+      <div class="crow head" role="row"><span role="columnheader">{{ section.settings.compare_label }}</span><span class="us" role="columnheader">{{ section.settings.us_label }}</span><span role="columnheader">{{ section.settings.them_label }}</span></div>
+      {%- for block in rows -%}
+      <div class="crow" role="row" {{ block.shopify_attributes }}><span role="cell">{{ block.settings.name }}</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div>
+      {%- endfor -%}
+      <div class="crow" role="row"><span role="cell"><b>{{ section.settings.total_label }}</b></span><span class="tot" role="cell">1</span><span class="tot" role="cell">{{ rows.size }}</span></div>
+    </div>
+    {%- endif -%}
   </div>
 </section>
 {% schema %}
-{ "name": "The difference", "max_blocks": 3, "settings": [
+{ "name": "The difference", "settings": [
   { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The difference" },
   { "type": "text", "id": "heading", "label": "Heading", "default": "Your daily nutrition. Simplified." },
-  { "type": "textarea", "id": "text", "label": "Text", "default": "One convenient daily serving. Multiple ingredient categories. A routine designed to be easier to maintain." }
-], "blocks": [{ "type": "stat", "name": "Highlight", "settings": [
-  { "type": "text", "id": "value", "label": "Number", "default": "15" },
-  { "type": "text", "id": "unit", "label": "Unit", "default": "g" },
-  { "type": "text", "id": "label", "label": "Label", "default": "per sachet" }
-] }], "presets": [{ "name": "The difference", "blocks": [
+  { "type": "textarea", "id": "text", "label": "Text", "default": "One convenient daily serving. Multiple ingredient categories. A routine designed to be easier to maintain." },
+  { "type": "header", "content": "Comparison table" },
+  { "type": "text", "id": "compare_label", "label": "First column", "default": "Covered every day" },
+  { "type": "text", "id": "us_label", "label": "Our column", "default": "HLTHX™" },
+  { "type": "text", "id": "them_label", "label": "Other column", "default": "Separate products" },
+  { "type": "text", "id": "total_label", "label": "Total row", "default": "Things to buy, open and remember" }
+], "blocks": [
+  { "type": "stat", "name": "Highlight number", "limit": 3, "settings": [
+    { "type": "text", "id": "value", "label": "Number", "default": "15" },
+    { "type": "text", "id": "unit", "label": "Unit", "default": "g" },
+    { "type": "text", "id": "label", "label": "Label", "default": "per sachet" }
+  ] },
+  { "type": "row", "name": "Comparison row", "settings": [
+    { "type": "text", "id": "name", "label": "Category", "default": "Multivitamins" }
+  ] }
+], "presets": [{ "name": "The difference", "blocks": [
   { "type": "stat", "settings": { "value": "15", "unit": "g", "label": "per sachet" } },
   { "type": "stat", "settings": { "value": "30", "unit": "", "label": "sachets per box" } },
   { "type": "stat", "settings": { "value": "9", "unit": "", "label": "ingredient categories" } }
