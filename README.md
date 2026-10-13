@@ -21,6 +21,14 @@ Online Store → Pages → Add page "Pre-book" and pick the template `page.prebo
 email; each becomes a Shopify customer tagged `prebook`, `prebook-store` and `phone:+91…`, subscribed to email
 marketing. Find them under Customers, filtered by tag `prebook`.
 
+- **The link to share:** `https://<store-domain>/pages/pre-book` (the page handle comes from the page title). For
+  Instagram use `https://<store-domain>/pages/pre-book?utm_source=instagram`; each sign-up from that link is also
+  tagged `source:instagram` (any other `utm_source`, e.g. `whatsapp`, works the same way).
+- Sign-ups also pick the plan they are interested in, saved as a tag such as `plan:monthly-subscription`.
+  Edit or hide the question in the page's **Pre-booking** section.
+- At launch: pick the HLTHX product in the **Pre-booking** section. Once it is on sale, the same link shows the buy
+  box with the subscription pre-selected, so the link already shared keeps working.
+
 ## Theme settings to fill in before launch
 - Theme settings → Store policies: guarantee days, subscription terms, delivery summary.
 - Theme settings → Brand: tagline, footer disclaimer, and turn off the "To confirm" markers.
