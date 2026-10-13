@@ -10,15 +10,15 @@
 <div data-plan style="display:grid;gap:22px">
   <input type="hidden" name="id" value="{{ v.id }}">
   {%- if product.tags.size > 0 -%}<div class="tags">{% for tag in product.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>{%- endif -%}
-  <div class="price">
+  <div class="price" data-price>
     <b>{{ v.price | money_without_trailing_zeros }}</b>
     {% if v.compare_at_price > v.price %}<s>{{ v.compare_at_price | money_without_trailing_zeros }}</s>{% endif %}
     <span class="muted">per {{ v.title | replace: 'Default Title', '30-Day Box' }}</span>
   </div>
   {%- if product.variants.size > 1 -%}
     <div class="field"><label for="variant-{{ section.id }}">Option</label>
-      <select id="variant-{{ section.id }}" onchange="this.form.id.value=this.value">
-        {% for variant in product.variants %}<option value="{{ variant.id }}"{% if variant == v %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} · {{ variant.price | money_without_trailing_zeros }}</option>{% endfor %}
+      <select id="variant-{{ section.id }}" data-variant>
+        {% for variant in product.variants %}<option value="{{ variant.id }}" data-price="{{ variant.price | money_without_trailing_zeros | escape }}" data-compare="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money_without_trailing_zeros | escape }}{% endif %}" data-title="{{ variant.title | escape }}"{% if variant == v %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} · {{ variant.price | money_without_trailing_zeros }}</option>{% endfor %}
       </select></div>
   {%- endif -%}
   <input type="hidden" name="selling_plan" value="{% if has_plans %}{{ first_plan.id }}{% endif %}">
