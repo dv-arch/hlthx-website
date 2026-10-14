@@ -97,7 +97,8 @@
         "type": "checkbox",
         "id": "show_todo_markers",
         "label": "Show \"To confirm\" markers for missing details",
-        "default": true
+        "default": false,
+        "info": "Off: anything still missing is hidden from visitors. On: yellow markers show what the client still has to provide."
       }
     ]
   },
@@ -106,7 +107,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Shown next to the buy button and in the FAQ. Leave blank to show a \"To confirm\" marker."
+        "content": "Shown next to the buy button and in the FAQ. Leave blank to hide the line (or show a \"To confirm\" marker when markers are on)."
       },
       {
         "type": "number",

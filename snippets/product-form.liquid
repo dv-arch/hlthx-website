@@ -42,13 +42,13 @@
       </label>
       {%- endfor -%}{%- endfor -%}
     {%- else -%}
-      <label class="plan" style="cursor:default"><span class="flag">Most popular</span><input type="radio" disabled><span><b>Monthly subscription</b><small>A new 30-Day Box every 30 days</small></span><span class="pp">{% render 'todo', label: 'price' %}</span></label>
-      <label class="plan" style="cursor:default"><input type="radio" disabled><span><b>3-month subscription</b><small>Three 30-Day Boxes every 90 days</small></span><span class="pp">{% render 'todo', label: 'price' %}</span></label>
+      <label class="plan" style="cursor:default"><span class="flag">Most popular</span><input type="radio" disabled><span><b>Monthly subscription</b><small>A new 30-Day Box every 30 days</small></span><span class="pp">{% if settings.show_todo_markers %}{% render 'todo', label: 'price' %}{% else %}<small>Coming soon</small>{% endif %}</span></label>
+      <label class="plan" style="cursor:default"><input type="radio" disabled><span><b>3-month subscription</b><small>Three 30-Day Boxes every 90 days</small></span><span class="pp">{% if settings.show_todo_markers %}{% render 'todo', label: 'price' %}{% else %}<small>Coming soon</small>{% endif %}</span></label>
     {%- endif -%}
   </fieldset>
   <div class="buy-row">
     <div class="qty" data-qty><button type="button" data-minus aria-label="Decrease quantity">−</button><input type="number" name="quantity" value="1" min="1" max="20" aria-label="Quantity" style="width:3ch;border:0;background:none;color:var(--ink);font-family:var(--mono);text-align:center;font-size:1rem;-moz-appearance:textfield"><button type="button" data-plus aria-label="Increase quantity">+</button></div>
-    <button class="btn btn-red" type="submit"{% unless v.available %} disabled{% endunless %}>{% if v.available %}Add to cart{% else %}Sold out{% endif %}</button>
+    <button class="btn btn-red" type="submit"{% unless v.available %} disabled{% endunless %}>{% if v.available %}Add to cart{% else %}Coming soon{% endif %}</button>
   </div>
   {{ form | payment_terms }}
   {%- render 'assurances' -%}

@@ -9,7 +9,7 @@
       {%- for block in section.blocks -%}
       <details class="blend" {{ block.shopify_attributes }}>
         <summary>{%- render 'blend-icon', icon: block.settings.icon -%}<h3>{{ block.settings.name }}</h3><span class="plus" aria-hidden="true">+</span></summary>
-        <div class="body">{%- if block.settings.ingredients != blank -%}{{ block.settings.ingredients }}{%- else -%}<p>{%- render 'todo', label: 'ingredients and amounts' -%}</p>{%- endif -%}</div>
+        <div class="body">{%- if block.settings.ingredients != blank -%}{{ block.settings.ingredients }}{%- elsif settings.show_todo_markers -%}<p>{%- render 'todo', label: 'ingredients and amounts' -%}</p>{%- else -%}<p>Full ingredient details coming soon.</p>{%- endif -%}</div>
       </details>
       {%- endfor -%}
     </div>
@@ -18,7 +18,7 @@
       <div class="inner">
         <div class="frow h"><span>Per 15 g sachet</span><span>Amount</span></div>
         {%- if section.settings.facts != blank -%}<div class="rte">{{ section.settings.facts }}</div>
-        {%- else -%}<div class="frow"><span>Full ingredient list with amounts per serving</span><span>{% render 'todo' %}</span></div>{%- endif -%}
+        {%- else -%}<div class="frow"><span>Full ingredient list with amounts per serving</span><span>{% if settings.show_todo_markers %}{% render 'todo' %}{% else %}Coming soon{% endif %}</span></div>{%- endif -%}
       </div>
     </details>
     {%- if section.settings.cta != blank -%}

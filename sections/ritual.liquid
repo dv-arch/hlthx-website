@@ -21,11 +21,13 @@
       </div>
       {%- endfor -%}
     </div>
+    {%- if section.settings.directions != blank or section.settings.warnings != blank or settings.show_todo_markers -%}
     <div class="directions">
       <h3>Directions for use</h3>
       {%- if section.settings.directions != blank -%}{{ section.settings.directions }}{%- else -%}<p>{%- render 'todo', label: 'approved usage directions' -%}</p>{%- endif -%}
       {%- if section.settings.warnings != blank -%}<div class="muted" style="font-size:.9rem">{{ section.settings.warnings }}</div>{%- else -%}<p>{%- render 'todo', label: 'warnings and storage' -%}</p>{%- endif -%}
     </div>
+    {%- endif -%}
   </div>
 </section>
 {% schema %}

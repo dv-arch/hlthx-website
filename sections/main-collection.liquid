@@ -4,7 +4,7 @@
   {%- if collection.description != blank -%}<div class="rte muted" style="margin-top:16px">{{ collection.description }}</div>{%- endif -%}
   {%- paginate collection.products by 24 -%}
   <div class="grid-products">
-    {%- for p in collection.products -%}{%- render 'product-card', p: p -%}{%- else -%}<p>No products yet.</p>{%- endfor -%}
+    {%- for p in collection.products -%}{%- render 'product-card', p: p -%}{%- else -%}{%- render 'coming-soon' -%}{%- endfor -%}
   </div>
   {%- if paginate.pages > 1 -%}<div style="margin-top:32px">{{ paginate | default_pagination }}</div>{%- endif -%}
   {%- endpaginate -%}

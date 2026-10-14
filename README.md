@@ -29,6 +29,17 @@ marketing. Find them under Customers, filtered by tag `prebook`.
 - At launch: pick the HLTHX product in the **Pre-booking** section. Once it is on sale, the same link shows the buy
   box with the subscription pre-selected, so the link already shared keeps working.
 
+## Contact us page
+The theme has a `page.contact` template with a contact form. Shopify's built-in "Contact" page usually already uses it;
+if not, open Pages → Contact and set Theme template to `contact`. Every message is emailed to the store contact email
+(Settings → General → Store contact email) with the sender's name, email, phone, topic and message.
+
+## "To confirm" markers and missing details
+Markers are off by default, so visitors never see placeholders: sections with nothing confirmed yet (reviews, experts,
+unconfirmed badges, FAQ answers, delivery and guarantee lines) are hidden, and products that are not on sale show
+"Coming soon" with a pre-book link. Turn markers on in Theme settings → Brand to see what is still missing.
+`CLIENT-CHECKLIST.md` lists everything the client still needs to provide.
+
 ## Theme settings to fill in before launch
 - Theme settings → Store policies: guarantee days, subscription terms, delivery summary.
 - Theme settings → Brand: tagline, footer disclaimer, and turn off the "To confirm" markers.
