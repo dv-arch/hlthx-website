@@ -2,8 +2,19 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "announcement": { "type": "announcement" },
-    "header": { "type": "header" }
+    "announcement": {
+      "type": "announcement"
+    },
+    "header": {
+      "type": "header"
+    },
+    "prebook_popup": {
+      "type": "prebook-popup"
+    }
   },
-  "order": ["announcement", "header"]
+  "order": [
+    "announcement",
+    "header",
+    "prebook_popup"
+  ]
 }
