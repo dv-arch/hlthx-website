@@ -11,15 +11,15 @@
             when 1
               assign title = section.settings.title_1
               assign menu = section.settings.menu_1
-              assign fallback = '30-Day Box|/#shop,Subscribe & save|/#shop'
+              assign fallback = '30-Day Box|/#shop,Pre-book|/pages/pre-book'
             when 2
               assign title = section.settings.title_2
               assign menu = section.settings.menu_2
-              assign fallback = 'Inside the Formula|/#formula,Quality|/#quality,The science|/#science,How to use|/#ritual'
+              assign fallback = 'Inside the Formula|/#formula,Quality|/#quality,How to use|/#ritual'
             else
               assign title = section.settings.title_3
               assign menu = section.settings.menu_3
-              assign fallback = 'FAQ|/#faq,Shipping & returns|/#faq,Contact|/#faq'
+              assign fallback = 'FAQ|/#faq,Contact us|/pages/contact'
           endcase
         -%}
         <div><h4>{{ title }}</h4><ul>

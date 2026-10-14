@@ -1,5 +1,7 @@
 <a class="card" href="{{ p.url }}">
   <div class="img">{% if p.featured_image %}{{ p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}{% else %}{% render 'sachet' %}{% endif %}</div>
   <h3>{{ p.title }}</h3>
+  {%- if p.available == false -%}<span class="soon">Coming soon</span>{%- else -%}
   <span style="font-variant-numeric:tabular-nums">{{ p.price | money_without_trailing_zeros }}{% if p.compare_at_price > p.price %} <s class="muted">{{ p.compare_at_price | money_without_trailing_zeros }}</s>{% endif %}</span>
+  {%- endif -%}
 </a>

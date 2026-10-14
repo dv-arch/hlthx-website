@@ -1,6 +1,7 @@
 <section class="badges" aria-label="Highlights">
   <div class="wrap">
     {%- for block in section.blocks -%}
+    {%- if block.settings.confirm and settings.show_todo_markers == false -%}{%- continue -%}{%- endif -%}
     <div class="badge-i" {{ block.shopify_attributes }}>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       {%- case block.settings.icon -%}

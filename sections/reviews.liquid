@@ -1,3 +1,4 @@
+{%- if section.blocks.size > 0 or settings.show_todo_markers -%}
 <section id="reviews">
   <div class="wrap">
     <div class="rev-head">
@@ -17,6 +18,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 {% schema %}
 { "name": "Reviews", "settings": [
   { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },

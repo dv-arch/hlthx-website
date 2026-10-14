@@ -14,12 +14,13 @@
         {%- render 'product-form', product: fp, section: section -%}
         <div class="inbox">
           <h3>What's in the box</h3>
-          {%- if section.settings.in_box != blank -%}{{ section.settings.in_box }}{%- else -%}<p>{%- render 'todo', label: 'box contents' -%}</p>{%- endif -%}
-          <h3 style="margin-top:8px">Delivery</h3>
-          <p>{% if settings.delivery != blank %}{{ settings.delivery }}{% else %}{% render 'todo', label: 'delivery areas, time and charges' %}{% endif %}</p>
+          {%- if section.settings.in_box != blank -%}{{ section.settings.in_box }}{%- else -%}<p>30 × 15 g sachets {% render 'todo', label: 'box contents' %}</p>{%- endif -%}
+          {%- if settings.delivery != blank -%}<h3 style="margin-top:8px">Delivery</h3><p>{{ settings.delivery }}</p>
+          {%- elsif settings.show_todo_markers -%}<h3 style="margin-top:8px">Delivery</h3><p>{% render 'todo', label: 'delivery areas, time and charges' %}</p>{%- endif -%}
         </div>
       {%- else -%}
-        <p>{%- render 'todo', label: 'add the product in Shopify, then pick it in this section' -%}</p>
+        {%- render 'coming-soon' -%}
+        {%- render 'todo', label: 'add the product in Shopify, then pick it in this section' -%}
       {%- endif -%}
     </div>
   </div>

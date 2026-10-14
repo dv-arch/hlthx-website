@@ -4,14 +4,14 @@
       {%- render 'tagline', size: 'sm' -%}
       <h1>{{ section.settings.line1 }} <span class="red">{{ section.settings.line2 }}</span></h1>
       <p class="lede">{{ section.settings.text }}</p>
+      {%- if section.settings.rating != blank and section.settings.review_count > 0 -%}
       <div class="proof">
         {%- render 'stars' -%}
-        {%- if section.settings.rating != blank and section.settings.review_count > 0 -%}
-          <span><b style="color:var(--ink)">{{ section.settings.rating }}</b> from {{ section.settings.review_count }} reviews</span>
-        {%- else -%}
-          <span>{% render 'todo', label: 'rating and review count' %}</span>
-        {%- endif -%}
+        <span><b style="color:var(--ink)">{{ section.settings.rating }}</b> from {{ section.settings.review_count }} reviews</span>
       </div>
+      {%- elsif settings.show_todo_markers -%}
+      <div class="proof"><span>{% render 'todo', label: 'rating and review count' %}</span></div>
+      {%- endif -%}
       <div class="ctas">
         <a class="btn btn-red" href="{{ section.settings.cta1_link | default: '#shop' }}">{{ section.settings.cta1 }}</a>
         <a class="btn" href="{{ section.settings.cta2_link | default: '#formula' }}">{{ section.settings.cta2 }}</a>
@@ -25,7 +25,7 @@
         {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'eager', sizes: '(max-width: 820px) 70vw, 40vw', style: 'width:min(100%,420px);height:auto' }}
       {%- else -%}
         {%- render 'sachet' -%}
-        <div class="photo-note">Illustration. {% render 'todo', label: 'product photo' %}</div>
+        {%- if settings.show_todo_markers -%}<div class="photo-note">Illustration. {% render 'todo', label: 'product photo' %}</div>{%- endif -%}
       {%- endif -%}
     </div>
   </div>

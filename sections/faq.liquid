@@ -2,10 +2,9 @@
   <div class="wrap">
     <div style="display:grid;gap:20px"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
     <div class="faq">
+      {%- assign shown = 0 -%}
       {%- for block in section.blocks -%}
-      <details {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
-        <summary>{{ block.settings.question }}<span class="plus" aria-hidden="true">+</span></summary>
-        <div class="a">
+      {%- capture answer -%}
           {%- case block.settings.source -%}
           {%- when 'delivery' -%}<p>{% if settings.delivery != blank %}{{ settings.delivery }}{% else %}{% render 'todo', label: 'delivery areas, time and charges' %}{% endif %}</p>
           {%- when 'guarantee' -%}<p>{% if settings.guarantee_days > 0 %}You are covered by our {{ settings.guarantee_days }}-day money-back guarantee.{% else %}{% render 'todo', label: 'returns and guarantee policy' %}{% endif %}</p>
@@ -14,8 +13,15 @@
             {{ block.settings.answer }}
             {%- if block.settings.confirm != blank -%}<p>{% render 'todo', label: block.settings.confirm %}</p>{%- endif -%}
           {%- endcase -%}
-        </div>
+      {%- endcapture -%}
+      {%- assign answer_text = answer | strip_html | strip -%}
+      {%- if answer_text != blank -%}
+      <details {{ block.shopify_attributes }}{% if shown == 0 %} open{% endif %}>
+        <summary>{{ block.settings.question }}<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="a">{{ answer }}</div>
       </details>
+      {%- assign shown = shown | plus: 1 -%}
+      {%- endif -%}
       {%- endfor -%}
     </div>
   </div>

@@ -1,3 +1,4 @@
+{%- if section.blocks.size > 0 or settings.show_todo_markers -%}
 <section id="science">
   <div class="wrap">
     <div class="split">
@@ -16,6 +17,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 {% schema %}
 { "name": "Experts", "max_blocks": 6, "settings": [
   { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The science" },
