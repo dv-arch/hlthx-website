@@ -285,3 +285,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 .facts .inner td,.facts .inner th{padding:10px 0;border-top:1px solid var(--line);text-align:left}
 .facts .inner td:last-child,.facts .inner th:last-child{text-align:right}
 .plan .flag:empty{display:none}
+
+/* pre-book link in the header: visible on every screen size */
+.nav .nav-prebook{font-weight:600;color:var(--red-text);white-space:nowrap}
+.nav .nav-prebook:hover{color:var(--ink)}

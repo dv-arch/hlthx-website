@@ -1,0 +1,64 @@
+{%- comment -%}
+  Launch pop-up inviting visitors to pre-book. Opens once per visitor (remembered in the browser for the number of
+  days set below), never on the pre-book page itself, and not in the theme editor unless "Preview in editor" is ticked.
+{%- endcomment -%}
+{%- assign path = section.settings.link | default: '/pages/pre-book' -%}
+{%- assign on_target = false -%}
+{%- if request.path == path -%}{%- assign on_target = true -%}{%- endif -%}
+{%- if section.settings.enabled and on_target == false -%}
+<dialog class="pb-pop" id="pb-pop" aria-labelledby="pb-pop-title" data-days="{{ section.settings.days }}" data-delay="{{ section.settings.delay }}"{% if request.design_mode and section.settings.preview %} data-preview{% endif %}>
+  <form method="dialog" class="pb-pop-close"><button type="submit" aria-label="Close">&times;</button></form>
+  <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+  <h2 id="pb-pop-title">{{ section.settings.heading }}</h2>
+  {%- if section.settings.text != blank -%}<p class="muted">{{ section.settings.text }}</p>{%- endif -%}
+  <p class="tagline sm">Feel better.<br>Every day.</p>
+  <div class="pb-pop-actions">
+    <a class="btn btn-red" href="{{ path }}" data-pb-go>{{ section.settings.button }}</a>
+    <button type="button" class="btn" data-pb-later>{{ section.settings.later }}</button>
+  </div>
+</dialog>
+<script>
+(function(){
+  var d = document.getElementById('pb-pop');
+  if (!d || typeof d.showModal !== 'function') return;
+  var KEY = 'hlthx-prebook-popup', days = +d.dataset.days || 7;
+  function seen(){ try { var t = +localStorage.getItem(KEY); return t && Date.now() - t < days * 864e5; } catch(e) { return false; } }
+  function remember(){ try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
+  if (!d.hasAttribute('data-preview') && (seen() || window.Shopify && Shopify.designMode)) return;
+  d.addEventListener('close', remember);
+  d.querySelector('[data-pb-later]').addEventListener('click', function(){ d.close(); });
+  d.querySelector('[data-pb-go]').addEventListener('click', remember);
+  d.addEventListener('click', function(e){ if (e.target === d) d.close(); });
+  setTimeout(function(){ if (!d.open) d.showModal(); }, (+d.dataset.delay || 0) * 1000);
+})();
+</script>
+{%- endif -%}
+
+{% stylesheet %}
+.pb-pop{border:0;border-radius:14px;padding:clamp(24px,5vw,40px);width:min(92vw,460px);background:var(--surface);color:var(--ink);box-shadow:0 30px 80px rgba(20,18,16,.25)}
+.pb-pop::backdrop{background:rgba(20,18,16,.55)}
+.pb-pop[open]{display:grid;gap:16px}
+.pb-pop h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+.pb-pop-close{position:absolute;top:8px;right:8px;margin:0}
+.pb-pop-close button{background:none;border:0;font-size:1.8rem;line-height:1;width:44px;height:44px;cursor:pointer;color:var(--muted)}
+.pb-pop-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pb-pop-actions .btn-red{flex:1;min-width:180px}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Pre-book pop-up",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show pop-up", "default": true },
+    { "type": "checkbox", "id": "preview", "label": "Preview in editor", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Special launch" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pre-book HLTHX™ for our special launch" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Be first to get Daily Complete Nutrition. Pre-booking is free and takes under a minute." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Pre-book now" },
+    { "type": "text", "id": "later", "label": "Dismiss button", "default": "Maybe later" },
+    { "type": "text", "id": "link", "label": "Pre-book page address", "default": "/pages/pre-book" },
+    { "type": "range", "id": "delay", "label": "Delay before showing", "min": 0, "max": 20, "step": 1, "unit": "s", "default": 3 },
+    { "type": "range", "id": "days", "label": "Show again after", "min": 1, "max": 30, "step": 1, "unit": "d", "default": 7 }
+  ]
+}
+{% endschema %}
