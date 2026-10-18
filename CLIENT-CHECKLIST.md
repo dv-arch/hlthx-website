@@ -14,7 +14,8 @@ The website is live with these items hidden for now. Once you send them, we add 
 ## 2. Formula
 - [ ] **Full ingredient list with the amount of each per 15 g sachet** (the supplement facts table). *"Supplement facts" panel.*
 - [ ] **Ingredients in each of the 9 categories**: Multivitamins; Minerals & Trace Elements; Amino Acids; Hydration Electrolytes; Prebiotic Fibre; Probiotic Complex; Digestive Enzyme Support; Heart Health Support; Joint & Muscle Health Support. *"Inside the Formula" tiles.*
-- [ ] **Confirm the category list is complete** (add or remove any). *"Inside the Formula".*
+- [ ] **Confirm the category list is complete** (add or remove any). The pack says **10+ functional blends**, and the site lists 9 categories, so please send the full list of blends. *"Inside the Formula".*
+- [x] **Headline figures** (confirmed from the pack): 80+ ingredients, 10+ functional blends, 18 billion CFU probiotic complex. *Home page, Inside the Formula, FAQ.*
 
 ## 3. How to use and safety
 - [ ] **Directions**: how much water, best time of day, hot or cold. *"Open. Mix. Enjoy." and Directions box.*

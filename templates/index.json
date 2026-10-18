@@ -18,7 +18,7 @@
         "c3": {
           "type": "chip",
           "settings": {
-            "text": "9 ingredient categories"
+            "text": "80+ ingredients"
           }
         },
         "c4": {
@@ -26,12 +26,19 @@
           "settings": {
             "text": "Once a day"
           }
+        },
+        "c5": {
+          "type": "chip",
+          "settings": {
+            "text": "10+ functional blends"
+          }
         }
       },
       "block_order": [
         "c1",
         "c2",
         "c3",
+        "c5",
         "c4"
       ]
     },
@@ -82,25 +89,25 @@
         "s1": {
           "type": "stat",
           "settings": {
-            "value": "15",
-            "unit": "g",
-            "label": "per sachet"
+            "value": "80+",
+            "unit": "",
+            "label": "ingredients"
           }
         },
         "s2": {
           "type": "stat",
           "settings": {
-            "value": "30",
+            "value": "10+",
             "unit": "",
-            "label": "sachets per box"
+            "label": "functional blends"
           }
         },
         "s3": {
           "type": "stat",
           "settings": {
-            "value": "9",
-            "unit": "",
-            "label": "ingredient categories"
+            "value": "18",
+            "unit": "billion",
+            "label": "CFU probiotic complex"
           }
         },
         "r1": {
@@ -171,7 +178,10 @@
         "r7",
         "r8",
         "r9"
-      ]
+      ],
+      "settings": {
+        "text": "One sachet. One daily ritual. Science-backed ingredients."
+      }
     },
     "formula": {
       "type": "formula",
@@ -250,7 +260,10 @@
         "b7",
         "b8",
         "b9"
-      ]
+      ],
+      "settings": {
+        "text": "80+ ingredients across 10+ functional blends, including an 18 billion CFU probiotic complex. Open a category to see what's inside."
+      }
     },
     "quality": {
       "type": "quality",
@@ -349,7 +362,7 @@
           "settings": {
             "question": "What's inside?",
             "source": "custom",
-            "answer": "<p>Nine ingredient categories, from multivitamins and minerals to a probiotic complex and digestive enzymes. Open <a href=\"#formula\">Inside the Formula</a> for each category.</p>",
+            "answer": "<p>80+ ingredients in 10+ functional blends, from multivitamins and minerals to an 18 billion CFU probiotic complex and digestive enzymes. Open <a href=\"#formula\">Inside the Formula</a> for each blend.</p>",
             "confirm": "full ingredient list with amounts"
           }
         },
