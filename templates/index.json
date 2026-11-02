@@ -1,46 +1,40 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero",
+    "hero_silk": {
+      "type": "hero-silk",
       "blocks": {
-        "c1": {
-          "type": "chip",
+        "t1": {
+          "type": "tile",
           "settings": {
-            "text": "15 g sachet"
+            "value": "80+",
+            "label": "Ingredients"
           }
         },
-        "c2": {
-          "type": "chip",
+        "t2": {
+          "type": "tile",
           "settings": {
-            "text": "30 per box"
+            "value": "10+",
+            "label": "Functional blends"
           }
         },
-        "c3": {
-          "type": "chip",
+        "t3": {
+          "type": "tile",
           "settings": {
-            "text": "80+ ingredients"
-          }
-        },
-        "c4": {
-          "type": "chip",
-          "settings": {
-            "text": "Once a day"
-          }
-        },
-        "c5": {
-          "type": "chip",
-          "settings": {
-            "text": "10+ functional blends"
+            "value": "18",
+            "label": "Billion CFU probiotic complex"
           }
         }
       },
       "block_order": [
-        "c1",
-        "c2",
-        "c3",
-        "c5",
-        "c4"
-      ]
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {}
+    },
+    "ingredients": {
+      "type": "marquee",
+      "settings": {}
     },
     "badges": {
       "type": "badges",
@@ -89,25 +83,25 @@
         "s1": {
           "type": "stat",
           "settings": {
-            "value": "80+",
-            "unit": "",
-            "label": "ingredients"
+            "value": "15",
+            "unit": "g",
+            "label": "per sachet"
           }
         },
         "s2": {
           "type": "stat",
           "settings": {
-            "value": "10+",
+            "value": "30",
             "unit": "",
-            "label": "functional blends"
+            "label": "sachets per box"
           }
         },
         "s3": {
           "type": "stat",
           "settings": {
-            "value": "18",
+            "value": "1",
             "unit": "",
-            "label": "billion CFU probiotic complex"
+            "label": "sachet a day"
           }
         },
         "r1": {
@@ -419,7 +413,8 @@
     }
   },
   "order": [
-    "hero",
+    "hero_silk",
+    "ingredients",
     "badges",
     "difference",
     "formula",
