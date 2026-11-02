@@ -106,8 +106,8 @@
           "type": "stat",
           "settings": {
             "value": "18",
-            "unit": "billion",
-            "label": "CFU probiotic complex"
+            "unit": "",
+            "label": "billion CFU probiotic complex"
           }
         },
         "r1": {
