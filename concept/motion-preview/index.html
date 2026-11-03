@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HLTHX | Motion preview</title><meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/motion-preview/assets/hlthx.css"><style>
+.hx{position:relative;min-height:calc(100svh - 110px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate;padding-block:0;border-top:0}
+.hx__bg{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
+.hx::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(251,248,241,0) 40%,rgba(251,248,241,.7) 80%,rgba(251,248,241,.92) 100%)}
+.hx__inner{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(24px,5vw,72px);align-items:end;padding-block:clamp(90px,14vh,160px) clamp(36px,6vh,64px)}
+.hx__copy{display:grid;gap:22px;min-width:0}
+.hx__eyebrow{display:inline-flex;align-items:center;gap:.7em;text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;font-weight:600;color:var(--red-text);margin:0}
+.hx__eyebrow::before{content:"";width:22px;height:2px;background:var(--hx-red,#D3202B)}
+.hx__title{font-size:clamp(2.1rem,4.6vw,4.2rem);font-weight:500;line-height:1.06;letter-spacing:.005em;text-transform:none;margin:0}
+.hx__l1,.hx__l2{display:block}
+.hx__tline{display:block;white-space:nowrap;font-size:min(1em,3.7vw,3.2rem);line-height:1.25;min-height:1.25em}
+.hx__typed{color:var(--red-text);font-weight:600}
+.hx__caret{display:inline-block;width:.06em;height:.9em;background:currentColor;margin-left:.06em;vertical-align:-.08em;animation:hx-blink 1s steps(1) infinite}
+@keyframes hx-blink{50%{opacity:0}}
+.hx__sub{display:grid;gap:4px;margin:0;font-size:.8rem;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--muted);max-width:none}
+.hx__sub b{color:var(--hx-red,#D3202B);font-weight:700}
+.hx__side{display:grid;gap:18px;min-width:0}
+.hx__tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hx__tile{background:linear-gradient(180deg,#DD2733,#D3202B 60%,#C01B26);color:#fff;padding:18px 14px 16px;display:grid;gap:10px;align-content:start;text-align:center;box-shadow:0 18px 40px -22px rgba(169,21,31,.8)}
+.hx__tile b{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;line-height:.95;letter-spacing:-.01em}
+.hx__tile i{display:block;height:1.5px;background:rgba(255,255,255,.65);margin-inline:12%}
+.hx__tile span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;line-height:1.35}
+.hx__cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hx__cta small{font-size:.8rem;color:var(--muted)}
+.hx__btn{padding:1.05em 1.7em}
+.hx__btn svg{width:18px;height:18px}
+@media (max-width:900px){
+  .hx{min-height:calc(100svh - 100px)}
+  .hx__inner{grid-template-columns:1fr;padding-top:96px}
+  .hx__title{font-size:clamp(2rem,9vw,3.2rem)}
+  .hx__tline{font-size:min(1em,6.4vw)}
+  .hx__tile{padding:14px 8px 12px}
+  .hx__tile span{font-size:.58rem;letter-spacing:.12em}
+}
+@media (prefers-reduced-motion:reduce){.hx__caret{display:none}}
+
+.mq{background:#141414;color:#F3E7C6;overflow:hidden;padding-block:16px}
+.mq__track{display:flex;gap:44px;width:max-content;animation:mq-scroll 38s linear infinite;font-size:clamp(1rem,1.8vw,1.35rem);letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.mq__track span{display:inline-flex;align-items:center;gap:44px;white-space:nowrap}
+.mq__track span::after{content:"";width:7px;height:7px;border-radius:50%;background:#D9A11E}
+.mq:hover .mq__track{animation-play-state:paused}
+@keyframes mq-scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mq__track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;row-gap:10px}.mq__track span[aria-hidden]{display:none}}
+
+.rf__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.rf__stage{aspect-ratio:4/5;width:100%;max-width:560px;justify-self:center;border-radius:8px;overflow:hidden;background:#F2ECE1;box-shadow:0 30px 60px -40px rgba(40,30,10,.35)}
+.rf__stage canvas{width:100%;height:100%;display:block}
+.rf__stage--video video,.rf__stage--video img{width:100%;height:100%;object-fit:cover;display:block}
+.rf__copy{display:grid;gap:22px;min-width:0}
+.rf__steps{list-style:none;margin:6px 0 0;padding:0;display:grid;border-top:1.5px solid var(--ink)}
+.rf__steps li{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);opacity:.42;transition:opacity .4s ease}
+.rf__steps li.is-on{opacity:1}
+.rf__n{font-family:var(--mono);font-size:.8rem;color:var(--hx-red,#D3202B);font-weight:500;padding-top:3px}
+.rf__steps h3{font-size:1.15rem;margin:0 0 4px}
+.rf__steps li.is-on h3{color:var(--red-text)}
+.rf__steps p{color:var(--muted);font-size:.95rem}
+.rf__dir{font-size:.9rem;color:var(--muted)}
+@media (max-width:860px){.rf__grid{grid-template-columns:1fr}.rf__stage{max-width:420px}}
+@media (prefers-reduced-motion:reduce){.rf__steps li{opacity:1}}
+
+.pb-pop{border:0;border-radius:14px;padding:clamp(24px,5vw,40px);width:min(92vw,460px);background:var(--surface);color:var(--ink);box-shadow:0 30px 80px rgba(20,18,16,.25)}
+.pb-pop::backdrop{background:rgba(20,18,16,.55)}
+.pb-pop[open]{display:grid;gap:16px}
+.pb-pop h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+.pb-pop-close{position:absolute;top:8px;right:8px;margin:0}
+.pb-pop-close button{background:none;border:0;font-size:1.8rem;line-height:1;width:44px;height:44px;cursor:pointer;color:var(--muted)}
+.pb-pop-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pb-pop-actions .btn-red{flex:1;min-width:180px}
+
+.pv{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:90;display:flex;gap:6px;align-items:center;padding:6px;border-radius:999px;background:rgba(20,20,20,.88);color:#fff;font:500 .76rem Montserrat,sans-serif;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}
+.pv span{padding:0 10px 0 12px;opacity:.75;white-space:nowrap}.pv a{color:#fff;text-decoration:none;padding:.6em 1em;border-radius:999px;white-space:nowrap}.pv a[aria-current]{background:#E3A008;color:#1B1203}
+@media (max-width:520px){.pv span{display:none}}</style>
+<script>var MOTION_OFF=/motion=off/.test(location.search);if(!MOTION_OFF&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('mo');setTimeout(function(){document.documentElement.classList.remove('mo')},3000)}</script>
+</head><body>
+<a class="visually-hidden" href="#MainContent">Skip to content</a>
+<div class="announce"><a href="https://hlthx-store.myshopify.com/pages/pre-book" style="text-decoration:none">Pre-book now for our special launch &rarr;</a></div><header class="top">
+  <div class="wrap">
+    <a class="logo" href="https://hlthx-store.myshopify.com/" aria-label="HLTHX home">HLTH<span class="x">X</span><sup>™</sup></a>
+    <nav class="nav" aria-label="Main"><a class="nav-prebook" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a><a class="btn btn-sm" href="https://hlthx-store.myshopify.com/cart">Cart <span class="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+<dialog class="pb-pop" id="pb-pop" aria-labelledby="pb-pop-title" data-days="7" data-delay="3">
+  <form method="dialog" class="pb-pop-close"><button type="submit" aria-label="Close">&times;</button></form>
+  <p class="eyebrow">Special launch</p>
+  <h2 id="pb-pop-title">Pre-book HLTHX™ for our special launch</h2><p class="muted">Be first to get Daily Complete Nutrition. Pre-booking is free and takes under a minute.</p><p class="tagline sm">Feel better.<br>Every day.</p>
+  <div class="pb-pop-actions">
+    <a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book" data-pb-go>Pre-book now</a>
+    <button type="button" class="btn" data-pb-later>Maybe later</button>
+  </div>
+</dialog>
+<script>
+(function(){
+  var d = document.getElementById('pb-pop');
+  if (!d || typeof d.showModal !== 'function') return;
+  var KEY = 'hlthx-prebook-popup', days = +d.dataset.days || 7;
+  function seen(){ try { var t = +localStorage.getItem(KEY); return t && Date.now() - t < days * 864e5; } catch(e) { return false; } }
+  function remember(){ try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
+  if (!d.hasAttribute('data-preview') && (seen() || window.Shopify && Shopify.designMode)) return;
+  d.addEventListener('close', remember);
+  d.querySelector('[data-pb-later]').addEventListener('click', function(){ d.close(); });
+  d.querySelector('[data-pb-go]').addEventListener('click', remember);
+  d.addEventListener('click', function(e){ if (e.target === d) d.close(); });
+  setTimeout(function(){ if (!d.open) d.showModal(); }, (+d.dataset.delay || 0) * 1000);
+})();
+</script>
+<main id="MainContent"><section class="hx" aria-labelledby="hx-title-hero_silk">
+  <canvas class="hx__bg" data-silk aria-hidden="true"></canvas>
+  <div class="wrap hx__inner">
+    <div class="hx__copy"><p class="hx__eyebrow">Daily Complete Nutrition</p><h1 id="hx-title-hero_silk" class="hx__title">
+        <span class="visually-hidden">Replace your tablets and capsules with one daily drink.</span>
+        <span aria-hidden="true">
+          <span class="hx__l1">Replace your</span>
+          <span class="hx__tline"><span class="hx__typed" data-typed="calcium tablets | magnesium capsules | vitamin D3 capsules | vitamin K2 capsules | zinc tablets | probiotic capsules | electrolyte tablets">calcium tablets</span><span class="hx__caret"></span></span>
+          <span class="hx__l2">with one daily drink.</span>
+        </span>
+      </h1>
+      <p class="hx__sub"><span>One sachet.</span><b>One daily ritual.</b><span>Science-backed ingredients.</span></p>
+    </div>
+    <div class="hx__side"><ul class="hx__tiles" aria-label="What is in one sachet"><li class="hx__tile" ><b>80+</b><i></i><span>Ingredients</span></li><li class="hx__tile" ><b>10+</b><i></i><span>Functional blends</span></li><li class="hx__tile" ><b>18</b><i></i><span>Billion CFU probiotic complex</span></li></ul><div class="hx__cta">
+        <a class="btn btn-red hx__btn" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book now <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a><small>No payment today. Be first at launch.</small></div>
+    </div>
+  </div>
+</section>
+<script src="/motion-preview/assets/hlthx-silk.js" defer></script>
+
+
+
+<div class="mq" aria-label="Major ingredients">
+  <div class="mq__track"><span>Calcium</span><span>Magnesium</span><span>Vitamin D3</span><span>Vitamin K2 (MK-7)</span><span>Zinc</span><span>Phosphorus</span><span>Probiotic complex</span><span>Prebiotic fibre</span><span>Electrolytes</span><span>Amino acids</span><span>Digestive enzymes</span><span>Multivitamins</span><span aria-hidden="true">Calcium</span><span aria-hidden="true">Magnesium</span><span aria-hidden="true">Vitamin D3</span><span aria-hidden="true">Vitamin K2 (MK-7)</span><span aria-hidden="true">Zinc</span><span aria-hidden="true">Phosphorus</span><span aria-hidden="true">Probiotic complex</span><span aria-hidden="true">Prebiotic fibre</span><span aria-hidden="true">Electrolytes</span><span aria-hidden="true">Amino acids</span><span aria-hidden="true">Digestive enzymes</span><span aria-hidden="true">Multivitamins</span></div>
+</div>
+
+
+<section class="badges" aria-label="Highlights">
+  <div class="wrap"><div class="badge-i" >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+      <span>30 sachets in every box</span>
+    </div><div class="badge-i" >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      <span>One sachet, once a day</span>
+    </div></div>
+</section><section id="difference">
+  <div class="wrap">
+    <div class="split">
+      <div style="display:grid;gap:20px"><div class="eyebrow">The difference</div><h2>Your daily nutrition. Simplified.</h2></div>
+      <p class="lede">One sachet. One daily ritual. Science-backed ingredients.</p>
+    </div>
+    <div class="stats"><div class="stat" ><b>80+</b><span>ingredients</span></div><div class="stat" ><b>10+</b><span>functional blends</span></div><div class="stat" ><b>18</b><span>billion CFU probiotic complex</span></div></div><div class="compare" role="table" aria-label="One sachet compared with separate products">
+      <div class="crow head" role="row"><span role="columnheader">Covered every day</span><span class="us" role="columnheader">HLTHX™</span><span role="columnheader">Separate products</span></div><div class="crow" role="row" ><span role="cell">Multivitamins</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Minerals & Trace Elements</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Amino Acids</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Hydration Electrolytes</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Prebiotic Fibre</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Probiotic Complex</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Digestive Enzyme Support</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Heart Health Support</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row" ><span role="cell">Joint & Muscle Health Support</span><span class="yes" role="cell">✓</span><span role="cell" class="muted">+1</span></div><div class="crow" role="row"><span role="cell"><b>Things to buy, open and remember</b></span><span class="tot" role="cell">1</span><span class="tot" role="cell">9</span></div>
+    </div></div>
+</section><section id="formula">
+  <div class="wrap">
+    <div class="formula-head">
+      <div class="eyebrow">Inside the Formula</div>
+      <h2>More than a multivitamin.</h2>
+      <p class="muted">80+ ingredients across 10+ functional blends, including an 18 billion CFU probiotic complex. Open a category to see what's inside.</p>
+    </div>
+    <div class="blends"><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="22" r="7"/><path d="M22 6v5M22 33v5M6 22h5M33 22h5M10.7 10.7l3.5 3.5M29.8 29.8l3.5 3.5M10.7 33.3l3.5-3.5M29.8 14.2l3.5-3.5"/></svg><h3>Multivitamins</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 6l14 8v16l-14 8-14-8V14z"/><circle cx="22" cy="22" r="4" stroke="var(--red-text)"/></svg><h3>Minerals & Trace Elements</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="22" r="6"/><circle cx="30" cy="22" r="6"/><path d="M20 22h4" stroke="var(--red-text)"/></svg><h3>Amino Acids</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 6c7 9 11 15 11 21a11 11 0 01-22 0c0-6 4-12 11-21z"/><path d="M17 28a5 5 0 005 5" stroke="var(--red-text)"/></svg><h3>Hydration Electrolytes</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 34C10 18 20 10 36 8c0 16-8 26-24 26z"/><path d="M10 34l14-14" stroke="var(--red-text)"/></svg><h3>Prebiotic Fibre</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="22" r="15"/><circle cx="16" cy="18" r="2.5" stroke="var(--red-text)"/><circle cx="27" cy="16" r="2"/><circle cx="25" cy="27" r="2.5" stroke="var(--red-text)"/><circle cx="15" cy="28" r="1.5"/></svg><h3>Probiotic Complex</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 22a3 3 0 113 3 7 7 0 01-7-7 10 10 0 0110-10 13 13 0 0113 13"/><path d="M8 36l6-6" stroke="var(--red-text)"/></svg><h3>Digestive Enzyme Support</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 36S8 27 8 17a7 7 0 0114-2 7 7 0 0114 2c0 10-14 19-14 19z"/><path d="M13 21h5l2-4 3 8 2-4h6" stroke="var(--red-text)"/></svg><h3>Heart Health Support</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details><details class="blend" >
+        <summary><svg class="ico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="14" r="5"/><circle cx="30" cy="30" r="5"/><path d="M18 18l8 8" stroke="var(--red-text)" stroke-width="3"/></svg><h3>Joint & Muscle Health Support</h3><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="body"><p>Full ingredient details coming soon.</p></div>
+      </details></div>
+    <details class="facts">
+      <summary>Supplement facts <span class="plus" aria-hidden="true">+</span></summary>
+      <div class="inner">
+        <div class="frow h"><span>Per 15 g sachet</span><span>Amount</span></div><div class="frow"><span>Full ingredient list with amounts per serving</span><span>Coming soon</span></div></div>
+    </details><div class="formula-foot"><span></span><a class="btn" href="#formula">Explore What's Inside</a></div></div>
+</section><section id="foundations">
+  <div class="wrap">
+    <div class="wb-head"><p class="wb-eyebrow">Whole body nutrition</p><h2>Eight foundations for <em>everyday health.</em></h2><p class="muted">We start with the body's functional needs, then explore the HLTHX ingredients relevant to each foundation and the scientific research behind them.</p></div>
+    <div class="wb-found"><div class="wb-fcard wb-fcard--soon" ><span class="n">01</span><h3>Gut & Digestive Health</h3><p>Digestion, gut microbiome and bowel function.</p><span class="go">Coming soon</span></div><div class="wb-fcard wb-fcard--soon" ><span class="n">02</span><h3>Brain & Nervous System</h3><p>Nervous system function and cognitive processes.</p><span class="go">Coming soon</span></div><div class="wb-fcard wb-fcard--soon" ><span class="n">03</span><h3>Energy & Cellular Metabolism</h3><p>Energy metabolism and cellular functions.</p><span class="go">Coming soon</span></div><div class="wb-fcard wb-fcard--soon" ><span class="n">04</span><h3>Muscles & Electrolyte Balance</h3><p>Muscle function, contraction and fluid balance.</p><span class="go">Coming soon</span></div><a class="wb-fcard" href="https://hlthx-store.myshopify.com/pages/bones-teeth" ><span class="n">05</span><h3>Bones & Teeth</h3><p>Bone structure, mineralisation and dental health.</p><span class="go">Explore &rarr;</span></a><div class="wb-fcard wb-fcard--soon" ><span class="n">06</span><h3>Heart & Circulatory Function</h3><p>Normal cardiovascular and circulatory functions.</p><span class="go">Coming soon</span></div><div class="wb-fcard wb-fcard--soon" ><span class="n">07</span><h3>Immune Function</h3><p>Normal immune system function.</p><span class="go">Coming soon</span></div><div class="wb-fcard wb-fcard--soon" ><span class="n">08</span><h3>Skin, Hair & Vision</h3><p>Nutrients associated with skin, hair and visual function.</p><span class="go">Coming soon</span></div></div><p style="margin-top:28px"><a class="btn" href="https://hlthx-store.myshopify.com/pages/whole-body-nutrition">Explore whole body nutrition &rarr;</a></p></div>
+</section><section id="quality">
+  <div class="wrap">
+    <div class="split">
+      <div style="display:grid;gap:20px"><div class="eyebrow">Quality</div><h2>Know what goes into your daily routine.</h2></div>
+      <p class="muted">We publish how HLTHX™ is made and tested, so you can check it for yourself.</p>
+    </div>
+    <div class="trust-grid"><div class="doc" >
+        <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5"/><path d="M11 16l2 2 4-5" stroke="var(--red-text)"/></svg>
+        <h3>Manufacturing standards</h3><p>Facility and certifications such as GMP and FSSAI.</p></div><div class="doc" >
+        <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5"/><path d="M11 16l2 2 4-5" stroke="var(--red-text)"/></svg>
+        <h3>Test reports</h3><p>Third-party lab reports and certificate of analysis for each batch.</p></div><div class="doc" >
+        <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5"/><path d="M11 16l2 2 4-5" stroke="var(--red-text)"/></svg>
+        <h3>Ingredient specifications</h3><p>Form, source and amount per serving for every ingredient.</p></div><div class="doc" >
+        <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5"/><path d="M11 16l2 2 4-5" stroke="var(--red-text)"/></svg>
+        <h3>Quality documentation</h3><p>Storage, shelf life and safety information.</p></div></div><div style="margin-top:32px"><a class="btn" href="#quality">Our Approach to Quality</a></div></div>
+</section><section class="rf" id="ritual">
+  <div class="wrap rf__grid"><div class="rf__stage" data-ritual role="img" aria-label="An HLTHX sachet is torn open and poured into a glass of water, which turns golden."><canvas></canvas></div><div class="rf__copy"><p class="wb-eyebrow">The daily ritual</p><h2>Open. Pour. Mix. Enjoy.</h2>
+      <ol class="rf__steps"><li data-step="open" data-start="" >
+          <span class="rf__n">01</span>
+          <div><h3>Open</h3><p>Tear open one 15 g sachet.</p></div>
+        </li><li data-step="pour" data-start="" >
+          <span class="rf__n">02</span>
+          <div><h3>Pour</h3><p>Pour the powder into a glass of water.</p></div>
+        </li><li data-step="mix" data-start="" >
+          <span class="rf__n">03</span>
+          <div><h3>Mix</h3><p>Stir until it turns a warm golden colour.</p></div>
+        </li><li data-step="enjoy" data-start="" >
+          <span class="rf__n">04</span>
+          <div><h3>Enjoy</h3><p>Once a day, every day. Consistency is what counts.</p></div>
+        </li></ol></div>
+  </div>
+</section>
+<script src="/motion-preview/assets/hlthx-ritual.js" defer></script>
+
+
+
+<section id="shop">
+  <div class="wrap buy">
+    <div class="buy-art">
+      <span class="badge">30-Day Box</span><svg viewBox="0 0 260 360" role="img" aria-label="HLTHX sachet illustration">
+  <rect x="10" y="10" width="240" height="340" rx="10" fill="#fbf8f1" stroke="#d9d2c3"/>
+  <rect x="10" y="10" width="240" height="22" rx="8" fill="#ece6d9"/>
+  <rect x="10" y="328" width="240" height="22" rx="8" fill="#ece6d9"/>
+  <text x="34" y="92" font-family="Montserrat,Arial,sans-serif" font-weight="500" font-size="40" letter-spacing="5" fill="#141210">HLTH<tspan fill="#B3262A">X</tspan></text>
+  <text x="214" y="64" font-family="Montserrat,Arial,sans-serif" font-weight="500" font-size="10" fill="#141210">™</text>
+  <rect x="34" y="106" width="34" height="4" fill="#B3262A"/>
+  <text x="34" y="140" font-family="Montserrat,Arial,sans-serif" font-weight="500" font-size="13" fill="#141210" letter-spacing="2.5">DAILY COMPLETE</text>
+  <text x="34" y="160" font-family="Montserrat,Arial,sans-serif" font-weight="500" font-size="13" fill="#141210" letter-spacing="2.5">NUTRITION</text>
+  <text x="34" y="188" font-family="Montserrat,Arial,sans-serif" font-size="11" letter-spacing="2" fill="#5f5a52">FEEL BETTER. EVERY DAY.</text>
+  <line x1="34" y1="270" x2="226" y2="270" stroke="#d9d2c3"/>
+  <text x="34" y="296" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5f5a52">30 × 15 g SACHETS</text>
+</svg>
+</div>
+    <div style="display:grid;gap:22px;min-width:0">
+      <div class="eyebrow">Purchase</div>
+      <h2>Make HLTHX™ part of your day.</h2><p class="tagline lg">Feel better.<br>Every day.</p>
+<div class="soon-box">
+  <p class="eyebrow">Coming soon</p>
+  <p>HLTHX™ Daily Complete Nutrition is launching soon. Pre-book now and be first to get it.</p>
+  <a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book now</a>
+</div></div>
+  </div>
+</section><section id="faq">
+  <div class="wrap">
+    <div style="display:grid;gap:20px"><div class="eyebrow">FAQ</div><h2>Questions, answered.</h2></div>
+    <div class="faq"><details  open>
+        <summary>How do I take HLTHX™?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="a"><p>Mix one 15 g sachet into water once a day.</p><p></p></div>
+      </details><details >
+        <summary>What's inside?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="a"><p>80+ ingredients in 10+ functional blends, from multivitamins and minerals to an 18 billion CFU probiotic complex and digestive enzymes. Open <a href="#formula">Inside the Formula</a> for each blend.</p><p></p></div>
+      </details><details >
+        <summary>Is it safe with medication, or during pregnancy?<span class="plus" aria-hidden="true">+</span></summary>
+        <div class="a"><p>Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p></div>
+      </details></div>
+  </div>
+</section><section class="closing">
+  <div class="wrap" style="display:grid;gap:28px">
+    <h2>Take care of yourself. <em>Not perfectly.</em> Just consistently.</h2>
+    <div><a class="btn btn-red" href="#shop">Shop the 30-Day Box</a></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div style="display:grid;gap:10px">
+        <span class="logo" style="font-size:1.2rem;color:var(--ink)">HLTH<span class="x">X</span><sup>™</sup></span><p class="tagline sm" style="font-size:.72rem">Feel better.<br>Every day.</p>
+</div><div><h4>Shop</h4><ul><li><a href="https://hlthx-store.myshopify.com/#shop">30-Day Box</a></li><li><a href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a></li></ul></div><div><h4>Learn</h4><ul><li><a href="https://hlthx-store.myshopify.com/#formula">Inside the Formula</a></li><li><a href="https://hlthx-store.myshopify.com/#quality">Quality</a></li><li><a href="https://hlthx-store.myshopify.com/#ritual">How to use</a></li></ul></div><div><h4>Help</h4><ul><li><a href="https://hlthx-store.myshopify.com/#faq">FAQ</a></li><li><a href="https://hlthx-store.myshopify.com/pages/contact">Contact us</a></li></ul></div></div>
+    <p>This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p>
+    <p>© 2026 HLTHX. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="pv" role="group" aria-label="Preview"><span>Preview of the live home page</span><a href="/motion-preview" data-on>Motion on</a><a href="/motion-preview?motion=off" data-off>Motion off</a></div>
+<script>document.querySelector(MOTION_OFF?'[data-off]':'[data-on]').setAttribute('aria-current','true');</script>
+<script src="/motion-preview/assets/hlthx.js" defer></script>
+<script>if(!MOTION_OFF){['/motion-preview/assets/motion.min.js','/motion-preview/assets/hlthx-motion.js'].forEach(function(s){var e=document.createElement('script');e.src=s;e.async=false;document.body.appendChild(e)})}</script>
+</body></html>
