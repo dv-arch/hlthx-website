@@ -1,0 +1,307 @@
+{
+  "sections": {
+    "hero": {
+      "type": "wb-hero",
+      "settings": {
+        "parent_label": "Whole Body Nutrition",
+        "parent_link": "/pages/whole-body-nutrition",
+        "crumb": "Foundation 05",
+        "eyebrow": "Foundation 05",
+        "title": "Bones & Teeth",
+        "tagline": "The foundation of your body's structure",
+        "text": "Your bones provide structural support, protect vital organs and work together with muscles to enable movement. Your teeth rely on mineralised structures to maintain their strength and function. Maintaining normal bone and dental health involves several nutrients, including calcium, vitamin D, vitamin K, magnesium, phosphorus and zinc.",
+        "pack_title": "Bones\n& Teeth",
+        "pack_note": "Foundation 05 of 08"
+      }
+    },
+    "ingredients": {
+      "type": "wb-ingredients",
+      "blocks": {
+        "b1": {
+          "type": "row",
+          "settings": {
+            "name": "Vitamin D3 (Cholecalciferol)",
+            "amount": "15 mcg (600 IU)"
+          }
+        },
+        "b2": {
+          "type": "row",
+          "settings": {
+            "name": "Vitamin K2 (MK-7)",
+            "amount": "55 mcg"
+          }
+        },
+        "b3": {
+          "type": "row",
+          "settings": {
+            "name": "Calcium citrate",
+            "amount": "500 mg*"
+          }
+        },
+        "b4": {
+          "type": "row",
+          "settings": {
+            "name": "Tricalcium phosphate",
+            "amount": "650 mg*"
+          }
+        },
+        "b5": {
+          "type": "row",
+          "settings": {
+            "name": "Magnesium citrate",
+            "amount": "400 mg*"
+          }
+        },
+        "b6": {
+          "type": "row",
+          "settings": {
+            "name": "Magnesium bisglycinate",
+            "amount": "400 mg*"
+          }
+        },
+        "b7": {
+          "type": "row",
+          "settings": {
+            "name": "Phosphorus",
+            "amount": "50 mg"
+          }
+        },
+        "b8": {
+          "type": "row",
+          "settings": {
+            "name": "Zinc",
+            "amount": "10 mg"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ],
+      "settings": {
+        "text": "Selected ingredients in HLTHX are relevant to bone and teeth health.",
+        "footnote": "*Compound ingredient weights, not elemental mineral quantities."
+      }
+    },
+    "why": {
+      "type": "wb-why",
+      "blocks": {
+        "b1": {
+          "type": "item",
+          "settings": {
+            "name": "Vitamin D3",
+            "amount": "15 mcg",
+            "text": "Helps the body absorb and utilise calcium and contributes to the maintenance of normal bones and teeth."
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "name": "Vitamin K2 MK-7",
+            "amount": "55 mcg",
+            "text": "Vitamin K contributes to normal bone maintenance. MK-7 is a form of vitamin K2 studied in relation to bone metabolism."
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "name": "Calcium",
+            "amount": "Citrate and tricalcium phosphate",
+            "text": "Calcium is a major structural mineral in bones and teeth and is needed for their maintenance."
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "name": "Magnesium",
+            "amount": "Citrate and bisglycinate",
+            "text": "Magnesium contributes to the maintenance of normal bones and plays a role in normal muscle and nerve function."
+          }
+        },
+        "b5": {
+          "type": "item",
+          "settings": {
+            "name": "Phosphorus",
+            "amount": "50 mg",
+            "text": "Phosphorus contributes to the maintenance of normal bones and teeth and is a component of the body's mineral structures."
+          }
+        },
+        "b6": {
+          "type": "item",
+          "settings": {
+            "name": "Zinc",
+            "amount": "10 mg",
+            "text": "Zinc contributes to the maintenance of normal bones and plays a role in normal protein synthesis."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ],
+      "settings": {}
+    },
+    "research": {
+      "type": "wb-research",
+      "blocks": {
+        "b1": {
+          "type": "stat",
+          "settings": {
+            "value": "593",
+            "label": "Participants"
+          }
+        },
+        "b2": {
+          "type": "stat",
+          "settings": {
+            "value": "3 years",
+            "label": "Study duration"
+          }
+        },
+        "b3": {
+          "type": "stat",
+          "settings": {
+            "value": "800 IU",
+            "label": "Vitamin D3 daily"
+          }
+        },
+        "b4": {
+          "type": "stat",
+          "settings": {
+            "value": "1,000 mg",
+            "label": "Elemental calcium daily"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "title": "Effect of calcium and vitamin D supplementation on bone mineral density in women aged 65–71 years: a 3-year randomized population-based trial (OSTPRE-FPS).",
+        "source": "Kärkkäinen et al. · Osteoporosis International · 2010",
+        "findings": "<p>In the intention-to-treat analysis, total-body bone mineral density increased by 0.84% in the supplementation group compared with 0.19% in the control group. The difference was statistically significant. However, differences at several individual skeletal sites, including the lumbar spine and femoral neck, were not statistically significant.</p>",
+        "meaning": "<p>This trial provides human research evidence on the relationship between calcium and vitamin D supplementation and bone mineral density in older women. HLTHX contains vitamin D3 at 600 IU per sachet, compared with 800 IU in the study.</p><p>The study supports the scientific relevance of calcium and vitamin D to bone health. It does not prove that HLTHX produces the same results.</p>"
+      }
+    },
+    "more": {
+      "type": "wb-foundations",
+      "blocks": {
+        "f1": {
+          "type": "foundation",
+          "settings": {
+            "number": "01",
+            "title": "Gut & Digestive Health",
+            "text": "Digestion, gut microbiome and bowel function.",
+            "link": ""
+          }
+        },
+        "f2": {
+          "type": "foundation",
+          "settings": {
+            "number": "02",
+            "title": "Brain & Nervous System",
+            "text": "Nervous system function and cognitive processes.",
+            "link": ""
+          }
+        },
+        "f3": {
+          "type": "foundation",
+          "settings": {
+            "number": "03",
+            "title": "Energy & Cellular Metabolism",
+            "text": "Energy metabolism and cellular functions.",
+            "link": ""
+          }
+        },
+        "f4": {
+          "type": "foundation",
+          "settings": {
+            "number": "04",
+            "title": "Muscles & Electrolyte Balance",
+            "text": "Muscle function, contraction and fluid balance.",
+            "link": ""
+          }
+        },
+        "f5": {
+          "type": "foundation",
+          "settings": {
+            "number": "05",
+            "title": "Bones & Teeth",
+            "text": "Bone structure, mineralisation and dental health.",
+            "link": "/pages/bones-and-teeth"
+          }
+        },
+        "f6": {
+          "type": "foundation",
+          "settings": {
+            "number": "06",
+            "title": "Heart & Circulatory Function",
+            "text": "Normal cardiovascular and circulatory functions.",
+            "link": ""
+          }
+        },
+        "f7": {
+          "type": "foundation",
+          "settings": {
+            "number": "07",
+            "title": "Immune Function",
+            "text": "Normal immune system function.",
+            "link": ""
+          }
+        },
+        "f8": {
+          "type": "foundation",
+          "settings": {
+            "number": "08",
+            "title": "Skin, Hair & Vision",
+            "text": "Nutrients associated with skin, hair and visual function.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8"
+      ],
+      "settings": {
+        "eyebrow": "Keep exploring",
+        "heading": "A thoughtful approach to",
+        "accent": "bone nutrition.",
+        "text": "HLTHX brings together selected nutrients associated with different functions throughout the body. Explore the eight foundations of daily nutrition.",
+        "cta": "All eight foundations",
+        "cta_link": "/pages/whole-body-nutrition"
+      }
+    },
+    "band": {
+      "type": "wb-band",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "ingredients",
+    "why",
+    "research",
+    "more",
+    "band"
+  ]
+}

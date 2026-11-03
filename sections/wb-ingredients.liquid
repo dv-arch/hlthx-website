@@ -1,0 +1,25 @@
+<section>
+  <div class="wrap">
+    <div class="wb-head">{%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}<h2>{{ section.settings.heading }}</h2>{%- if section.settings.text != blank -%}<p class="muted">{{ section.settings.text }}</p>{%- endif -%}</div>
+    <div class="wb-tablewrap">
+      <table class="wb-table">
+        <thead><tr><th scope="col">{{ section.settings.col1 }}</th><th scope="col">{{ section.settings.col2 }}</th></tr></thead>
+        <tbody>{%- for block in section.blocks -%}<tr {{ block.shopify_attributes }}><td>{{ block.settings.name }}</td><td>{{ block.settings.amount }}</td></tr>{%- endfor -%}</tbody>
+      </table>
+      {%- if section.settings.footnote != blank -%}<p class="wb-fn">{{ section.settings.footnote }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Ingredient table", "settings": [
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The HLTHX nutritional connection" },
+  { "type": "text", "id": "heading", "label": "Heading", "default": "Ingredients in HLTHX" },
+  { "type": "textarea", "id": "text", "label": "Text" },
+  { "type": "text", "id": "col1", "label": "Column 1", "default": "Ingredient" },
+  { "type": "text", "id": "col2", "label": "Column 2", "default": "Amount per 15 g sachet" },
+  { "type": "textarea", "id": "footnote", "label": "Footnote" }
+], "blocks": [{ "type": "row", "name": "Ingredient", "settings": [
+  { "type": "text", "id": "name", "label": "Ingredient", "default": "Vitamin D3" },
+  { "type": "text", "id": "amount", "label": "Amount", "default": "15 mcg" }
+] }], "presets": [{ "name": "Ingredient table" }] }
+{% endschema %}

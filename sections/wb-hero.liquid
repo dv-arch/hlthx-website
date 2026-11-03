@@ -1,0 +1,37 @@
+{%- comment -%} Hero for the Whole Body Nutrition hub and foundation pages: golden silk background, breadcrumb, title and intro. {%- endcomment -%}
+<section class="wb-hero">
+  <canvas data-silk aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="wb-hero__copy">
+      <p class="wb-crumbs"><a href="{{ routes.root_url }}">Home</a>{% if section.settings.parent_label != blank %} / <a href="{{ section.settings.parent_link }}">{{ section.settings.parent_label }}</a>{% endif %} / {{ section.settings.crumb | default: page.title }}</p>
+      {%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1>{{ section.settings.title | default: page.title }}</h1>
+      {%- if section.settings.tagline != blank -%}<p class="wb-caps">{{ section.settings.tagline }}</p>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p class="lede" style="font-family:var(--body);font-style:normal;font-size:clamp(1rem,1.5vw,1.15rem);color:var(--muted)">{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.cta != blank -%}<p><a class="btn btn-red" href="{{ section.settings.cta_link }}">{{ section.settings.cta }}</a></p>{%- endif -%}
+      {%- if section.settings.note != blank -%}<p class="wb-caps" style="color:var(--muted)">{{ section.settings.note }}</p>{%- endif -%}
+    </div>
+    <div class="wb-pack" aria-hidden="true">
+      <span class="logo">{%- render 'logo' -%}</span>
+      <div><hr><b>{{ section.settings.pack_title | newline_to_br }}</b></div>
+      <small>{{ section.settings.pack_note }}</small>
+    </div>
+  </div>
+</section>
+<script src="{{ 'hlthx-silk.js' | asset_url }}" defer></script>
+{% schema %}
+{ "name": "Page hero (silk)", "settings": [
+  { "type": "text", "id": "parent_label", "label": "Breadcrumb parent", "info": "Leave empty on the hub page." },
+  { "type": "text", "id": "parent_link", "label": "Breadcrumb parent link", "default": "/pages/whole-body-nutrition" },
+  { "type": "text", "id": "crumb", "label": "Breadcrumb label", "info": "Defaults to the page title." },
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+  { "type": "text", "id": "title", "label": "Title", "info": "Defaults to the page title." },
+  { "type": "text", "id": "tagline", "label": "Tagline" },
+  { "type": "textarea", "id": "text", "label": "Intro" },
+  { "type": "text", "id": "cta", "label": "Button" },
+  { "type": "text", "id": "cta_link", "label": "Button link", "default": "#foundations" },
+  { "type": "text", "id": "note", "label": "Small line under the button" },
+  { "type": "textarea", "id": "pack_title", "label": "Card title (one word per line)", "default": "Daily\nComplete\nNutrition" },
+  { "type": "text", "id": "pack_note", "label": "Card note", "default": "15 g sachet" }
+], "presets": [{ "name": "Page hero (silk)" }] }
+{% endschema %}

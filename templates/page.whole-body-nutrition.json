@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "hero": {
+      "type": "wb-hero",
+      "settings": {
+        "eyebrow": "Daily Complete Nutrition",
+        "title": "One daily sachet for whole body wellness.",
+        "text": "HLTHX™ brings together selected nutrients in one convenient daily sachet, designed around the nutritional needs of the body's different systems.",
+        "cta": "Explore whole body nutrition",
+        "cta_link": "#foundations",
+        "note": "80+ science-backed ingredients · One daily serving · Eight foundations",
+        "pack_title": "Daily\nComplete\nNutrition",
+        "pack_note": "15 g sachet"
+      }
+    },
+    "highlights": {
+      "type": "wb-highlights",
+      "blocks": {
+        "b1": {
+          "type": "item",
+          "settings": {
+            "title": "80+ ingredients",
+            "text": "In one daily serving."
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "title": "10+ functional blends",
+            "text": "Organised around the body's systems."
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "title": "18 billion CFU",
+            "text": "Probiotic complex in every sachet."
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "title": "Science-led formulation",
+            "text": "Selected nutrients and ingredients."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {}
+    },
+    "foundations": {
+      "type": "wb-foundations",
+      "blocks": {
+        "f1": {
+          "type": "foundation",
+          "settings": {
+            "number": "01",
+            "title": "Gut & Digestive Health",
+            "text": "Digestion, gut microbiome and bowel function.",
+            "link": ""
+          }
+        },
+        "f2": {
+          "type": "foundation",
+          "settings": {
+            "number": "02",
+            "title": "Brain & Nervous System",
+            "text": "Nervous system function and cognitive processes.",
+            "link": ""
+          }
+        },
+        "f3": {
+          "type": "foundation",
+          "settings": {
+            "number": "03",
+            "title": "Energy & Cellular Metabolism",
+            "text": "Energy metabolism and cellular functions.",
+            "link": ""
+          }
+        },
+        "f4": {
+          "type": "foundation",
+          "settings": {
+            "number": "04",
+            "title": "Muscles & Electrolyte Balance",
+            "text": "Muscle function, contraction and fluid balance.",
+            "link": ""
+          }
+        },
+        "f5": {
+          "type": "foundation",
+          "settings": {
+            "number": "05",
+            "title": "Bones & Teeth",
+            "text": "Bone structure, mineralisation and dental health.",
+            "link": "/pages/bones-and-teeth"
+          }
+        },
+        "f6": {
+          "type": "foundation",
+          "settings": {
+            "number": "06",
+            "title": "Heart & Circulatory Function",
+            "text": "Normal cardiovascular and circulatory functions.",
+            "link": ""
+          }
+        },
+        "f7": {
+          "type": "foundation",
+          "settings": {
+            "number": "07",
+            "title": "Immune Function",
+            "text": "Normal immune system function.",
+            "link": ""
+          }
+        },
+        "f8": {
+          "type": "foundation",
+          "settings": {
+            "number": "08",
+            "title": "Skin, Hair & Vision",
+            "text": "Nutrients associated with skin, hair and visual function.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8"
+      ],
+      "settings": {}
+    },
+    "band": {
+      "type": "wb-band",
+      "settings": {
+        "heading": "One body. Multiple nutritional needs.",
+        "accent": "One daily routine.",
+        "text": "Explore how selected HLTHX ingredients relate to each foundation, why they are included and what published research says."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "highlights",
+    "foundations",
+    "band"
+  ]
+}
