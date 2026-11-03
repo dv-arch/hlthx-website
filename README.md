@@ -37,7 +37,7 @@ if not, open Pages → Contact and set Theme template to `contact`. Every messag
 ## Whole Body Nutrition pages
 Create two pages in Online Store → Pages and pick their template:
 - **Whole Body Nutrition** (handle `whole-body-nutrition`) → template `whole-body-nutrition`.
-- **Bones & Teeth** (handle `bones-and-teeth`) → template `bones-and-teeth`.
+- **Bones & Teeth** (handle `bones-teeth`, which Shopify makes from the title) → template `bones-and-teeth`.
 All text, tables, research figures and foundation cards are editable in Customize. A foundation card with a page
 address is clickable; without one it shows "Coming soon". The home page shows the same eight cards.
 
