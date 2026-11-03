@@ -4,7 +4,7 @@
 {%- endcomment -%}
 <section class="rf" id="ritual">
   <div class="wrap rf__grid">
-    {%- if section.settings.video != blank -%}
+    {%- if section.settings.video -%}
     <div class="rf__stage rf__stage--video" data-ritual-video>
       {{ section.settings.video | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: false, preload: 'metadata', image_size: '1200x', aria-label: section.settings.alt }}
     </div>
