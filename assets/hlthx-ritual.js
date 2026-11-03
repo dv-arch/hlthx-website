@@ -336,6 +336,25 @@
     if (reduce) still(); else kick();
   }
 
+  // when an uploaded film is used instead: play it while on screen and light the steps in time with it
+  document.querySelectorAll('[data-ritual-video]').forEach(function(box){
+    var v = box.querySelector('video'); if (!v) return;
+    var scope = box.closest('section') || document, steps = [].slice.call(scope.querySelectorAll('[data-step]'));
+    v.muted = true; v.loop = true; v.setAttribute('playsinline', '');
+    if (reduce){ v.controls = true; return; }
+    function light(){
+      var d = v.duration || 0, t = v.currentTime, on = 0;
+      steps.forEach(function(el, i){
+        var s = el.hasAttribute('data-start') ? parseFloat(el.getAttribute('data-start')) : (d ? d * i / steps.length : (i ? Infinity : 0));
+        if (t >= s) on = i;
+      });
+      steps.forEach(function(el, i){ el.classList.toggle('is-on', i === on); });
+    }
+    v.addEventListener('timeupdate', light); v.addEventListener('loadedmetadata', light);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(e){ if (e[0].isIntersecting){ var p = v.play(); if (p && p.catch) p.catch(function(){}); } else v.pause(); }, {threshold: .25}).observe(box);
+    else v.play();
+  });
+
   document.querySelectorAll('[data-ritual]').forEach(function(box){
     var canvas = box.querySelector('canvas');
     var scope = box.closest('section') || document;

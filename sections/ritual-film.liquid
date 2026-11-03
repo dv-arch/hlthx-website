@@ -4,13 +4,19 @@
 {%- endcomment -%}
 <section class="rf" id="ritual">
   <div class="wrap rf__grid">
+    {%- if section.settings.video != blank -%}
+    <div class="rf__stage rf__stage--video" data-ritual-video>
+      {{ section.settings.video | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: false, preload: 'metadata', image_size: '1200x', aria-label: section.settings.alt }}
+    </div>
+    {%- else -%}
     <div class="rf__stage" data-ritual role="img" aria-label="{{ section.settings.alt | escape }}"><canvas></canvas></div>
+    {%- endif -%}
     <div class="rf__copy">
       {%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2>{{ section.settings.heading }}</h2>
       <ol class="rf__steps">
         {%- for block in section.blocks -%}
-        <li data-step="{{ block.settings.key }}" {{ block.shopify_attributes }}>
+        <li data-step="{{ block.settings.key }}"{% if block.settings.start != blank %} data-start="{{ block.settings.start }}"{% endif %} {{ block.shopify_attributes }}>
           <span class="rf__n">0{{ forloop.index }}</span>
           <div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>
         </li>
@@ -27,6 +33,7 @@
 .rf__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
 .rf__stage{aspect-ratio:4/5;width:100%;max-width:560px;justify-self:center;border-radius:8px;overflow:hidden;background:#F2ECE1;box-shadow:0 30px 60px -40px rgba(40,30,10,.35)}
 .rf__stage canvas{width:100%;height:100%;display:block}
+.rf__stage--video video,.rf__stage--video img{width:100%;height:100%;object-fit:cover;display:block}
 .rf__copy{display:grid;gap:22px;min-width:0}
 .rf__steps{list-style:none;margin:6px 0 0;padding:0;display:grid;border-top:1.5px solid var(--ink)}
 .rf__steps li{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);opacity:.42;transition:opacity .4s ease}
@@ -46,6 +53,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The daily ritual" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Open. Pour. Mix. Enjoy." },
+    { "type": "video", "id": "video", "label": "Ritual video (optional)", "info": "Upload the film here and it plays in place of the drawn animation. Muted, looping, plays when on screen." },
     { "type": "text", "id": "alt", "label": "Description for screen readers", "default": "An HLTHX sachet is torn open and poured into a glass of water, which turns golden." },
     { "type": "richtext", "id": "directions", "label": "Directions (optional)" },
     { "type": "text", "id": "cta", "label": "Button (optional)" },
@@ -56,7 +64,8 @@
       { "type": "select", "id": "key", "label": "Lights up during", "default": "open", "options": [
         { "value": "open", "label": "Open" }, { "value": "pour", "label": "Pour" }, { "value": "mix", "label": "Mix" }, { "value": "enjoy", "label": "Enjoy" } ] },
       { "type": "text", "id": "title", "label": "Title", "default": "Open" },
-      { "type": "text", "id": "text", "label": "Text" }
+      { "type": "text", "id": "text", "label": "Text" },
+      { "type": "number", "id": "start", "label": "With a video: lights up at (seconds)", "info": "Leave empty to share the video length evenly between the steps." }
     ] }
   ],
   "presets": [{ "name": "Daily ritual (animated)", "blocks": [
