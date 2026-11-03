@@ -1,0 +1,29 @@
+{%- comment -%} Moving strip of ingredient names under the hero. Names are separated by "|" in the section settings. {%- endcomment -%}
+{%- assign items = section.settings.items | split: '|' -%}
+<div class="mq" aria-label="{{ section.settings.label | escape }}">
+  <div class="mq__track">
+    {%- for item in items -%}<span>{{ item | strip }}</span>{%- endfor -%}
+    {%- for item in items -%}<span aria-hidden="true">{{ item | strip }}</span>{%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+.mq{background:#141414;color:#F3E7C6;overflow:hidden;padding-block:16px}
+.mq__track{display:flex;gap:44px;width:max-content;animation:mq-scroll 38s linear infinite;font-size:clamp(1rem,1.8vw,1.35rem);letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.mq__track span{display:inline-flex;align-items:center;gap:44px;white-space:nowrap}
+.mq__track span::after{content:"";width:7px;height:7px;border-radius:50%;background:#D9A11E}
+.mq:hover .mq__track{animation-play-state:paused}
+@keyframes mq-scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mq__track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;row-gap:10px}.mq__track span[aria-hidden]{display:none}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Ingredient strip",
+  "settings": [
+    { "type": "textarea", "id": "items", "label": "Ingredient names", "info": "Separate with |", "default": "Calcium | Magnesium | Vitamin D3 | Vitamin K2 (MK-7) | Zinc | Phosphorus | Probiotic complex | Prebiotic fibre | Electrolytes | Amino acids | Digestive enzymes | Multivitamins" },
+    { "type": "text", "id": "label", "label": "Label for screen readers", "default": "Major ingredients" }
+  ],
+  "presets": [{ "name": "Ingredient strip" }]
+}
+{% endschema %}

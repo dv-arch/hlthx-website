@@ -1,0 +1,108 @@
+{%- comment -%}
+  Home hero (approved Option A): full-screen golden silk background drawn in code, a typed headline
+  ("Replace your [calcium tablets] with one daily drink."), the red stat tiles from the pack and the pre-book button.
+  Typed phrases are separated by "|" in the section settings.
+{%- endcomment -%}
+{%- assign phrases = section.settings.phrases | split: '|' -%}
+<section class="hx" aria-labelledby="hx-title-{{ section.id }}">
+  <canvas class="hx__bg" data-silk aria-hidden="true"></canvas>
+  <div class="wrap hx__inner">
+    <div class="hx__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="hx__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 id="hx-title-{{ section.id }}" class="hx__title">
+        <span class="visually-hidden">{{ section.settings.line1 }} {{ section.settings.sr_phrase }} {{ section.settings.line2 }}</span>
+        <span aria-hidden="true">
+          <span class="hx__l1">{{ section.settings.line1 }}</span>
+          <span class="hx__tline"><span class="hx__typed" data-typed="{{ section.settings.phrases | escape }}">{{ phrases.first | strip }}</span><span class="hx__caret"></span></span>
+          <span class="hx__l2">{{ section.settings.line2 }}</span>
+        </span>
+      </h1>
+      <p class="hx__sub">
+        {%- if section.settings.sub1 != blank -%}<span>{{ section.settings.sub1 }}</span>{%- endif -%}
+        {%- if section.settings.sub2 != blank -%}<b>{{ section.settings.sub2 }}</b>{%- endif -%}
+        {%- if section.settings.sub3 != blank -%}<span>{{ section.settings.sub3 }}</span>{%- endif -%}
+      </p>
+    </div>
+    <div class="hx__side">
+      {%- if section.blocks.size > 0 -%}
+      <ul class="hx__tiles" aria-label="What is in one sachet">
+        {%- for block in section.blocks -%}
+        <li class="hx__tile" {{ block.shopify_attributes }}><b>{{ block.settings.value }}</b><i></i><span>{{ block.settings.label }}</span></li>
+        {%- endfor -%}
+      </ul>
+      {%- endif -%}
+      <div class="hx__cta">
+        <a class="btn btn-red hx__btn" href="{{ section.settings.cta_link | default: '/pages/pre-book' }}">{{ section.settings.cta }} <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+        {%- if section.settings.note != blank -%}<small>{{ section.settings.note }}</small>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+<script src="{{ 'hlthx-silk.js' | asset_url }}" defer></script>
+
+{% stylesheet %}
+.hx{position:relative;min-height:calc(100svh - 110px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate;padding-block:0;border-top:0}
+.hx__bg{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
+.hx::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(251,248,241,0) 40%,rgba(251,248,241,.7) 80%,rgba(251,248,241,.92) 100%)}
+.hx__inner{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(24px,5vw,72px);align-items:end;padding-block:clamp(90px,14vh,160px) clamp(36px,6vh,64px)}
+.hx__copy{display:grid;gap:22px;min-width:0}
+.hx__eyebrow{display:inline-flex;align-items:center;gap:.7em;text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;font-weight:600;color:var(--red-text);margin:0}
+.hx__eyebrow::before{content:"";width:22px;height:2px;background:var(--hx-red,#D3202B)}
+.hx__title{font-size:clamp(2.1rem,4.6vw,4.2rem);font-weight:500;line-height:1.06;letter-spacing:.005em;text-transform:none;margin:0}
+.hx__l1,.hx__l2{display:block}
+.hx__tline{display:block;white-space:nowrap;font-size:min(1em,3.7vw,3.2rem);line-height:1.25;min-height:1.25em}
+.hx__typed{color:var(--red-text);font-weight:600}
+.hx__caret{display:inline-block;width:.06em;height:.9em;background:currentColor;margin-left:.06em;vertical-align:-.08em;animation:hx-blink 1s steps(1) infinite}
+@keyframes hx-blink{50%{opacity:0}}
+.hx__sub{display:grid;gap:4px;margin:0;font-size:.8rem;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--muted);max-width:none}
+.hx__sub b{color:var(--hx-red,#D3202B);font-weight:700}
+.hx__side{display:grid;gap:18px;min-width:0}
+.hx__tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hx__tile{background:linear-gradient(180deg,#DD2733,#D3202B 60%,#C01B26);color:#fff;padding:18px 14px 16px;display:grid;gap:10px;align-content:start;text-align:center;box-shadow:0 18px 40px -22px rgba(169,21,31,.8)}
+.hx__tile b{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;line-height:.95;letter-spacing:-.01em}
+.hx__tile i{display:block;height:1.5px;background:rgba(255,255,255,.65);margin-inline:12%}
+.hx__tile span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;line-height:1.35}
+.hx__cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hx__cta small{font-size:.8rem;color:var(--muted)}
+.hx__btn{padding:1.05em 1.7em}
+.hx__btn svg{width:18px;height:18px}
+@media (max-width:900px){
+  .hx{min-height:calc(100svh - 100px)}
+  .hx__inner{grid-template-columns:1fr;padding-top:96px}
+  .hx__title{font-size:clamp(2rem,9vw,3.2rem)}
+  .hx__tline{font-size:min(1em,6.4vw)}
+  .hx__tile{padding:14px 8px 12px}
+  .hx__tile span{font-size:.58rem;letter-spacing:.12em}
+}
+@media (prefers-reduced-motion:reduce){.hx__caret{display:none}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero (golden silk)",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Daily Complete Nutrition" },
+    { "type": "text", "id": "line1", "label": "Headline, first line", "default": "Replace your" },
+    { "type": "textarea", "id": "phrases", "label": "Typed phrases", "info": "Separate with |", "default": "calcium tablets | magnesium capsules | vitamin D3 capsules | vitamin K2 capsules | zinc tablets | probiotic capsules | electrolyte tablets" },
+    { "type": "text", "id": "sr_phrase", "label": "Phrase for screen readers", "default": "tablets and capsules" },
+    { "type": "text", "id": "line2", "label": "Headline, last line", "default": "with one daily drink." },
+    { "type": "text", "id": "sub1", "label": "Line 1", "default": "One sachet." },
+    { "type": "text", "id": "sub2", "label": "Line 2 (red)", "default": "One daily ritual." },
+    { "type": "text", "id": "sub3", "label": "Line 3", "default": "Science-backed ingredients." },
+    { "type": "text", "id": "cta", "label": "Button", "default": "Pre-book now" },
+    { "type": "url", "id": "cta_link", "label": "Button link", "info": "Defaults to the pre-book page." },
+    { "type": "text", "id": "note", "label": "Note under button", "default": "No payment today. Be first at launch." }
+  ],
+  "blocks": [
+    { "type": "tile", "name": "Red tile", "limit": 4, "settings": [
+      { "type": "text", "id": "value", "label": "Number", "default": "80+" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Ingredients" }
+    ] }
+  ],
+  "presets": [{ "name": "Hero (golden silk)", "blocks": [
+    { "type": "tile", "settings": { "value": "80+", "label": "Ingredients" } },
+    { "type": "tile", "settings": { "value": "10+", "label": "Functional blends" } },
+    { "type": "tile", "settings": { "value": "18", "label": "Billion CFU probiotic complex" } }
+  ] }]
+}
+{% endschema %}
