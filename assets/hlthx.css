@@ -403,3 +403,8 @@ a.wb-fcard:hover{background:#F6EBCB}
 .wb-band p{color:#E6D7B2}
 .wb-band .side{display:grid;gap:14px;justify-items:start}
 @media (max-width:800px){.wb-band .wrap{grid-template-columns:1fr}}
+
+/* motion (assets/hlthx-motion.js): hero content waits for its entrance; the header firms up once scrolled */
+.mo .hx__copy > *, .mo .hx__tile, .mo .hx__cta{opacity:0}
+.top{transition:box-shadow .3s ease,background-color .3s ease}
+.top.is-scrolled{box-shadow:0 10px 30px -18px rgba(25,20,16,.35)}

@@ -16,6 +16,7 @@
     :root{--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }};--brand-red:{{ settings.color_brand_red }}}
     {% if settings.dark_mode == false %}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:{{ settings.color_bg }};--surface:{{ settings.color_surface }};--ink:{{ settings.color_ink }};--muted:{{ settings.color_muted }};--line:{{ settings.color_line }};--red:{{ settings.color_accent }};--red-ink:{{ settings.color_accent_text }};--red-text:{{ settings.color_accent_strong }};--brand-red:{{ settings.color_brand_red }};--todo-bg:#fff3d6;--todo-fg:#7a4b00;--todo-line:#e7c77b;color-scheme:light}}{% endif %}
   </style>
+  <script>if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('mo');setTimeout(function(){document.documentElement.classList.remove('mo')},3000)}</script>
   {{ content_for_header }}
 </head>
 <body>
@@ -26,5 +27,7 @@
   </main>
   {% sections 'footer-group' %}
   <script src="{{ 'hlthx.js' | asset_url }}" defer></script>
+  <script src="{{ 'motion.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'hlthx-motion.js' | asset_url }}" defer></script>
 </body>
 </html>
