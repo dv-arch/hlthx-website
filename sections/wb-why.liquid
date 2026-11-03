@@ -1,0 +1,16 @@
+<section>
+  <div class="wrap">
+    <div class="wb-head">{%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}<h2>{{ section.settings.heading }}</h2></div>
+    <div class="wb-why">{%- for block in section.blocks -%}<div {{ block.shopify_attributes }}><h3>{{ block.settings.name }}{% if block.settings.amount != blank %}<small>{{ block.settings.amount }}</small>{% endif %}</h3><p>{{ block.settings.text }}</p></div>{%- endfor -%}</div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Why these ingredients", "settings": [
+  { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why these ingredients are included" },
+  { "type": "text", "id": "heading", "label": "Heading", "default": "Each one has a job." }
+], "blocks": [{ "type": "item", "name": "Ingredient", "settings": [
+  { "type": "text", "id": "name", "label": "Ingredient", "default": "Vitamin D3" },
+  { "type": "text", "id": "amount", "label": "Amount or form" },
+  { "type": "textarea", "id": "text", "label": "Why it is included" }
+] }], "presets": [{ "name": "Why these ingredients" }] }
+{% endschema %}

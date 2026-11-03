@@ -83,25 +83,25 @@
         "s1": {
           "type": "stat",
           "settings": {
-            "value": "15",
-            "unit": "g",
-            "label": "per sachet"
+            "value": "80+",
+            "unit": "",
+            "label": "ingredients"
           }
         },
         "s2": {
           "type": "stat",
           "settings": {
-            "value": "30",
+            "value": "10+",
             "unit": "",
-            "label": "sachets per box"
+            "label": "functional blends"
           }
         },
         "s3": {
           "type": "stat",
           "settings": {
-            "value": "1",
+            "value": "18",
             "unit": "",
-            "label": "sachet a day"
+            "label": "billion CFU probiotic complex"
           }
         },
         "r1": {
@@ -410,6 +410,97 @@
     },
     "closing": {
       "type": "closing"
+    },
+    "foundations": {
+      "type": "wb-foundations",
+      "blocks": {
+        "f1": {
+          "type": "foundation",
+          "settings": {
+            "number": "01",
+            "title": "Gut & Digestive Health",
+            "text": "Digestion, gut microbiome and bowel function.",
+            "link": ""
+          }
+        },
+        "f2": {
+          "type": "foundation",
+          "settings": {
+            "number": "02",
+            "title": "Brain & Nervous System",
+            "text": "Nervous system function and cognitive processes.",
+            "link": ""
+          }
+        },
+        "f3": {
+          "type": "foundation",
+          "settings": {
+            "number": "03",
+            "title": "Energy & Cellular Metabolism",
+            "text": "Energy metabolism and cellular functions.",
+            "link": ""
+          }
+        },
+        "f4": {
+          "type": "foundation",
+          "settings": {
+            "number": "04",
+            "title": "Muscles & Electrolyte Balance",
+            "text": "Muscle function, contraction and fluid balance.",
+            "link": ""
+          }
+        },
+        "f5": {
+          "type": "foundation",
+          "settings": {
+            "number": "05",
+            "title": "Bones & Teeth",
+            "text": "Bone structure, mineralisation and dental health.",
+            "link": "/pages/bones-and-teeth"
+          }
+        },
+        "f6": {
+          "type": "foundation",
+          "settings": {
+            "number": "06",
+            "title": "Heart & Circulatory Function",
+            "text": "Normal cardiovascular and circulatory functions.",
+            "link": ""
+          }
+        },
+        "f7": {
+          "type": "foundation",
+          "settings": {
+            "number": "07",
+            "title": "Immune Function",
+            "text": "Normal immune system function.",
+            "link": ""
+          }
+        },
+        "f8": {
+          "type": "foundation",
+          "settings": {
+            "number": "08",
+            "title": "Skin, Hair & Vision",
+            "text": "Nutrients associated with skin, hair and visual function.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8"
+      ],
+      "settings": {
+        "cta": "Explore whole body nutrition",
+        "cta_link": "/pages/whole-body-nutrition"
+      }
     }
   },
   "order": [
@@ -418,6 +509,7 @@
     "badges",
     "difference",
     "formula",
+    "foundations",
     "quality",
     "experts",
     "ritual",

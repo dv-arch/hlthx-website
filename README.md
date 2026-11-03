@@ -34,6 +34,13 @@ The theme has a `page.contact` template with a contact form. Shopify's built-in 
 if not, open Pages → Contact and set Theme template to `contact`. Every message is emailed to the store contact email
 (Settings → General → Store contact email) with the sender's name, email, phone, topic and message.
 
+## Whole Body Nutrition pages
+Create two pages in Online Store → Pages and pick their template:
+- **Whole Body Nutrition** (handle `whole-body-nutrition`) → template `whole-body-nutrition`.
+- **Bones & Teeth** (handle `bones-and-teeth`) → template `bones-and-teeth`.
+All text, tables, research figures and foundation cards are editable in Customize. A foundation card with a page
+address is clickable; without one it shows "Coming soon". The home page shows the same eight cards.
+
 ## "To confirm" markers and missing details
 Markers are off by default, so visitors never see placeholders: sections with nothing confirmed yet (reviews, experts,
 unconfirmed badges, FAQ answers, delivery and guarantee lines) are hidden, and products that are not on sale show
