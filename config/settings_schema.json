@@ -99,6 +99,13 @@
         "label": "Show \"To confirm\" markers for missing details",
         "default": false,
         "info": "Off: anything still missing is hidden from visitors. On: yellow markers show what the client still has to provide."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_motion",
+        "label": "Scroll animations (Motion)",
+        "default": false,
+        "info": "On: sections rise in as you scroll, stats count up and buttons spring on hover. The hero silk and the daily ritual animation play either way."
       }
     ]
   },
