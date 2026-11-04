@@ -301,37 +301,49 @@
     "experts": {
       "type": "experts"
     },
-    "ritual": {
-      "type": "ritual",
+    "ritual_film": {
+      "type": "ritual-film",
       "blocks": {
-        "r1": {
+        "s1": {
           "type": "step",
           "settings": {
+            "key": "open",
             "title": "Open",
             "text": "Tear open one 15 g sachet."
           }
         },
-        "r2": {
+        "s2": {
           "type": "step",
           "settings": {
-            "title": "Mix",
-            "text": "Stir it into water.",
-            "confirm": "amount of water"
+            "key": "pour",
+            "title": "Pour",
+            "text": "Pour the powder into a glass of water."
           }
         },
-        "r3": {
+        "s3": {
           "type": "step",
           "settings": {
+            "key": "mix",
+            "title": "Mix",
+            "text": "Stir until it turns a warm golden colour."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "key": "enjoy",
             "title": "Enjoy",
-            "text": "Drink once a day, every day. Consistency is what counts."
+            "text": "Once a day, every day. Consistency is what counts."
           }
         }
       },
       "block_order": [
-        "r1",
-        "r2",
-        "r3"
-      ]
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {}
     },
     "shop": {
       "type": "featured-product"
@@ -512,7 +524,7 @@
     "foundations",
     "quality",
     "experts",
-    "ritual",
+    "ritual_film",
     "shop",
     "reviews",
     "faq",
