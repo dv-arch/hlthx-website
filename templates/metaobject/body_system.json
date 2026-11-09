@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "body-system-page", "settings": {} } },
+  "order": ["main"]
+}

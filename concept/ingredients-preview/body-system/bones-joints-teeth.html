@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bones, Joints & Teeth | HLTHX preview</title><meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/ingredients-preview/assets/hlthx.css"><style>
+.pb-pop{border:0;border-radius:14px;padding:clamp(24px,5vw,40px);width:min(92vw,460px);background:var(--surface);color:var(--ink);box-shadow:0 30px 80px rgba(20,18,16,.25)}
+.pb-pop::backdrop{background:rgba(20,18,16,.55)}
+.pb-pop[open]{display:grid;gap:16px}
+.pb-pop h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+.pb-pop-close{position:absolute;top:8px;right:8px;margin:0}
+.pb-pop-close button{background:none;border:0;font-size:1.8rem;line-height:1;width:44px;height:44px;cursor:pointer;color:var(--muted)}
+.pb-pop-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pb-pop-actions .btn-red{flex:1;min-width:180px}
+
+.pv{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:90;padding:.7em 1.2em;border-radius:999px;background:rgba(20,20,20,.88);color:#fff;font:500 .76rem Montserrat,sans-serif;white-space:nowrap;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}</style>
+<script>if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('mo');setTimeout(function(){document.documentElement.classList.remove('mo')},3000)}</script>
+</head><body>
+<div class="announce"><a href="https://hlthx-store.myshopify.com/pages/pre-book" style="text-decoration:none">Pre-book now for our special launch &rarr;</a></div><header class="top">
+  <div class="wrap">
+    <a class="logo" href="https://hlthx-store.myshopify.com/" aria-label="HLTHX home">HLTH<span class="x">X</span><sup>™</sup></a>
+    <nav class="nav" aria-label="Main"><a class="nav-prebook" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a><a class="btn btn-sm" href="https://hlthx-store.myshopify.com/cart">Cart <span class="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+<dialog class="pb-pop" id="pb-pop" aria-labelledby="pb-pop-title" data-days="7" data-delay="3">
+  <form method="dialog" class="pb-pop-close"><button type="submit" aria-label="Close">&times;</button></form>
+  <p class="eyebrow">Special launch</p>
+  <h2 id="pb-pop-title">Pre-book HLTHX™ for our special launch</h2><p class="muted">Be first to get Daily Complete Nutrition. Pre-booking is free and takes under a minute.</p><p class="tagline sm">Feel better.<br>Every day.</p>
+  <div class="pb-pop-actions">
+    <a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book" data-pb-go>Pre-book now</a>
+    <button type="button" class="btn" data-pb-later>Maybe later</button>
+  </div>
+</dialog>
+<script>
+(function(){
+  var d = document.getElementById('pb-pop');
+  if (!d || typeof d.showModal !== 'function') return;
+  var KEY = 'hlthx-prebook-popup', days = +d.dataset.days || 7;
+  function seen(){ try { var t = +localStorage.getItem(KEY); return t && Date.now() - t < days * 864e5; } catch(e) { return false; } }
+  function remember(){ try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
+  if (!d.hasAttribute('data-preview') && (seen() || window.Shopify && Shopify.designMode)) return;
+  d.addEventListener('close', remember);
+  d.querySelector('[data-pb-later]').addEventListener('click', function(){ d.close(); });
+  d.querySelector('[data-pb-go]').addEventListener('click', remember);
+  d.addEventListener('click', function(e){ if (e.target === d) d.close(); });
+  setTimeout(function(){ if (!d.open) d.showModal(); }, (+d.dataset.delay || 0) * 1000);
+})();
+</script>
+<main id="MainContent"><section class="mo-page">
+  <div class="wrap">
+    <a class="mo-back" href="/ingredients-preview/#sys-bones-joints-teeth">&larr; All body systems</a>
+    <div class="wb-head">
+      <p class="wb-eyebrow">Body system</p>
+      <div class="mo-sys-head"><span class="sys__icon"><svg class="sys-ic" viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 8c-3 0-5 2-5 5 0 2 1 3 2.5 3.7L17 18v12l-2.5 1.3C13 32 12 33 12 35c0 3 2 5 5 5s4-2 4.5-4h5c.5 2 1.5 4 4.5 4s5-2 5-5c0-2-1-3-2.5-3.7L31 30V18l2.5-1.3C35 16 36 15 36 13c0-3-2-5-5-5s-4 2-4.5 4h-5C21 10 20 8 17 8Z"/></svg></span><h1>Bones, Joints &amp; Teeth</h1></div><p class="lede">Supports bone density, joint comfort and healthy teeth through key structural nutrients.</p></div><div>
+      <h2 class="ix-group__h">Key ingredients in HLTHX&trade; (11)</h2>
+      <div class="ix-grid"><article class="ing" id="ing-vitamin-d3" data-systems="bones-joints-teeth immune">
+  <div class="ing__top">
+    <h3 class="ing__name">Vitamin D3</h3><p class="ing__form">Cholecalciferol</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">15 mcg (600 IU)</dd></div>
+    <div><dt>%RDA</dt><dd>100%</dd></div>
+  </dl><p class="ing__p">Vitamin D3 (Cholecalciferol) is the natural and highly bioavailable form of Vitamin D that helps the body absorb calcium, supports strong bones and teeth, and plays a key role in immune health.</p><details class="ing__more"><summary>Read more</summary><p class="ing__p">It helps maintain optimal calcium levels, supports muscle strength and function, and contributes to overall immunity and metabolic wellness.</p><p class="ing__p">Additionally, it plays an important role in mood regulation, energy levels and overall well-being.</p></details><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li><li><a href="/ingredients-preview/body-system/immune" data-sys-link="immune">Immune Function</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/vitamin-d3">Full details<span class="visually-hidden"> on Vitamin D3</span> &rarr;</a></div>
+</article><article class="ing" id="ing-vitamin-k2" data-systems="bones-joints-teeth heart-circulatory">
+  <div class="ing__top">
+    <h3 class="ing__name">Vitamin K2</h3><p class="ing__form">All-Trans MK-7</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">55 mcg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><p class="ing__p">Vitamin K2 (All-Trans MK-7) is a highly bioavailable form of Vitamin K2 that directs calcium to your bones and teeth, and away from your arteries.</p><details class="ing__more"><summary>Read more</summary><p class="ing__p">It helps build and maintain strong bones, supports cardiovascular health and overall long-term bone and vascular health.</p></details><ul class="ing__benefits"><li>Supports strong bones &amp; teeth</li><li>Promotes cardiovascular health</li><li>Helps direct calcium to bones</li><li>Supports long-term bone &amp; vascular health</li></ul><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li><li><a href="/ingredients-preview/body-system/heart-circulatory" data-sys-link="heart-circulatory">Heart &amp; Circulatory Function</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/vitamin-k2">Full details<span class="visually-hidden"> on Vitamin K2</span> &rarr;</a></div>
+</article><article class="ing" id="ing-calcium-citrate" data-systems="bones-joints-teeth">
+  <div class="ing__top">
+    <h3 class="ing__name">Calcium Citrate</h3></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">500 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/calcium-citrate">Full details<span class="visually-hidden"> on Calcium Citrate</span> &rarr;</a></div>
+</article><article class="ing" id="ing-tricalcium-phosphate" data-systems="bones-joints-teeth">
+  <div class="ing__top">
+    <h3 class="ing__name">Tricalcium Phosphate</h3></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">650 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/tricalcium-phosphate">Full details<span class="visually-hidden"> on Tricalcium Phosphate</span> &rarr;</a></div>
+</article><article class="ing" id="ing-magnesium-citrate" data-systems="energy-metabolism bones-joints-teeth brain-nervous muscle-electrolyte heart-circulatory">
+  <div class="ing__top">
+    <h3 class="ing__name">Magnesium Citrate</h3></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">400 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="/ingredients-preview/body-system/energy-metabolism" data-sys-link="energy-metabolism">Energy &amp; Cellular Metabolism</a></li><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li><li><a href="/ingredients-preview/body-system/brain-nervous" data-sys-link="brain-nervous">Brain &amp; Nervous System</a></li><li><a href="/ingredients-preview/body-system/muscle-electrolyte" data-sys-link="muscle-electrolyte">Muscle &amp; Electrolyte Balance</a></li><li><a href="/ingredients-preview/body-system/heart-circulatory" data-sys-link="heart-circulatory">Heart &amp; Circulatory Function</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/magnesium-citrate">Full details<span class="visually-hidden"> on Magnesium Citrate</span> &rarr;</a></div>
+</article><article class="ing" id="ing-magnesium-bisglycinate" data-systems="energy-metabolism bones-joints-teeth brain-nervous muscle-electrolyte heart-circulatory">
+  <div class="ing__top">
+    <h3 class="ing__name">Magnesium Bisglycinate</h3></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">400 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="/ingredients-preview/body-system/energy-metabolism" data-sys-link="energy-metabolism">Energy &amp; Cellular Metabolism</a></li><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li><li><a href="/ingredients-preview/body-system/brain-nervous" data-sys-link="brain-nervous">Brain &amp; Nervous System</a></li><li><a href="/ingredients-preview/body-system/muscle-electrolyte" data-sys-link="muscle-electrolyte">Muscle &amp; Electrolyte Balance</a></li><li><a href="/ingredients-preview/body-system/heart-circulatory" data-sys-link="heart-circulatory">Heart &amp; Circulatory Function</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/magnesium-bisglycinate">Full details<span class="visually-hidden"> on Magnesium Bisglycinate</span> &rarr;</a></div>
+</article><article class="ing" id="ing-phosphorus" data-systems="bones-joints-teeth">
+  <div class="ing__top">
+    <h3 class="ing__name">Phosphorus</h3><p class="ing__form">Tricalcium Phosphate</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">50 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><p class="ing__p">Phosphorus (as Tricalcium Phosphate) is an essential mineral that works with calcium to build and maintain strong bones and teeth.</p><details class="ing__more"><summary>Read more</summary><p class="ing__p">It helps in energy production (ATP), supports cell function and plays a key role in muscle and nerve health.</p></details><ul class="ing__benefits"><li>Builds &amp; maintains strong bones</li><li>Supports healthy teeth</li><li>Aids energy production (ATP)</li><li>Supports muscle &amp; nerve health</li></ul><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/phosphorus">Full details<span class="visually-hidden"> on Phosphorus</span> &rarr;</a></div>
+</article><article class="ing" id="ing-zinc" data-systems="bones-joints-teeth immune skin-hair-vision">
+  <div class="ing__top">
+    <h3 class="ing__name">Zinc</h3><p class="ing__form">Zinc Citrate</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">10 mg</dd></div>
+    <div><dt>%RDA</dt><dd>20%</dd></div>
+  </dl><p class="ing__p">Zinc (as Zinc Citrate) is an essential trace mineral that supports immune function, wound healing, tissue repair and overall cellular health.</p><ul class="ing__benefits"><li>Supports immune function</li><li>Aids wound healing</li><li>Supports tissue repair &amp; cellular health</li></ul><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li><li><a href="/ingredients-preview/body-system/immune" data-sys-link="immune">Immune Function</a></li><li><a href="/ingredients-preview/body-system/skin-hair-vision" data-sys-link="skin-hair-vision">Skin, Hair &amp; Vision</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/zinc">Full details<span class="visually-hidden"> on Zinc</span> &rarr;</a></div>
+</article><article class="ing" id="ing-msm" data-systems="bones-joints-teeth skin-hair-vision">
+  <div class="ing__top">
+    <h3 class="ing__name">MSM</h3><p class="ing__form">Methylsulfonylmethane</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">500 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><p class="ing__p">MSM (Methylsulfonylmethane) is a natural source of bioavailable sulfur, an essential mineral that supports joint, skin, hair and connective tissue health.</p><details class="ing__more"><summary>Read more</summary><p class="ing__p">It helps maintain joint comfort and mobility, reduces exercise-related inflammation, and supports the body&#x27;s natural recovery process.</p><p class="ing__p">Additionally, MSM contributes to the production of collagen and keratin, promoting healthy skin, stronger hair and nails.</p></details><ul class="ing__benefits"><li>Supports joint health</li><li>Promotes healthy skin</li><li>Supports hair &amp; nails</li></ul><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li><li><a href="/ingredients-preview/body-system/skin-hair-vision" data-sys-link="skin-hair-vision">Skin, Hair &amp; Vision</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/msm">Full details<span class="visually-hidden"> on MSM</span> &rarr;</a></div>
+</article><article class="ing" id="ing-boron" data-systems="bones-joints-teeth">
+  <div class="ing__top">
+    <h3 class="ing__name">Boron</h3><p class="ing__form">Boron Citrate</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">2 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><p class="ing__p">Boron (as Boron Citrate) is a beneficial trace mineral that supports bone health, hormone balance and nutrient metabolism.</p><details class="ing__more"><summary>Read more</summary><p class="ing__p">It helps in the proper utilization of calcium, magnesium and vitamin D, supporting stronger bones and healthy joints.</p><p class="ing__p">Additionally, boron may support healthy testosterone levels (in men), cognitive function and overall metabolic health.</p></details><ul class="ing__benefits"><li>Supports bone health</li><li>Supports hormone balance</li><li>Aids calcium &amp; vitamin D utilization</li><li>Supports cognitive function</li></ul><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/boron">Full details<span class="visually-hidden"> on Boron</span> &rarr;</a></div>
+</article><article class="ing" id="ing-manganese" data-systems="bones-joints-teeth">
+  <div class="ing__top">
+    <h3 class="ing__name">Manganese</h3><p class="ing__form">Manganese Sulfate</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">2 mg</dd></div>
+    <div><dt>%RDA</dt><dd>100%</dd></div>
+  </dl><p class="ing__p">Manganese (as Manganese Sulfate) is an essential trace mineral that acts as a cofactor for key enzymes involved in bone formation, energy metabolism and antioxidant defense.</p><details class="ing__more"><summary>Read more</summary><p class="ing__p">It helps maintain strong and healthy bones, supports collagen formation for healthy joints and connective tissues, and aids in macronutrient metabolism (carbohydrates, proteins and fats) for sustained energy.</p><p class="ing__p">Additionally, manganese supports the body&#x27;s natural antioxidant system, helping protect cells from oxidative stress.</p></details><ul class="ing__benefits"><li>Supports bone health</li><li>Supports joint &amp; connective tissue</li><li>Aids energy metabolism</li><li>Supports antioxidant defense</li></ul><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="https://hlthx-store.myshopify.com/pages/bones-teeth" data-sys-link="bones-joints-teeth">Bones, Joints &amp; Teeth</a></li></ul><a class="ing__link" href="/ingredients-preview/ingredient/manganese">Full details<span class="visually-hidden"> on Manganese</span> &rarr;</a></div>
+</article></div>
+    </div><p><a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book now &rarr;</a></p></div>
+</section></main>
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div style="display:grid;gap:10px">
+        <span class="logo" style="font-size:1.2rem;color:var(--ink)">HLTH<span class="x">X</span><sup>™</sup></span><p class="tagline sm" style="font-size:.72rem">Feel better.<br>Every day.</p>
+</div><div><h4>Shop</h4><ul><li><a href="https://hlthx-store.myshopify.com/#shop">30-Day Box</a></li><li><a href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a></li></ul></div><div><h4>Learn</h4><ul><li><a href="https://hlthx-store.myshopify.com/#formula">Inside the Formula</a></li><li><a href="https://hlthx-store.myshopify.com/#quality">Quality</a></li><li><a href="https://hlthx-store.myshopify.com/#ritual">How to use</a></li></ul></div><div><h4>Help</h4><ul><li><a href="https://hlthx-store.myshopify.com/#faq">FAQ</a></li><li><a href="https://hlthx-store.myshopify.com/pages/contact">Contact us</a></li></ul></div></div>
+    <p>This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p>
+    <p>© 2026 HLTHX. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="pv">Preview &middot; content from Shopify &rsaquo; Metaobjects</div>
+<script src="/ingredients-preview/assets/hlthx.js" defer></script><script src="/ingredients-preview/assets/motion.min.js" defer></script><script src="/ingredients-preview/assets/hlthx-motion.js" defer></script>
+</body></html>

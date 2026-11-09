@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "ingredient-page", "settings": {} } },
+  "order": ["main"]
+}

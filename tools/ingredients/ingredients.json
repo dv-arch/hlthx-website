@@ -40,7 +40,7 @@
     {"handle":"choline","name":"Choline","form":"Choline Bitartrate","group":"Vitamins","amount":"30 mg","rda":"","confirm":"Two cards say 30 mg, one says 250 mg.",
      "summary":"Choline (as Choline Bitartrate) is an essential nutrient that supports brain health, memory, focus and overall cognitive performance.\n\nIt helps in the production of acetylcholine, a key neurotransmitter involved in learning, mood and mental clarity.\n\nAdditionally, choline supports healthy liver function and the metabolism of fats, contributing to overall brain, liver and metabolic health.",
      "benefits":["Supports brain function & focus","Supports liver health","Supports healthy metabolism"]},
-    {"handle":"zinc","name":"Zinc","form":"Zinc Citrate","group":"Minerals","amount":"10 mg","rda":"20%","rda_basis":"Card: FSSAI/ICMR 2020: 50 mg/day (adults)","confirm":"The card uses 50 mg/day as the zinc RDA; ICMR-NIN 2020 gives about 17 mg (men) / 13.2 mg (women).",
+    {"handle":"zinc","name":"Zinc","form":"Zinc Citrate","group":"Minerals","amount":"10 mg","rda":"20%","rda_basis":"FSSAI/ICMR 2020: 50 mg/day (adults)","confirm":"The card uses 50 mg/day as the zinc RDA; ICMR-NIN 2020 gives about 17 mg (men) / 13.2 mg (women).",
      "summary":"Zinc (as Zinc Citrate) is an essential trace mineral that supports immune function, wound healing, tissue repair and overall cellular health.",
      "benefits":["Supports immune function","Aids wound healing","Supports tissue repair & cellular health"]},
     {"handle":"copper","name":"Copper","form":"Copper Citrate","group":"Minerals","amount":"1 mg","rda":"58.82%","rda_basis":"FSSAI/ICMR 2020: 1.7 mg/day (adults)",

@@ -1,0 +1,57 @@
+{%- comment -%}
+  One ingredient, from the "Ingredient" metaobject (Content > Metaobjects > Ingredients).
+  Params: ing (metaobject), systems (body_system metaobjects), sysmap (string of "|ingredient@system" pairs),
+          full (true on the ingredient's own page: whole text, no "read more"), tag (heading tag, default h3).
+  Fields: name, form, group, amount, rda, rda_basis, summary, benefits, card_image. "note" is internal and never shown.
+{%- endcomment -%}
+{%- liquid
+  assign tag = tag | default: 'h3'
+  assign sys_keys = ''
+  for s in systems
+    assign pair = '|' | append: ing.handle | append: '@' | append: s.handle | append: '|'
+    if sysmap contains pair
+      assign sys_keys = sys_keys | append: ' ' | append: s.handle
+    endif
+  endfor
+  assign sys_pad = sys_keys | append: ' '
+  assign sys_keys = sys_keys | strip
+-%}
+{%- assign paras = ing.summary.value | strip | newline_to_br | split: '<br />' -%}
+<article class="ing{% if full %} ing--full{% endif %}" id="ing-{{ ing.handle }}" data-systems="{{ sys_keys }}">
+  <div class="ing__top">
+    <{{ tag }} class="ing__name">{{ ing.name.value | escape }}</{{ tag }}>
+    {%- if ing.form.value != blank -%}<p class="ing__form">{{ ing.form.value | escape }}</p>{%- endif -%}
+  </div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">{% if ing.amount.value != blank %}{{ ing.amount.value | escape }}{% else %}&mdash;{% endif %}</dd></div>
+    <div><dt>%RDA</dt><dd>{% if ing.rda.value != blank %}{{ ing.rda.value | escape }}{% else %}<span aria-label="No RDA set">&mdash;</span>{% endif %}</dd></div>
+  </dl>
+  {%- assign shown = 0 -%}
+  {%- capture rest -%}
+    {%- for p in paras -%}
+      {%- assign t = p | strip -%}
+      {%- if t == blank -%}{%- continue -%}{%- endif -%}
+      {%- if shown > 0 -%}<p class="ing__p">{{ t | escape }}</p>{%- endif -%}
+      {%- assign shown = shown | plus: 1 -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- for p in paras -%}
+    {%- assign t = p | strip -%}
+    {%- if t != blank -%}<p class="ing__p">{{ t | escape }}</p>{%- break -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if rest != blank -%}
+    {%- if full -%}{{ rest }}{%- else -%}<details class="ing__more"><summary>Read more</summary>{{ rest }}</details>{%- endif -%}
+  {%- endif -%}
+  {%- if ing.benefits.value != blank -%}
+  <ul class="ing__benefits">{%- for b in ing.benefits.value -%}<li>{{ b | escape }}</li>{%- endfor -%}</ul>
+  {%- endif -%}
+  {%- if full and ing.rda_basis.value != blank -%}<p class="ing__basis">RDA basis: {{ ing.rda_basis.value | escape }}</p>{%- endif -%}
+  <div class="ing__foot">
+    {%- if sys_keys != blank -%}
+    <ul class="ing__sys" aria-label="Supports">
+      {%- for s in systems -%}{%- assign k = ' ' | append: s.handle | append: ' ' -%}{%- if sys_pad contains k -%}{%- assign href = s.system.url -%}{%- if s.page.value != blank -%}{%- assign href = s.page.value.url -%}{%- endif -%}<li><a href="{{ href | default: '#' }}" data-sys-link="{{ s.handle }}">{{ s.name.value | escape }}</a></li>{%- endif -%}{%- endfor -%}
+    </ul>
+    {%- endif -%}
+    {%- if full != true and ing.system.url != blank -%}<a class="ing__link" href="{{ ing.system.url }}">Full details<span class="visually-hidden"> on {{ ing.name.value | escape }}</span> &rarr;</a>{%- endif -%}
+  </div>
+</article>
