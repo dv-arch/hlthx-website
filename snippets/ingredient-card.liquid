@@ -8,16 +8,16 @@
   assign tag = tag | default: 'h3'
   assign sys_keys = ''
   for s in systems
-    assign pair = '|' | append: ing.handle | append: '@' | append: s.handle | append: '|'
+    assign pair = '|' | append: ing.system.handle | append: '@' | append: s.system.handle | append: '|'
     if sysmap contains pair
-      assign sys_keys = sys_keys | append: ' ' | append: s.handle
+      assign sys_keys = sys_keys | append: ' ' | append: s.system.handle
     endif
   endfor
   assign sys_pad = sys_keys | append: ' '
   assign sys_keys = sys_keys | strip
 -%}
 {%- assign paras = ing.summary.value | strip | newline_to_br | split: '<br />' -%}
-<article class="ing{% if full %} ing--full{% endif %}" id="ing-{{ ing.handle }}" data-systems="{{ sys_keys }}">
+<article class="ing{% if full %} ing--full{% endif %}" id="ing-{{ ing.system.handle }}" data-systems="{{ sys_keys }}">
   <div class="ing__top">
     <{{ tag }} class="ing__name">{{ ing.name.value | escape }}</{{ tag }}>
     {%- if ing.form.value != blank -%}<p class="ing__form">{{ ing.form.value | escape }}</p>{%- endif -%}
@@ -49,7 +49,7 @@
   <div class="ing__foot">
     {%- if sys_keys != blank -%}
     <ul class="ing__sys" aria-label="Supports">
-      {%- for s in systems -%}{%- assign k = ' ' | append: s.handle | append: ' ' -%}{%- if sys_pad contains k -%}{%- assign href = s.system.url -%}{%- if s.page.value != blank -%}{%- assign href = s.page.value.url -%}{%- endif -%}<li><a href="{{ href | default: '#' }}" data-sys-link="{{ s.handle }}">{{ s.name.value | escape }}</a></li>{%- endif -%}{%- endfor -%}
+      {%- for s in systems -%}{%- assign k = ' ' | append: s.system.handle | append: ' ' -%}{%- if sys_pad contains k -%}{%- assign href = s.system.url -%}{%- if s.page.value != blank -%}{%- assign href = s.page.value.url -%}{%- endif -%}<li><a href="{{ href | default: '#' }}" data-sys-link="{{ s.system.handle }}">{{ s.name.value | escape }}</a></li>{%- endif -%}{%- endfor -%}
     </ul>
     {%- endif -%}
     {%- if full != true and ing.system.url != blank -%}<a class="ing__link" href="{{ ing.system.url }}">Full details<span class="visually-hidden"> on {{ ing.name.value | escape }}</span> &rarr;</a>{%- endif -%}

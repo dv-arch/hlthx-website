@@ -8,14 +8,14 @@
   assign sysmap = '|'
   for x in sys_values
     for r in x.ingredients.value
-      assign sysmap = sysmap | append: r.handle | append: '@' | append: x.handle | append: '|'
+      assign sysmap = sysmap | append: r.system.handle | append: '@' | append: x.system.handle | append: '|'
     endfor
   endfor
   assign hub = section.settings.hub_link | default: '/pages/ingredients'
 -%}
 <section class="mo-page">
   <div class="wrap">
-    <a class="mo-back" href="{{ hub }}#sys-{{ s.handle }}">&larr; All body systems</a>
+    <a class="mo-back" href="{{ hub }}#sys-{{ s.system.handle }}">&larr; All body systems</a>
     <div class="wb-head">
       <p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>
       <div class="mo-sys-head"><span class="sys__icon">{% render 'icon-system', icon: s.icon.value %}</span><h1>{{ s.name.value | escape }}</h1></div>

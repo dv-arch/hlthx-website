@@ -21,12 +21,12 @@ ings={}
 for i in D['ingredients']:
     ings[i['handle']]={'handle':i['handle'],'name':V(i['name']),'form':V(i.get('form') or ''),'group':V(i.get('group')),'amount':V(i.get('amount') or ''),
         'rda':V(i.get('rda') or ''),'rda_basis':V(i.get('rda_basis') or ''),'summary':V(i.get('summary') or ''),'benefits':V(i.get('benefits') or []),
-        'card_image':V(''),'system':{'url':f'{BASE}/ingredient/{i["handle"]}'}}
+        'card_image':V(''),'system':{'url':f'{BASE}/ingredient/{i["handle"]}','handle':i['handle']}}
 systems={}
 for n,s in enumerate(D['systems']):
     systems[s['handle']]={'handle':s['handle'],'name':V(s['name']),'description':V(s['description']),'icon':V(s['icon']),'position':V(n+1),
         'ingredients':V([ings[h] for h in s['ingredients']+s.get('suggested',[])]),
-        'page':V({'url':'/pages/bones-teeth'} if s['handle']=='bones-joints-teeth' else ''),'system':{'url':f'{BASE}/body-system/{s["handle"]}'}}
+        'page':V({'url':'/pages/bones-teeth'} if s['handle']=='bones-joints-teeth' else ''),'system':{'url':f'{BASE}/body-system/{s["handle"]}','handle':s['handle']}}
 mo={'body_system':dict(systems, values=list(systems.values())),'ingredient':dict(ings, values=list(ings.values()))}
 glob=dict(settings=settings, shop={'name':'HLTHX','metaobjects':mo}, routes={'root_url':'/','cart_url':'/cart'}, request={'path':'/pages/ingredients','design_mode':False}, cart={'item_count':0}, page={'title':'Ingredients'})
 CSS=[]
