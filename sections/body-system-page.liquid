@@ -1,0 +1,46 @@
+{%- comment -%}
+  A body system's own page (/pages/body-system/<handle>), from its "Body system" metaobject entry:
+  the system, then each of its key ingredients.
+{%- endcomment -%}
+{%- liquid
+  assign s = metaobject
+  assign sys_values = shop.metaobjects.body_system.values
+  assign sysmap = '|'
+  for x in sys_values
+    for r in x.ingredients.value
+      assign sysmap = sysmap | append: r.handle | append: '@' | append: x.handle | append: '|'
+    endfor
+  endfor
+  assign hub = section.settings.hub_link | default: '/pages/ingredients'
+-%}
+<section class="mo-page">
+  <div class="wrap">
+    <a class="mo-back" href="{{ hub }}#sys-{{ s.handle }}">&larr; All body systems</a>
+    <div class="wb-head">
+      <p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>
+      <div class="mo-sys-head"><span class="sys__icon">{% render 'icon-system', icon: s.icon.value %}</span><h1>{{ s.name.value | escape }}</h1></div>
+      {%- if s.description.value != blank -%}<p class="lede">{{ s.description.value | escape }}</p>{%- endif -%}
+    </div>
+    {%- if s.ingredients.value != blank -%}
+    <div>
+      <h2 class="ix-group__h">Key ingredients in HLTHX&trade; ({{ s.ingredients.value.size }})</h2>
+      <div class="ix-grid">
+        {%- for ing in s.ingredients.value -%}{% render 'ingredient-card', ing: ing, systems: sys_values, sysmap: sysmap, tag: 'h3' %}{%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+    {%- if section.settings.cta != blank -%}<p><a class="btn btn-red" href="{{ section.settings.cta_link | default: '/pages/pre-book' }}">{{ section.settings.cta }} &rarr;</a></p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Body system details",
+  "settings": [
+    { "type": "paragraph", "content": "The text and ingredients on this page come from the entry in Content > Metaobjects > Body system." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Body system" },
+    { "type": "text", "id": "hub_link", "label": "Ingredients page address", "default": "/pages/ingredients" },
+    { "type": "text", "id": "cta", "label": "Button (optional)", "default": "Pre-book now" },
+    { "type": "text", "id": "cta_link", "label": "Button link", "default": "/pages/pre-book" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Line icon for a body system. Usage: {% render 'icon-system', icon: 'gut' %}
+  Icons: gut, energy, bones, immune, brain, muscle, heart, skin.
+{%- endcomment -%}
+<svg class="sys-ic" viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{%- case icon -%}
+  {%- when 'gut' -%}<path d="M17 9c-5 0-7 4-7 8s3 6 7 6h12c4 0 7 2.5 7 6.5S33 36 29 36H19c-3 0-5 2-5 4"/><path d="M17 9h12c3.5 0 6 2 6 5s-2.5 5-6 5H18"/><path d="M14 29h10"/>
+  {%- when 'energy' -%}<path d="M26 6 12 27h11l-2 15 15-22H25l1-14Z"/>
+  {%- when 'bones' -%}<path d="M17 8c-3 0-5 2-5 5 0 2 1 3 2.5 3.7L17 18v12l-2.5 1.3C13 32 12 33 12 35c0 3 2 5 5 5s4-2 4.5-4h5c.5 2 1.5 4 4.5 4s5-2 5-5c0-2-1-3-2.5-3.7L31 30V18l2.5-1.3C35 16 36 15 36 13c0-3-2-5-5-5s-4 2-4.5 4h-5C21 10 20 8 17 8Z"/>
+  {%- when 'immune' -%}<path d="M24 6 9 11v11c0 9.5 6.5 16.5 15 20 8.5-3.5 15-10.5 15-20V11L24 6Z"/><path d="M24 17v12M18 23h12"/>
+  {%- when 'brain' -%}<path d="M20 9c-3 0-5 2-5 4.5-3 .5-5 3-5 6 0 1.6.6 3 1.6 4-1 1-1.6 2.4-1.6 4 0 3 2.2 5.5 5 6 .5 3 3 5.5 6 5.5 1.6 0 3-.6 3-.6V9.6S22.6 9 20 9Z"/><path d="M28 9c3 0 5 2 5 4.5 3 .5 5 3 5 6 0 1.6-.6 3-1.6 4 1 1 1.6 2.4 1.6 4 0 3-2.2 5.5-5 6-.5 3-3 5.5-6 5.5-1.6 0-3-.6-3-.6V9.6S25.4 9 28 9Z"/><path d="M16 21c2 0 4 1.5 4 4M32 21c-2 0-4 1.5-4 4"/>
+  {%- when 'muscle' -%}<path d="M10 38c0-7 1-13 5-18l4-6c1.2-1.8 3.8-2 5-.2l1 1.4-4 6 3 2c3-3 8-3 11 0 3.5 3.5 3 9.5-1 12.5-3 2.2-7 2.8-10.5 2.3H10"/><path d="M22 29c2-1.5 5-1.5 7 0"/>
+  {%- when 'heart' -%}<path d="M24 40S8 31 8 19c0-5 3.5-9 8.5-9 3.3 0 6 2 7.5 4.5C25.5 12 28.2 10 31.5 10c5 0 8.5 4 8.5 9 0 12-16 21-16 21Z"/><path d="M12 24h7l3-5 4 9 3-4h7"/>
+  {%- when 'skin' -%}<path d="M27 8c-6 0-11 4.5-11 11 0 2.5.7 4.3 1.7 6L14 30l3.5 1.2V36c0 2 1.5 3.5 3.5 3.5h3V42"/><path d="M27 8c5 0 9 3.5 9 9.5 0 4-2 7-4.5 9.5"/><path d="M33 31.5l1.2-3 1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2Z"/>
+  {%- else -%}<circle cx="24" cy="24" r="14"/>
+{%- endcase -%}
+</svg>

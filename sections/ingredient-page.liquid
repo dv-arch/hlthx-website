@@ -1,0 +1,35 @@
+{%- comment -%}
+  An ingredient's own page (/pages/ingredient/<handle>), from its "Ingredient" metaobject entry.
+{%- endcomment -%}
+{%- liquid
+  assign ing = metaobject
+  assign sys_values = shop.metaobjects.body_system.values
+  assign sysmap = '|'
+  for s in sys_values
+    for r in s.ingredients.value
+      assign sysmap = sysmap | append: r.handle | append: '@' | append: s.handle | append: '|'
+    endfor
+  endfor
+  assign hub = section.settings.hub_link | default: '/pages/ingredients'
+-%}
+<section class="mo-page">
+  <div class="wrap">
+    <a class="mo-back" href="{{ hub }}#ing-{{ ing.handle }}">&larr; All ingredients</a>
+    {% render 'ingredient-card', ing: ing, systems: sys_values, sysmap: sysmap, full: true, tag: 'h1' %}
+    {%- if ing.card_image.value != blank -%}
+    <figure class="mo-card-img">{{ ing.card_image.value | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 1180px) 1100px, 100vw', alt: ing.name.value }}</figure>
+    {%- endif -%}
+    {%- if section.settings.cta != blank -%}<p><a class="btn btn-red" href="{{ section.settings.cta_link | default: '/pages/pre-book' }}">{{ section.settings.cta }} &rarr;</a></p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Ingredient details",
+  "settings": [
+    { "type": "paragraph", "content": "The text on this page comes from the ingredient's entry in Content > Metaobjects > Ingredient." },
+    { "type": "text", "id": "hub_link", "label": "Ingredients page address", "default": "/pages/ingredients" },
+    { "type": "text", "id": "cta", "label": "Button (optional)", "default": "Pre-book now" },
+    { "type": "text", "id": "cta_link", "label": "Button link", "default": "/pages/pre-book" }
+  ]
+}
+{% endschema %}

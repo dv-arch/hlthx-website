@@ -1,0 +1,168 @@
+{%- comment -%}
+  The Ingredients page: the 8 body systems, then every ingredient with its form, dose, %RDA and what it does.
+  All content comes from Content > Metaobjects in the Shopify admin:
+    - "Body system" entries (name, description, icon, order, key ingredients, optional dedicated page)
+    - "Ingredient" entries (name, form, group, amount, %RDA, what it does, benefits)
+  Editing an entry there updates this page; no code change needed. Only the headings below are set in Customize.
+{%- endcomment -%}
+{%- liquid
+  assign sys_values = shop.metaobjects.body_system.values
+  assign order = ''
+  for p in (1..30)
+    for s in sys_values
+      assign pos = s.position.value | plus: 0
+      if pos == p
+        assign order = order | append: s.handle | append: ','
+      endif
+    endfor
+  endfor
+  for s in sys_values
+    assign pos = s.position.value | plus: 0
+    if pos < 1 or pos > 30
+      assign order = order | append: s.handle | append: ','
+    endif
+  endfor
+  assign order = order | split: ','
+  assign sysmap = '|'
+  for s in sys_values
+    for r in s.ingredients.value
+      assign sysmap = sysmap | append: r.handle | append: '@' | append: s.handle | append: '|'
+    endfor
+  endfor
+  assign groups = 'Vitamins,Minerals,Electrolytes,Amino acids,Gut & digestion,Botanicals & specialty' | split: ','
+-%}
+<section class="ix" id="ingredients-top">
+  <div class="wrap">
+    <div class="wb-head ix__head">
+      {%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1>{{ section.settings.heading }}{% if section.settings.accent != blank %} <em>{{ section.settings.accent }}</em>{% endif %}</h1>
+      {%- if section.settings.text != blank -%}<p class="lede">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    {%- if section.settings.show_stats -%}
+    <ul class="ix__stats" aria-label="In every sachet">
+      <li><b>80+</b><span>ingredients</span></li>
+      <li><b>10+</b><span>functional blends</span></li>
+      <li><b>18</b><span>billion CFU probiotic complex</span></li>
+    </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="ix-sys" id="body-systems" aria-labelledby="ix-sys-h">
+  <div class="wrap">
+    <div class="wb-head">
+      <p class="wb-eyebrow">{{ section.settings.systems_eyebrow }}</p>
+      <h2 id="ix-sys-h">{{ section.settings.systems_heading }}</h2>
+    </div>
+    <div class="ix-sys__grid">
+      {%- for h in order -%}
+        {%- if h == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign s = shop.metaobjects.body_system[h] -%}
+        {%- if s == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign href = s.system.url -%}{%- if s.page.value != blank -%}{%- assign href = s.page.value.url -%}{%- endif -%}
+        <article class="sys" id="sys-{{ s.handle }}">
+          <div class="sys__top">
+            <span class="sys__icon">{% render 'icon-system', icon: s.icon.value %}</span>
+            <h3>{{ s.name.value | escape }}</h3>
+          </div>
+          {%- if s.description.value != blank -%}<p class="sys__desc">{{ s.description.value | escape }}</p>{%- endif -%}
+          {%- if s.ingredients.value != blank -%}
+          <p class="sys__label">Key ingredients in HLTHX&trade;</p>
+          <ul class="sys__ings">
+            {%- for r in s.ingredients.value -%}<li><a href="#ing-{{ r.handle }}" data-sys-filter="{{ s.handle }}">{{ r.name.value | escape }}{% if r.amount.value != blank %} <span>({{ r.amount.value | escape }})</span>{% endif %}</a></li>{%- endfor -%}
+          </ul>
+          {%- endif -%}
+          <div class="sys__go">
+            <a class="btn" href="#library" data-sys-filter="{{ s.handle }}">See {{ s.ingredients.value.size }} ingredients</a>
+            {%- if href != blank -%}<a class="sys__page" href="{{ href }}">{{ s.name.value | escape }} page &rarr;</a>{%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<section class="ix-lib" id="library" aria-labelledby="ix-lib-h">
+  <div class="wrap">
+    <div class="wb-head">
+      <p class="wb-eyebrow">{{ section.settings.library_eyebrow }}</p>
+      <h2 id="ix-lib-h">{{ section.settings.library_heading }}</h2>
+      {%- if section.settings.library_text != blank -%}<p class="muted">{{ section.settings.library_text }}</p>{%- endif -%}
+    </div>
+    <div class="ix-filter" role="toolbar" aria-label="Show ingredients for">
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+      {%- for h in order -%}
+        {%- if h == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign s = shop.metaobjects.body_system[h] -%}
+        {%- if s == blank -%}{%- continue -%}{%- endif -%}
+        <button type="button" class="chip" data-filter="{{ s.handle }}" aria-pressed="false">{{ s.name.value | escape }}</button>
+      {%- endfor -%}
+    </div>
+    <p class="ix-count" aria-live="polite" data-count></p>
+    {%- paginate shop.metaobjects.ingredient.values by 250 -%}
+    {%- assign ing_values = shop.metaobjects.ingredient.values -%}
+    {%- for g in groups -%}
+      {%- capture cards -%}
+        {%- for ing in ing_values -%}
+          {%- if ing.group.value == g -%}{% render 'ingredient-card', ing: ing, systems: sys_values, sysmap: sysmap %}{%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if cards != blank -%}
+      <div class="ix-group" data-group>
+        <h3 class="ix-group__h">{{ g }}</h3>
+        <div class="ix-grid">{{ cards }}</div>
+      </div>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- capture cards -%}
+      {%- for ing in ing_values -%}
+        {%- unless groups contains ing.group.value -%}{% render 'ingredient-card', ing: ing, systems: sys_values, sysmap: sysmap %}{%- endunless -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if cards != blank -%}
+    <div class="ix-group" data-group>
+      <h3 class="ix-group__h">More ingredients</h3>
+      <div class="ix-grid">{{ cards }}</div>
+    </div>
+    {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{%- if section.settings.research_heading != blank -%}
+<section class="ix-research">
+  <div class="wrap">
+    <p class="ix-research__h"><span aria-hidden="true">&#10003;</span> {{ section.settings.research_heading }}</p>
+    {%- if section.settings.research_text != blank -%}<p>{{ section.settings.research_text }}</p>{%- endif -%}
+    {%- if section.settings.cta != blank -%}<a class="btn btn-red" href="{{ section.settings.cta_link | default: '/pages/pre-book' }}">{{ section.settings.cta }} &rarr;</a>{%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+<script src="{{ 'hlthx-ingredients.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Ingredients hub",
+  "settings": [
+    { "type": "paragraph", "content": "Body systems and ingredients are edited in Content > Metaobjects. These settings only change the headings." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "HLTHX™ ingredients" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "8 body systems." },
+    { "type": "text", "id": "accent", "label": "Heading (red)", "default": "One daily nutrition." },
+    { "type": "textarea", "id": "text", "label": "Intro", "default": "A comprehensive blend of science-backed nutrients and ingredients to support eight key systems for everyday health and wellbeing." },
+    { "type": "checkbox", "id": "show_stats", "label": "Show 80+ / 10+ / 18 figures", "default": true },
+    { "type": "header", "content": "Body systems" },
+    { "type": "text", "id": "systems_eyebrow", "label": "Eyebrow", "default": "Start with the body" },
+    { "type": "text", "id": "systems_heading", "label": "Heading", "default": "What each body system needs" },
+    { "type": "header", "content": "Ingredient library" },
+    { "type": "text", "id": "library_eyebrow", "label": "Eyebrow", "default": "Every ingredient" },
+    { "type": "text", "id": "library_heading", "label": "Heading", "default": "Form, dose and what it does" },
+    { "type": "textarea", "id": "library_text", "label": "Text", "default": "Pick a body system to see the ingredients that support it." },
+    { "type": "header", "content": "Closing band" },
+    { "type": "text", "id": "research_heading", "label": "Heading", "default": "Backed by scientific research" },
+    { "type": "textarea", "id": "research_text", "label": "Text", "default": "Each ingredient is included at a purposeful amount and is supported by published research for its role in one or more of these body systems." },
+    { "type": "text", "id": "cta", "label": "Button (optional)", "default": "Pre-book now" },
+    { "type": "text", "id": "cta_link", "label": "Button link", "default": "/pages/pre-book" }
+  ],
+  "presets": [{ "name": "Ingredients hub" }]
+}
+{% endschema %}

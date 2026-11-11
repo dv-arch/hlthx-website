@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amylase | HLTHX preview</title><meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/ingredients-preview/assets/hlthx.css"><style>
+.pb-pop{border:0;border-radius:14px;padding:clamp(24px,5vw,40px);width:min(92vw,460px);background:var(--surface);color:var(--ink);box-shadow:0 30px 80px rgba(20,18,16,.25)}
+.pb-pop::backdrop{background:rgba(20,18,16,.55)}
+.pb-pop[open]{display:grid;gap:16px}
+.pb-pop h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+.pb-pop-close{position:absolute;top:8px;right:8px;margin:0}
+.pb-pop-close button{background:none;border:0;font-size:1.8rem;line-height:1;width:44px;height:44px;cursor:pointer;color:var(--muted)}
+.pb-pop-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pb-pop-actions .btn-red{flex:1;min-width:180px}
+
+.pv{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:90;padding:.7em 1.2em;border-radius:999px;background:rgba(20,20,20,.88);color:#fff;font:500 .76rem Montserrat,sans-serif;white-space:nowrap;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}</style>
+<script>if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('mo');setTimeout(function(){document.documentElement.classList.remove('mo')},3000)}</script>
+</head><body>
+<div class="announce"><a href="https://hlthx-store.myshopify.com/pages/pre-book" style="text-decoration:none">Pre-book now for our special launch &rarr;</a></div><header class="top">
+  <div class="wrap">
+    <a class="logo" href="https://hlthx-store.myshopify.com/" aria-label="HLTHX home">HLTH<span class="x">X</span><sup>™</sup></a>
+    <nav class="nav" aria-label="Main"><a class="nav-prebook" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a><a class="btn btn-sm" href="https://hlthx-store.myshopify.com/cart">Cart <span class="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+<dialog class="pb-pop" id="pb-pop" aria-labelledby="pb-pop-title" data-days="7" data-delay="3">
+  <form method="dialog" class="pb-pop-close"><button type="submit" aria-label="Close">&times;</button></form>
+  <p class="eyebrow">Special launch</p>
+  <h2 id="pb-pop-title">Pre-book HLTHX™ for our special launch</h2><p class="muted">Be first to get Daily Complete Nutrition. Pre-booking is free and takes under a minute.</p><p class="tagline sm">Feel better.<br>Every day.</p>
+  <div class="pb-pop-actions">
+    <a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book" data-pb-go>Pre-book now</a>
+    <button type="button" class="btn" data-pb-later>Maybe later</button>
+  </div>
+</dialog>
+<script>
+(function(){
+  var d = document.getElementById('pb-pop');
+  if (!d || typeof d.showModal !== 'function') return;
+  var KEY = 'hlthx-prebook-popup', days = +d.dataset.days || 7;
+  function seen(){ try { var t = +localStorage.getItem(KEY); return t && Date.now() - t < days * 864e5; } catch(e) { return false; } }
+  function remember(){ try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
+  if (!d.hasAttribute('data-preview') && (seen() || window.Shopify && Shopify.designMode)) return;
+  d.addEventListener('close', remember);
+  d.querySelector('[data-pb-later]').addEventListener('click', function(){ d.close(); });
+  d.querySelector('[data-pb-go]').addEventListener('click', remember);
+  d.addEventListener('click', function(e){ if (e.target === d) d.close(); });
+  setTimeout(function(){ if (!d.open) d.showModal(); }, (+d.dataset.delay || 0) * 1000);
+})();
+</script>
+<main id="MainContent"><section class="mo-page">
+  <div class="wrap">
+    <a class="mo-back" href="/ingredients-preview/#ing-amylase">&larr; All ingredients</a>
+    <article class="ing ing--full" id="ing-amylase" data-systems="gut-digestive">
+  <div class="ing__top">
+    <h1 class="ing__name">Amylase</h1><p class="ing__form">Digestive enzyme</p></div>
+  <dl class="ing__dose">
+    <div><dt>Amount per serving</dt><dd class="ing__amt">25 mg</dd></div>
+    <div><dt>%RDA</dt><dd><span aria-label="No RDA set">&mdash;</span></dd></div>
+  </dl><div class="ing__foot"><ul class="ing__sys" aria-label="Supports"><li><a href="/ingredients-preview/body-system/gut-digestive" data-sys-link="gut-digestive">Gut &amp; Digestive Health</a></li></ul></div>
+</article><p><a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book now &rarr;</a></p></div>
+</section></main>
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div style="display:grid;gap:10px">
+        <span class="logo" style="font-size:1.2rem;color:var(--ink)">HLTH<span class="x">X</span><sup>™</sup></span><p class="tagline sm" style="font-size:.72rem">Feel better.<br>Every day.</p>
+</div><div><h4>Shop</h4><ul><li><a href="https://hlthx-store.myshopify.com/#shop">30-Day Box</a></li><li><a href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a></li></ul></div><div><h4>Learn</h4><ul><li><a href="https://hlthx-store.myshopify.com/#formula">Inside the Formula</a></li><li><a href="https://hlthx-store.myshopify.com/#quality">Quality</a></li><li><a href="https://hlthx-store.myshopify.com/#ritual">How to use</a></li></ul></div><div><h4>Help</h4><ul><li><a href="https://hlthx-store.myshopify.com/#faq">FAQ</a></li><li><a href="https://hlthx-store.myshopify.com/pages/contact">Contact us</a></li></ul></div></div>
+    <p>This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p>
+    <p>© 2026 HLTHX. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="pv">Preview &middot; content from Shopify &rsaquo; Metaobjects</div>
+<script src="/ingredients-preview/assets/hlthx.js" defer></script><script src="/ingredients-preview/assets/motion.min.js" defer></script><script src="/ingredients-preview/assets/hlthx-motion.js" defer></script>
+</body></html>

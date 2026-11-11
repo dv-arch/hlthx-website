@@ -59,3 +59,19 @@ When the client sends the exact font, add it to `assets/` and change `--display`
 ## `web/`
 Static design preview that was hosted on Vercel before the move to Shopify. Shopify ignores it; it is kept only
 as a reference.
+
+## Ingredients and body systems
+All ingredient and body-system content lives in the Shopify admin under **Content → Metaobjects**:
+- **Ingredient**: name, form, group, amount per serving, %RDA, RDA basis, what it does, benefits, optional card image.
+  "Internal note" is never shown on the site.
+- **Body system**: name, description, icon, order (1–8), key ingredients (picked from the Ingredient list),
+  optional dedicated page.
+
+Editing an entry updates the site straight away. Pages that use this content:
+- **Ingredients page:** Online Store → Pages → Add page "Ingredients" and pick the template `ingredients`.
+- **Each ingredient** gets its own page at `/pages/ingredient/<handle>`, and **each body system** at
+  `/pages/body-system/<handle>` (templates in `templates/metaobject/`).
+- The foundation cards on the home and Whole Body Nutrition pages link to the body-system pages.
+
+`tools/ingredients/ingredients.json` is the data first entered from the client's cards (kept for reference;
+the admin is the source of truth now). `concept/ingredients-preview/` is the static preview made from it.
