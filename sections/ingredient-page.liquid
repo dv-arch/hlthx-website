@@ -7,14 +7,14 @@
   assign sysmap = '|'
   for s in sys_values
     for r in s.ingredients.value
-      assign sysmap = sysmap | append: r.handle | append: '@' | append: s.handle | append: '|'
+      assign sysmap = sysmap | append: r.system.handle | append: '@' | append: s.system.handle | append: '|'
     endfor
   endfor
   assign hub = section.settings.hub_link | default: '/pages/ingredients'
 -%}
 <section class="mo-page">
   <div class="wrap">
-    <a class="mo-back" href="{{ hub }}#ing-{{ ing.handle }}">&larr; All ingredients</a>
+    <a class="mo-back" href="{{ hub }}#ing-{{ ing.system.handle }}">&larr; All ingredients</a>
     {% render 'ingredient-card', ing: ing, systems: sys_values, sysmap: sysmap, full: true, tag: 'h1' %}
     {%- if ing.card_image.value != blank -%}
     <figure class="mo-card-img">{{ ing.card_image.value | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 1180px) 1100px, 100vw', alt: ing.name.value }}</figure>

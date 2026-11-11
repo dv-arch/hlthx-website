@@ -12,21 +12,21 @@
     for s in sys_values
       assign pos = s.position.value | plus: 0
       if pos == p
-        assign order = order | append: s.handle | append: ','
+        assign order = order | append: s.system.handle | append: ','
       endif
     endfor
   endfor
   for s in sys_values
     assign pos = s.position.value | plus: 0
     if pos < 1 or pos > 30
-      assign order = order | append: s.handle | append: ','
+      assign order = order | append: s.system.handle | append: ','
     endif
   endfor
   assign order = order | split: ','
   assign sysmap = '|'
   for s in sys_values
     for r in s.ingredients.value
-      assign sysmap = sysmap | append: r.handle | append: '@' | append: s.handle | append: '|'
+      assign sysmap = sysmap | append: r.system.handle | append: '@' | append: s.system.handle | append: '|'
     endfor
   endfor
   assign groups = 'Vitamins,Minerals,Electrolytes,Amino acids,Gut & digestion,Botanicals & specialty' | split: ','
@@ -60,7 +60,7 @@
         {%- assign s = shop.metaobjects.body_system[h] -%}
         {%- if s == blank -%}{%- continue -%}{%- endif -%}
         {%- assign href = s.system.url -%}{%- if s.page.value != blank -%}{%- assign href = s.page.value.url -%}{%- endif -%}
-        <article class="sys" id="sys-{{ s.handle }}">
+        <article class="sys" id="sys-{{ s.system.handle }}">
           <div class="sys__top">
             <span class="sys__icon">{% render 'icon-system', icon: s.icon.value %}</span>
             <h3>{{ s.name.value | escape }}</h3>
@@ -69,11 +69,11 @@
           {%- if s.ingredients.value != blank -%}
           <p class="sys__label">Key ingredients in HLTHX&trade;</p>
           <ul class="sys__ings">
-            {%- for r in s.ingredients.value -%}<li><a href="#ing-{{ r.handle }}" data-sys-filter="{{ s.handle }}">{{ r.name.value | escape }}{% if r.amount.value != blank %} <span>({{ r.amount.value | escape }})</span>{% endif %}</a></li>{%- endfor -%}
+            {%- for r in s.ingredients.value -%}<li><a href="#ing-{{ r.system.handle }}" data-sys-filter="{{ s.system.handle }}">{{ r.name.value | escape }}{% if r.amount.value != blank %} <span>({{ r.amount.value | escape }})</span>{% endif %}</a></li>{%- endfor -%}
           </ul>
           {%- endif -%}
           <div class="sys__go">
-            <a class="btn" href="#library" data-sys-filter="{{ s.handle }}">See {{ s.ingredients.value.size }} ingredients</a>
+            <a class="btn" href="#library" data-sys-filter="{{ s.system.handle }}">See {{ s.ingredients.value.size }} ingredients</a>
             {%- if href != blank -%}<a class="sys__page" href="{{ href }}">{{ s.name.value | escape }} page &rarr;</a>{%- endif -%}
           </div>
         </article>
@@ -95,7 +95,7 @@
         {%- if h == blank -%}{%- continue -%}{%- endif -%}
         {%- assign s = shop.metaobjects.body_system[h] -%}
         {%- if s == blank -%}{%- continue -%}{%- endif -%}
-        <button type="button" class="chip" data-filter="{{ s.handle }}" aria-pressed="false">{{ s.name.value | escape }}</button>
+        <button type="button" class="chip" data-filter="{{ s.system.handle }}" aria-pressed="false">{{ s.name.value | escape }}</button>
       {%- endfor -%}
     </div>
     <p class="ix-count" aria-live="polite" data-count></p>
