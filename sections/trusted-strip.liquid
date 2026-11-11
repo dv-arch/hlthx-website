@@ -1,0 +1,60 @@
+{%- comment -%}
+  Home-page strip: up to three people from the "Expert" metaobject (consent ticked, lowest "Order" first),
+  linking to the full Trusted by page. Hidden while nobody is published.
+{%- endcomment -%}
+{%- liquid
+  assign xs = shop.metaobjects.expert.values
+  assign order = ''
+  assign n = 0
+  assign max = section.settings.count | default: 3
+  for p in (1..60)
+    for e in xs
+      assign pos = e.position.value | plus: 0
+      if pos == p and e.consent.value == true and n < max
+        assign order = order | append: e.system.handle | append: ','
+        assign n = n | plus: 1
+      endif
+    endfor
+  endfor
+  for e in xs
+    assign pos = e.position.value | plus: 0
+    if e.consent.value == true and n < max
+      if pos < 1 or pos > 60
+        assign order = order | append: e.system.handle | append: ','
+        assign n = n | plus: 1
+      endif
+    endif
+  endfor
+  assign order = order | split: ','
+-%}
+{%- if n > 0 -%}
+<section class="tb-strip" id="trusted">
+  <div class="wrap">
+    <div class="wb-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2>{{ section.settings.heading }}{% if section.settings.accent != blank %} <em>{{ section.settings.accent }}</em>{% endif %}</h2>
+      {%- if section.settings.text != blank -%}<p class="muted">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div class="xp-grid xp-grid--3">
+      {%- for h in order -%}{%- if h == blank -%}{%- continue -%}{%- endif -%}{% render 'expert-card', e: shop.metaobjects.expert[h] %}{%- endfor -%}
+    </div>
+    {%- if section.settings.cta != blank -%}<p class="tb-strip__cta"><a class="btn" href="{{ section.settings.cta_link | default: '/pages/trusted-by' }}">{{ section.settings.cta }} &rarr;</a></p>{%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Trusted by (strip)",
+  "settings": [
+    { "type": "paragraph", "content": "Shows people from Content > Metaobjects > Expert whose 'Consent received' box is ticked." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviewed by doctors" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Formulated with input from" },
+    { "type": "text", "id": "accent", "label": "Heading (red)", "default": "doctors and nutrition experts." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Trusted by athletes and everyday achievers who strive for better." },
+    { "type": "range", "id": "count", "label": "People shown", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "text", "id": "cta", "label": "Button", "default": "Meet the people behind HLTHX™" },
+    { "type": "text", "id": "cta_link", "label": "Button link", "default": "/pages/trusted-by" }
+  ],
+  "presets": [{ "name": "Trusted by (strip)" }]
+}
+{% endschema %}

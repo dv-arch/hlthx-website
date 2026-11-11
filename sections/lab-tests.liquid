@@ -1,0 +1,82 @@
+{%- comment -%}
+  Third-party lab results page. What is tested comes from the blocks below (Customize);
+  the reports come from the "Lab report" metaobject entries (Content > Metaobjects > Lab report), newest test date first.
+{%- endcomment -%}
+{%- liquid
+  assign rs = shop.metaobjects.lab_report.values
+  assign dates = ''
+  for r in rs
+    assign d = r.tested_on.value | date: '%Y%m%d'
+    assign dates = dates | append: d | append: '~' | append: r.system.handle | append: ','
+  endfor
+  assign dates = dates | split: ',' | sort | reverse
+-%}
+<section class="lt" id="lab-tests">
+  <div class="wrap">
+    <div class="wb-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1>{{ section.settings.heading }}{% if section.settings.accent != blank %} <em>{{ section.settings.accent }}</em>{% endif %}</h1>
+      {%- if section.settings.text != blank -%}<p class="lede">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    {%- if section.blocks.size > 0 -%}
+    <h2 class="ix-group__h">{{ section.settings.tests_heading }}</h2>
+    <ul class="lt-tests">
+      {%- for block in section.blocks -%}
+      <li {{ block.shopify_attributes }}><span class="lt-tests__n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  </div>
+</section>
+<section class="lt-reports" aria-labelledby="lt-reports-h">
+  <div class="wrap">
+    <h2 id="lt-reports-h">{{ section.settings.reports_heading }}</h2>
+    {%- if dates.size > 0 -%}
+    <div class="lt-list">
+      {%- for x in dates -%}
+        {%- assign h = x | split: '~' | last -%}
+        {%- if h == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign r = shop.metaobjects.lab_report[h] -%}
+        <article class="lt-r">
+          <div class="lt-r__head">
+            <div><p class="lt-r__label">Batch</p><p class="lt-r__batch">{{ r.batch.value | escape }}</p></div>
+            <div><p class="lt-r__label">Tested</p><p>{{ r.tested_on.value | date: '%d %b %Y' }}</p></div>
+            <div><p class="lt-r__label">Laboratory</p><p>{{ r.lab.value | escape }}{% if r.accreditation.value != blank %} <span class="lt-r__acc">{{ r.accreditation.value | escape }}</span>{% endif %}</p></div>
+          </div>
+          {%- if r.results.value != blank -%}
+          <ul class="lt-r__results">
+            {%- for line in r.results.value -%}
+              {%- assign parts = line | split: ':' -%}
+              <li><span>{{ parts[0] | strip | escape }}</span>{% if parts.size > 1 %}<b>{{ line | remove_first: parts[0] | remove_first: ':' | strip | escape }}</b>{% endif %}</li>
+            {%- endfor -%}
+          </ul>
+          {%- endif -%}
+          {%- if r.certificate.value != blank -%}<a class="btn btn-sm" href="{{ r.certificate.value.url }}" target="_blank" rel="noopener">Download certificate (PDF)</a>{%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- else -%}
+    <p class="tb__empty">{{ section.settings.empty_text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Lab test results",
+  "settings": [
+    { "type": "paragraph", "content": "Reports are added in Content > Metaobjects > Lab report, one entry per batch." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Third-party tested" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Independently tested." },
+    { "type": "text", "id": "accent", "label": "Heading (red)", "default": "Openly shared." },
+    { "type": "textarea", "id": "text", "label": "Intro", "default": "HLTHX™ is tested by an independent, accredited laboratory, not by us. Every report is published here in full, so you can check exactly what is in your sachet." },
+    { "type": "text", "id": "tests_heading", "label": "Tests heading", "default": "What the lab checks" },
+    { "type": "text", "id": "reports_heading", "label": "Reports heading", "default": "Lab reports by batch" },
+    { "type": "text", "id": "empty_text", "label": "Text while no report is published", "default": "Lab reports will be published here before launch." }
+  ],
+  "blocks": [{ "type": "test", "name": "Test", "limit": 8, "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Label claim" },
+    { "type": "textarea", "id": "text", "label": "Text" }
+  ] }],
+  "presets": [{ "name": "Lab test results" }]
+}
+{% endschema %}

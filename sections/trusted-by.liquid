@@ -1,0 +1,102 @@
+{%- comment -%}
+  "Trusted by" page: doctors, nutrition experts, athletes and everyday achievers, from the "Expert" metaobject entries.
+  An entry shows only when its "Consent received" box is ticked. Order: the entry's "Order" number (1 first).
+{%- endcomment -%}
+{%- liquid
+  assign xs = shop.metaobjects.expert.values
+  assign order = ''
+  for p in (1..60)
+    for e in xs
+      assign pos = e.position.value | plus: 0
+      if pos == p and e.consent.value == true
+        assign order = order | append: e.system.handle | append: ','
+      endif
+    endfor
+  endfor
+  for e in xs
+    assign pos = e.position.value | plus: 0
+    if e.consent.value == true
+      if pos < 1 or pos > 60
+        assign order = order | append: e.system.handle | append: ','
+      endif
+    endif
+  endfor
+  assign order = order | split: ','
+  assign cats = ''
+  assign cat_count = 0
+  for h in order
+    if h == blank
+      continue
+    endif
+    assign e = shop.metaobjects.expert[h]
+    assign c = e.category.value | default: 'Doctor'
+    unless cats contains c
+      assign cats = cats | append: c | append: '|'
+      assign cat_count = cat_count | plus: 1
+    endunless
+  endfor
+  assign cats = cats | split: '|'
+  assign all_cats = 'Doctor|Nutrition expert|Athlete|Everyday achiever' | split: '|'
+  assign labels = 'Doctors|Nutrition experts|Athletes|Everyday achievers' | split: '|'
+-%}
+<section class="tb" id="trusted-by">
+  <div class="wrap">
+    <div class="wb-head tb__head">
+      {%- if section.settings.eyebrow != blank -%}<p class="wb-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1>{{ section.settings.heading }}{% if section.settings.accent != blank %} <em>{{ section.settings.accent }}</em>{% endif %}</h1>
+      {%- if section.settings.text != blank -%}<p class="lede">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    {%- if order.size > 0 -%}
+      {%- if cat_count > 1 -%}
+      <div class="ix-filter tb__filter" role="toolbar" aria-label="Show">
+        <button type="button" class="chip" data-filter="all" aria-pressed="true">Everyone</button>
+        {%- for c in all_cats -%}{%- if cats contains c -%}<button type="button" class="chip" data-filter="{{ c | handleize }}" aria-pressed="false">{{ labels[forloop.index0] }}</button>{%- endif -%}{%- endfor -%}
+      </div>
+      {%- endif -%}
+      <div class="xp-grid" data-xp-grid>
+        {%- for h in order -%}{%- if h == blank -%}{%- continue -%}{%- endif -%}{% render 'expert-card', e: shop.metaobjects.expert[h] %}{%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="tb__empty">{{ section.settings.empty_text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{%- if section.settings.lab_text != blank -%}
+<section class="tb-lab">
+  <div class="wrap">
+    <p class="tb-lab__h">{{ section.settings.lab_heading }}</p>
+    <p>{{ section.settings.lab_text }}</p>
+    <a class="btn" href="{{ section.settings.lab_link | default: '/pages/lab-tests' }}">{{ section.settings.lab_cta }} &rarr;</a>
+  </div>
+</section>
+{%- endif -%}
+<script>
+(function(){
+  var bar = document.querySelector('.tb__filter'), grid = document.querySelector('[data-xp-grid]');
+  if (!bar || !grid) return;
+  var chips = [].slice.call(bar.querySelectorAll('.chip')), cards = [].slice.call(grid.querySelectorAll('.xp'));
+  chips.forEach(function(c){ c.addEventListener('click', function(){
+    var k = c.dataset.filter;
+    chips.forEach(function(x){ x.setAttribute('aria-pressed', String(x === c)); });
+    cards.forEach(function(card){ card.hidden = k !== 'all' && card.dataset.cat !== k; });
+  }); });
+})();
+</script>
+{% schema %}
+{
+  "name": "Trusted by",
+  "settings": [
+    { "type": "paragraph", "content": "People are added in Content > Metaobjects > Expert. An entry appears only when 'Consent received' is ticked. Doctors are shown as 'Reviewed by' or 'Formulated with input from', never as recommending the product." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviewed by doctors · Formulated with input from experts" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Trusted by athletes, nutrition experts" },
+    { "type": "text", "id": "accent", "label": "Heading (red)", "default": "and everyday achievers who strive for better." },
+    { "type": "textarea", "id": "text", "label": "Intro", "default": "HLTHX™ is reviewed by doctors and formulated with input from nutrition experts. Meet some of the people behind it, and some of the people who take it every day." },
+    { "type": "text", "id": "empty_text", "label": "Text while nobody is published yet", "default": "Coming soon: the doctors, experts and athletes behind HLTHX™." },
+    { "type": "header", "content": "Lab results band" },
+    { "type": "text", "id": "lab_heading", "label": "Heading", "default": "Don't just take our word for it." },
+    { "type": "textarea", "id": "lab_text", "label": "Text", "default": "HLTHX™ is tested by an independent, accredited laboratory. See the results for yourself." },
+    { "type": "text", "id": "lab_cta", "label": "Button", "default": "See the lab results" },
+    { "type": "text", "id": "lab_link", "label": "Button link", "default": "/pages/lab-tests" }
+  ]
+}
+{% endschema %}

@@ -298,8 +298,9 @@
         "d4"
       ]
     },
-    "experts": {
-      "type": "experts"
+    "trusted": {
+      "type": "trusted-strip",
+      "settings": {}
     },
     "ritual_film": {
       "type": "ritual-film",
@@ -523,7 +524,7 @@
     "formula",
     "foundations",
     "quality",
-    "experts",
+    "trusted",
     "ritual_film",
     "shop",
     "reviews",
