@@ -432,7 +432,7 @@
             "number": "01",
             "title": "Gut & Digestive Health",
             "text": "Digestion, gut microbiome and bowel function.",
-            "link": ""
+            "link": "/pages/body-system/gut-digestive"
           }
         },
         "f2": {
@@ -441,7 +441,7 @@
             "number": "02",
             "title": "Brain & Nervous System",
             "text": "Nervous system function and cognitive processes.",
-            "link": ""
+            "link": "/pages/body-system/brain-nervous"
           }
         },
         "f3": {
@@ -450,7 +450,7 @@
             "number": "03",
             "title": "Energy & Cellular Metabolism",
             "text": "Energy metabolism and cellular functions.",
-            "link": ""
+            "link": "/pages/body-system/energy-metabolism"
           }
         },
         "f4": {
@@ -459,7 +459,7 @@
             "number": "04",
             "title": "Muscles & Electrolyte Balance",
             "text": "Muscle function, contraction and fluid balance.",
-            "link": ""
+            "link": "/pages/body-system/muscle-electrolyte"
           }
         },
         "f5": {
@@ -477,7 +477,7 @@
             "number": "06",
             "title": "Heart & Circulatory Function",
             "text": "Normal cardiovascular and circulatory functions.",
-            "link": ""
+            "link": "/pages/body-system/heart-circulatory"
           }
         },
         "f7": {
@@ -486,7 +486,7 @@
             "number": "07",
             "title": "Immune Function",
             "text": "Normal immune system function.",
-            "link": ""
+            "link": "/pages/body-system/immune"
           }
         },
         "f8": {
@@ -495,7 +495,7 @@
             "number": "08",
             "title": "Skin, Hair & Vision",
             "text": "Nutrients associated with skin, hair and visual function.",
-            "link": ""
+            "link": "/pages/body-system/skin-hair-vision"
           }
         }
       },
