@@ -24,12 +24,13 @@ def defaults(sch): return {s['id']:(s.get('default') if s.get('type') in ('numbe
 settings=defaults([s for g in json.load(open(ROOT+'/config/settings_schema.json')) for s in g.get('settings',[])])
 V=lambda x: {'value':x}
 PH_NAME='Name to confirm'; PH_CRED='Qualification and hospital to confirm'; PH_QUOTE='Quote to come, in their own words and approved by them.'
-rels=['Reviewed by','Formulated with input from','Reviewed by','Formulated with input from']
+PH_ROLE='Role to confirm, e.g. reviewed the formulation for dose and safety.'; PH_DISC='Relationship to confirm, e.g. paid advisor'
+rels=['Formulated with input from','Reviewed by','Formulated with input from','Reviewed by']
 xs={}
 for i in range(4):
     h=f'expert-{i+1}'
     xs[h]={'system':{'handle':h},'name':V(f'{PH_NAME} ({i+1})'),'credential':V(PH_CRED),'category':V('Doctor'),'relationship':V(rels[i]),
-           'photo':V({'src':f'{BASE}/assets/xp{i+1}.jpg'}),'video':V(''),'quote':V(PH_QUOTE),'consent':V(True),'position':V(i+1)}
+           'photo':V({'src':f'{BASE}/assets/xp{i+1}.jpg'}),'video':V(''),'quote':V(''),'role':V(PH_ROLE),'disclosure':V(PH_DISC),'consent':V(True),'position':V(i+1)}
 rs={'example':{'system':{'handle':'example'},'batch':V('Batch number to come'),'tested_on':V('2026-12-01'),'lab':V('Laboratory name to come'),'accreditation':V('NABL'),
      'results':V(['Label claim: Result to come','Heavy metals: Result to come','Microbiology: Result to come','Probiotic count: Result to come']),'certificate':V('')}}
 mo={'expert':dict(xs, values=list(xs.values())),'lab_report':dict(rs, values=list(rs.values()))}
@@ -73,7 +74,7 @@ def page(main, title, path):
 </body></html>'''
     html=re.sub(r'href="/(?!/|trusted-preview)', 'href="'+store+'/', html)
     html=html.replace(store+'/pages/lab-tests', BASE+'/lab-tests').replace(store+'/pages/trusted-by', BASE+'/')
-    for ph in [PH_CRED, PH_QUOTE, 'Batch number to come', 'Laboratory name to come', 'Result to come']+[f'{PH_NAME} ({i+1})' for i in range(4)]:
+    for ph in [PH_CRED, PH_QUOTE, PH_ROLE, PH_DISC, 'Batch number to come', 'Laboratory name to come', 'Result to come']+[f'{PH_NAME} ({i+1})' for i in range(4)]:
         html=html.replace(ph, f'<span class="xp__ph">{ph}</span>')
     open(OUT+path,'w').write(html); return len(re.findall(r'\{\{|\{%', html))
 home=json.load(open(ROOT+'/templates/index.json'))

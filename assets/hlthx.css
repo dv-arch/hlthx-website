@@ -544,3 +544,8 @@ a.wb-fcard:hover{background:#F6EBCB}
 .lt-r__results b{color:#1E7A46;white-space:nowrap}
 .lt-r .btn{justify-self:start}
 @media (max-width:600px){.lt-r__head{grid-template-columns:1fr 1fr}.lt-r__head>div:last-child{grid-column:1/-1}}
+.xp--advisor .xp__body{gap:12px}
+.xp__role{margin:0;font-size:.92rem;line-height:1.55;padding-top:12px;border-top:1px solid var(--line)}
+.xp__role-l{display:block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.xp__disc{margin:0;font-size:.75rem;color:var(--muted)}
+.tb-panel .xp-grid,.tb-people .xp-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
