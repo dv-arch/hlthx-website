@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Home strip | HLTHX preview</title><meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/trusted-preview/assets/hlthx.css"><style>
+.pb-pop{border:0;border-radius:14px;padding:clamp(24px,5vw,40px);width:min(92vw,460px);background:var(--surface);color:var(--ink);box-shadow:0 30px 80px rgba(20,18,16,.25)}
+.pb-pop::backdrop{background:rgba(20,18,16,.55)}
+.pb-pop[open]{display:grid;gap:16px}
+.pb-pop h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+.pb-pop-close{position:absolute;top:8px;right:8px;margin:0}
+.pb-pop-close button{background:none;border:0;font-size:1.8rem;line-height:1;width:44px;height:44px;cursor:pointer;color:var(--muted)}
+.pb-pop-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pb-pop-actions .btn-red{flex:1;min-width:180px}
+
+.pv{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:90;display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(20,20,20,.9);font:500 .76rem Montserrat,sans-serif;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}
+.pv a{color:#fff;text-decoration:none;padding:.6em 1em;border-radius:999px;white-space:nowrap}.pv a[aria-current]{background:#E3A008;color:#1B1203}</style>
+<script>if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('mo');setTimeout(function(){document.documentElement.classList.remove('mo')},3000)}</script>
+</head><body>
+<div class="announce"><a href="https://hlthx-store.myshopify.com/pages/pre-book" style="text-decoration:none">Pre-book now for our special launch &rarr;</a></div><header class="top">
+  <div class="wrap">
+    <a class="logo" href="https://hlthx-store.myshopify.com/" aria-label="HLTHX home">HLTH<span class="x">X</span><sup>™</sup></a>
+    <nav class="nav" aria-label="Main"><a class="nav-prebook" href="https://hlthx-store.myshopify.com/pages/pre-book">Pre-book</a><a class="btn btn-sm" href="https://hlthx-store.myshopify.com/cart">Cart <span class="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+<dialog class="pb-pop" id="pb-pop" aria-labelledby="pb-pop-title" data-days="7" data-delay="3">
+  <form method="dialog" class="pb-pop-close"><button type="submit" aria-label="Close">&times;</button></form>
+  <p class="eyebrow">Special launch</p>
+  <h2 id="pb-pop-title">Pre-book HLTHX™ for our special launch</h2><p class="muted">Be first to get Daily Complete Nutrition. Pre-booking is free and takes under a minute.</p><p class="tagline sm">Feel better.<br>Every day.</p>
+  <div class="pb-pop-actions">
+    <a class="btn btn-red" href="https://hlthx-store.myshopify.com/pages/pre-book" data-pb-go>Pre-book now</a>
+    <button type="button" class="btn" data-pb-later>Maybe later</button>
+  </div>
+</dialog>
+<script>
+(function(){
+  var d = document.getElementById('pb-pop');
+  if (!d || typeof d.showModal !== 'function') return;
+  var KEY = 'hlthx-prebook-popup', days = +d.dataset.days || 7;
+  function seen(){ try { var t = +localStorage.getItem(KEY); return t && Date.now() - t < days * 864e5; } catch(e) { return false; } }
+  function remember(){ try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
+  if (!d.hasAttribute('data-preview') && (seen() || window.Shopify && Shopify.designMode)) return;
+  d.addEventListener('close', remember);
+  d.querySelector('[data-pb-later]').addEventListener('click', function(){ d.close(); });
+  d.querySelector('[data-pb-go]').addEventListener('click', remember);
+  d.addEventListener('click', function(e){ if (e.target === d) d.close(); });
+  setTimeout(function(){ if (!d.open) d.showModal(); }, (+d.dataset.delay || 0) * 1000);
+})();
+</script>
+<main id="MainContent"><section class="tb-strip" id="trusted">
+  <div class="wrap">
+    <div class="wb-head"><p class="wb-eyebrow">Our advisory panel</p><h2>Formulated with input from <em>doctors and nutrition experts.</em></h2><p class="muted">Trusted by athletes and everyday achievers who strive for better.</p></div>
+    <div class="xp-grid xp-grid--3"><article class="xp xp--advisor" data-cat="doctor">
+  <div class="xp__media"><img src="/trusted-preview/assets/xp1.jpg" alt="<span class="xp__ph">Name to confirm (1)</span>" loading="lazy"></div>
+  <div class="xp__body">
+    <p class="xp__rel">Formulated with input from</p><div class="xp__who">
+        <p class="xp__name"><span class="xp__ph">Name to confirm (1)</span></p><p class="xp__cred"><span class="xp__ph">Qualification and hospital to confirm</span></p></div><p class="xp__role"><span class="xp__role-l">Role</span><span class="xp__ph">Role to confirm, e.g. reviewed the formulation for dose and safety.</span></p><p class="xp__disc"><span class="xp__ph">Relationship to confirm, e.g. paid advisor</span></p></div>
+</article><article class="xp xp--advisor" data-cat="doctor">
+  <div class="xp__media"><img src="/trusted-preview/assets/xp2.jpg" alt="<span class="xp__ph">Name to confirm (2)</span>" loading="lazy"></div>
+  <div class="xp__body">
+    <p class="xp__rel">Reviewed by</p><div class="xp__who">
+        <p class="xp__name"><span class="xp__ph">Name to confirm (2)</span></p><p class="xp__cred"><span class="xp__ph">Qualification and hospital to confirm</span></p></div><p class="xp__role"><span class="xp__role-l">Role</span><span class="xp__ph">Role to confirm, e.g. reviewed the formulation for dose and safety.</span></p><p class="xp__disc"><span class="xp__ph">Relationship to confirm, e.g. paid advisor</span></p></div>
+</article><article class="xp xp--advisor" data-cat="doctor">
+  <div class="xp__media"><img src="/trusted-preview/assets/xp3.jpg" alt="<span class="xp__ph">Name to confirm (3)</span>" loading="lazy"></div>
+  <div class="xp__body">
+    <p class="xp__rel">Formulated with input from</p><div class="xp__who">
+        <p class="xp__name"><span class="xp__ph">Name to confirm (3)</span></p><p class="xp__cred"><span class="xp__ph">Qualification and hospital to confirm</span></p></div><p class="xp__role"><span class="xp__role-l">Role</span><span class="xp__ph">Role to confirm, e.g. reviewed the formulation for dose and safety.</span></p><p class="xp__disc"><span class="xp__ph">Relationship to confirm, e.g. paid advisor</span></p></div>
+</article></div><p class="tb-strip__cta"><a class="btn" href="/trusted-preview/">Meet the people behind HLTHX™ &rarr;</a></p></div>
+</section></main>
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div style="display:grid;gap:10px">
+        <span class="logo" style="font-size:1.2rem;color:var(--ink)">HLTH<span class="x">X</span><sup>™</sup></span><p class="tagline sm" style="font-size:.72rem">Feel better.<br>Every day.</p>
+</div><div><h4>Shop</h4><ul></ul></div><div><h4>Learn</h4><ul></ul></div><div><h4>Help</h4><ul></ul></div></div>
+    <p>This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use if you are pregnant, nursing, taking medication or have a medical condition.</p>
+    <p>© 2026 HLTHX. All rights reserved.</p>
+  </div>
+</footer>
+
+<nav class="pv" aria-label="Preview pages"><a href="/trusted-preview/">Trusted by</a><a href="/trusted-preview/home" aria-current="page">Home strip</a><a href="/trusted-preview/lab-tests">Lab results</a></nav>
+<script src="/trusted-preview/assets/hlthx.js" defer></script><script src="/trusted-preview/assets/motion.min.js" defer></script><script src="/trusted-preview/assets/hlthx-motion.js" defer></script>
+</body></html>

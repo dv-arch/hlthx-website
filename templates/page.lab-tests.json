@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "lab-tests",
+      "blocks": {
+        "t1": { "type": "test", "settings": { "title": "Label claim", "text": "Each vitamin, mineral and key ingredient is measured against the amount printed on the pack." } },
+        "t2": { "type": "test", "settings": { "title": "Heavy metals", "text": "Lead, arsenic, cadmium and mercury, checked against FSSAI limits." } },
+        "t3": { "type": "test", "settings": { "title": "Microbiology", "text": "Checked for harmful bacteria, yeast and mould." } },
+        "t4": { "type": "test", "settings": { "title": "Probiotic count", "text": "Live probiotic count (CFU) measured to confirm the 18 billion CFU complex." } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

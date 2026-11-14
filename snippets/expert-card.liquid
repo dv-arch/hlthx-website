@@ -1,0 +1,52 @@
+{%- comment -%}
+  One person from the "Expert" metaobject (Content > Metaobjects > Expert). Only call it for entries whose
+  "Consent received" box is ticked. Params: e (metaobject).
+
+  Doctors (category "Doctor") appear as advisory-panel members: photo, name, qualification and a factual role line
+  ("Reviewed the formulation for dose and safety"), plus an optional disclosure. No quote and no video is shown for
+  them, so they are listed for the work they did, not as endorsing the product.
+  Everyone else (nutrition experts, athletes, everyday achievers) appears with their own quote, and a video plays
+  instead of the photo once one is uploaded.
+{%- endcomment -%}
+{%- liquid
+  assign cat = e.category.value | default: 'Doctor' | handleize
+  assign advisor = false
+  if cat == 'doctor'
+    assign advisor = true
+  endif
+  assign rel = e.relationship.value
+  if rel == blank
+    if advisor
+      assign rel = 'Formulated with input from'
+    else
+      assign rel = 'Trusted by'
+    endif
+  endif
+-%}
+<article class="xp{% if advisor %} xp--advisor{% endif %}" data-cat="{{ cat }}">
+  <div class="xp__media">
+    {%- if advisor == false and e.video.value != blank -%}
+      {{ e.video.value | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: true, preload: 'metadata', image_size: '800x' }}
+    {%- elsif e.photo.value != blank -%}
+      {{ e.photo.value | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 1100px) 360px, (min-width: 700px) 45vw, 92vw', alt: e.name.value }}
+    {%- endif -%}
+  </div>
+  <div class="xp__body">
+    <p class="xp__rel">{{ rel | escape }}</p>
+    {%- if advisor -%}
+      <div class="xp__who">
+        <p class="xp__name">{{ e.name.value | escape }}</p>
+        {%- if e.credential.value != blank -%}<p class="xp__cred">{{ e.credential.value | escape }}</p>{%- endif -%}
+      </div>
+      {%- if e.role.value != blank -%}<p class="xp__role"><span class="xp__role-l">Role</span>{{ e.role.value | strip | escape }}</p>{%- endif -%}
+      {%- if e.disclosure.value != blank -%}<p class="xp__disc">{{ e.disclosure.value | escape }}</p>{%- endif -%}
+    {%- else -%}
+      {%- if e.quote.value != blank -%}<blockquote class="xp__quote">&ldquo;{{ e.quote.value | strip | escape | newline_to_br }}&rdquo;</blockquote>{%- endif -%}
+      <div class="xp__who">
+        <p class="xp__name">{{ e.name.value | escape }}<svg class="xp__tick" viewBox="0 0 24 24" width="18" height="18" aria-label="Verified" role="img"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        {%- if e.credential.value != blank -%}<p class="xp__cred">{{ e.credential.value | escape }}</p>{%- endif -%}
+        {%- if e.disclosure.value != blank -%}<p class="xp__disc">{{ e.disclosure.value | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>
