@@ -75,3 +75,15 @@ Editing an entry updates the site straight away. Pages that use this content:
 
 `tools/ingredients/ingredients.json` is the data first entered from the client's cards (kept for reference;
 the admin is the source of truth now). `concept/ingredients-preview/` is the static preview made from it.
+
+## Trusted by and lab results
+- **Trusted by page:** Online Store → Pages → Add page "Trusted by" (handle `trusted-by`), template `trusted-by`.
+  People are entries in **Content → Metaobjects → Expert**. An entry shows only when **Consent received** is ticked.
+  - Category **Doctor**: shown in "Our advisory panel" with photo, name, qualification, a factual **Role** line and an
+    optional disclosure. Quotes and videos are never shown for doctors.
+  - Nutrition experts, athletes, everyday achievers: shown with their own quote; an uploaded video replaces the photo.
+  - **Order** sets the order (1 first). The home page strip shows the first three.
+- **Lab results page:** Online Store → Pages → Add page "Lab results" (handle `lab-tests`), template `lab-tests`.
+  Each batch is an entry in **Content → Metaobjects → Lab report** (batch, test date, laboratory, accreditation,
+  results as "Test: result" lines, certificate PDF). Newest test date first. "What the lab checks" is edited in Customize.
+- `concept/trusted-preview/` is the static preview (`tools/ingredients/render_trusted.py`).
